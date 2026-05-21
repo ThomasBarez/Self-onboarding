@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(CLIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions OnboardingSession[]
+}
+
+model OnboardingSession {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyName String?
+  status      SessionStatus @default(IN_PROGRESS)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  fields        FormField[]
+  programConfig ProgramConfig?
+  budgetGroups  BudgetGroupConfig[]
+}
+
+model FormField {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   OnboardingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  sheetName String
+  fieldKey  String
+  fieldValue String?
+  fieldType FieldType @default(TEXT)
+
+  completed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, sheetName, fieldKey])
+  @@index([sessionId, sheetName])
+}
+
+enum Role {
+  CLIENT
+  INTERNAL
+  ADMIN
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}
+
+enum FieldType {
+  TEXT
+  TEXTAREA
+  SELECT
+  MULTISELECT
+  DATE
+  NUMBER
+  CHECKBOX
+  EMAIL
+  PHONE
+  URL
+}
+
+model ProgramConfig {
+  id              String @id @default(cuid())
+  sessionId       String @unique
+  session         OnboardingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  programId       String? // UUID from Skipr API
+  template        String  // Federal, Commute, Professional, EVCharging
+  legalContext    String  // "Credit Mobilite", etc.
+  programName     String
+  startDate       DateTime
+  status          String  @default("DRAFT")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model BudgetGroupConfig {
+  id                  String @id @default(cuid())
+  sessionId           String
+  session             OnboardingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  groupId             String? // UUID from Skipr API
+  groupName           String
+  description         String?
+  employeeCount       Int
+  limitAmount         Int?     // in cents
+  budgetDistribution  String?  // MONTHLY, QUARTERLY, FULL
+  carryOver           Boolean @default(true)
+  prorata             Boolean @default(true)
+  prorataIn           Boolean @default(true)
+  prorataOut          Boolean @default(true)
+  displayBudgetLimit  Boolean @default(true)
+  isDefault           Boolean @default(false)
+  isRefundEnabled     Boolean @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([sessionId])
+}

@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3)",
+      "Bash(cd \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding\" && mkdir -p skipr-onboarding)",
+      "Bash(npm install *)",
+      "Bash(npm update *)",
+      "Bash(npm audit *)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "Bash(cp /tmp/current-design.png \"$HOME/.gstack/projects/V2/designs/client-portal-navigation-$\\(date +%Y%m%d\\)/current.png\" *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Skill(figma:figma-generate-design)",
+      "Skill(figma:figma-generate-design:*)",
+      "mcp__plugin_figma_figma__generate_figma_design",
+      "Bash(python3 -m http.server 8080)",
+      "Bash(open \"http://localhost:8080/01-invitation.html#figmacapture=ff67988f-88de-4c65-b5a7-4ebead782dd7&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcapture%2Fff67988f-88de-4c65-b5a7-4ebead782dd7%2Fsubmit&figmadelay=1000\")",
+      "mcp__plugin_figma_figma__get_metadata",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(curl -o /tmp/figma-design.png \"https://www.figma.com/api/mcp/asset/5dddcdca-ab24-4c6c-9065-2615a591a5bd\")",
+      "mcp__plugin_figma_figma__get_design_context",
+      "Bash(open \"http://localhost:8080/02-company-info-v2.html\")",
+      "Bash(curl -o /tmp/complete-flow.png \"https://www.figma.com/api/mcp/asset/d2bd90f5-1229-4276-8449-135e3e8bab78\")",
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/index.html\")",
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/01-welcome.html\")",
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/06-program-review-interactive.html\")",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(open \"http://localhost:8000/index.html\")",
+      "Bash(open \"http://localhost:8000/02-activate-account.html\")",
+      "Bash(cat > *)",
+      "Bash(open \"http://localhost:8000/06-program-review.html\")",
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype\")"
+    ],
+    "additionalDirectories": [
+      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding",
+      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/__TRACKED_VAR__/.gstack/projects/V2/designs/client-portal-navigation-__CMDSUB_OUTPUT__",
+      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype"
+    ]
+  }
+}
