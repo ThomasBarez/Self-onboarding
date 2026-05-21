@@ -1189,6 +1189,19 @@
 
         <div class="card">
             <div class="section-header">
+                <div class="section-title">Invitation Schedule</div>
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="max-width: 400px;">
+                    <label class="form-label">When would you like to invite the employees?</label>
+                    <input type="date" class="form-input" id="globalInvitationDate" value="">
+                    <div class="form-help">All employees will receive their invitation emails on this date</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
                 <div class="section-title">
                     Import from CSV
                 </div>
@@ -1236,6 +1249,7 @@
                         <th>Email</th>
                         <th>Group</th>
                         <th>Budget <span style="color: #6B7280; font-weight: 400; font-size: 11px;">(Customizable)</span></th>
+                        <th style="width: 160px;">Budget Start Date</th>
                         <th style="width: 80px;"></th>
                     </tr>
                 </thead>
@@ -1401,14 +1415,14 @@
 
         // Mock employees extracted from file
         let employees = [
-            { id: 1, firstName: 'Elisa', lastName: 'De Becker', email: 'elisa.debecker@selligent.com', group: 'Managers', payrollId: 'EMP001', internalRef: 'MGR-01', costCenter: 'HR', language: 'English' },
-            { id: 2, firstName: 'Christina', lastName: 'Tsiaflakis', email: 'christina.tsiaflakis@selligent.com', group: 'Managers', payrollId: 'EMP002', internalRef: 'MGR-02', costCenter: 'HR', language: 'English' },
-            { id: 3, firstName: 'Thomas', lastName: 'Anderson', email: 'thomas.anderson@selligent.com', group: 'Executives', payrollId: 'EMP003', internalRef: 'EXEC-01', costCenter: 'EXEC', language: 'English' },
-            { id: 4, firstName: 'Marie', lastName: 'Dubois', email: 'marie.dubois@selligent.com', group: 'Employees', payrollId: 'EMP004', internalRef: 'EMP-01', costCenter: 'IT', language: 'French' },
-            { id: 5, firstName: 'Jan', lastName: 'Vermeulen', email: 'jan.vermeulen@selligent.com', group: 'Employees', payrollId: 'EMP005', internalRef: 'EMP-02', costCenter: 'SALES', language: 'Dutch' },
-            { id: 6, firstName: 'Sophie', lastName: 'Laurent', email: 'sophie.laurent@selligent.com', group: 'Employees', payrollId: 'EMP006', internalRef: 'EMP-03', costCenter: 'MARKETING', language: 'French' },
-            { id: 7, firstName: 'Lucas', lastName: 'Schmidt', email: 'lucas.schmidt@selligent.com', group: 'Interns', payrollId: 'INT001', internalRef: 'INT-01', costCenter: 'IT', language: 'German' },
-            { id: 8, firstName: 'Emma', lastName: 'Johnson', email: 'emma.johnson@selligent.com', group: 'Interns', payrollId: 'INT002', internalRef: 'INT-02', costCenter: 'MARKETING', language: 'English' }
+            { id: 1, firstName: 'Elisa', lastName: 'De Becker', email: 'elisa.debecker@selligent.com', group: 'Managers', payrollId: 'EMP001', internalRef: 'MGR-01', costCenter: 'HR', language: 'English', budgetStartDate: '2026-06-01' },
+            { id: 2, firstName: 'Christina', lastName: 'Tsiaflakis', email: 'christina.tsiaflakis@selligent.com', group: 'Managers', payrollId: 'EMP002', internalRef: 'MGR-02', costCenter: 'HR', language: 'English', budgetStartDate: '2026-06-01' },
+            { id: 3, firstName: 'Thomas', lastName: 'Anderson', email: 'thomas.anderson@selligent.com', group: 'Executives', payrollId: 'EMP003', internalRef: 'EXEC-01', costCenter: 'EXEC', language: 'English', budgetStartDate: '2026-06-01' },
+            { id: 4, firstName: 'Marie', lastName: 'Dubois', email: 'marie.dubois@selligent.com', group: 'Employees', payrollId: 'EMP004', internalRef: 'EMP-01', costCenter: 'IT', language: 'French', budgetStartDate: '2026-06-15' },
+            { id: 5, firstName: 'Jan', lastName: 'Vermeulen', email: 'jan.vermeulen@selligent.com', group: 'Employees', payrollId: 'EMP005', internalRef: 'EMP-02', costCenter: 'SALES', language: 'Dutch', budgetStartDate: '2026-06-01' },
+            { id: 6, firstName: 'Sophie', lastName: 'Laurent', email: 'sophie.laurent@selligent.com', group: 'Employees', payrollId: 'EMP006', internalRef: 'EMP-03', costCenter: 'MARKETING', language: 'French', budgetStartDate: '2026-07-01' },
+            { id: 7, firstName: 'Lucas', lastName: 'Schmidt', email: 'lucas.schmidt@selligent.com', group: 'Interns', payrollId: 'INT001', internalRef: 'INT-01', costCenter: 'IT', language: 'German', budgetStartDate: '2026-06-01' },
+            { id: 8, firstName: 'Emma', lastName: 'Johnson', email: 'emma.johnson@selligent.com', group: 'Interns', payrollId: 'INT002', internalRef: 'INT-02', costCenter: 'MARKETING', language: 'English', budgetStartDate: '2026-06-15' }
         ];
 
         let nextId = 9;
@@ -1418,6 +1432,12 @@
             lucide.createIcons();
             renderEmployees();
             setupEventListeners();
+
+            // Set default global invitation date (1 week from today)
+            const today = new Date();
+            const oneWeekLater = new Date(today.setDate(today.getDate() + 7));
+            const defaultDate = oneWeekLater.toISOString().split('T')[0];
+            document.getElementById('globalInvitationDate').value = defaultDate;
 
             // Set correct back button based on referrer
             const backBtn = document.getElementById('backBtn');
@@ -1479,6 +1499,9 @@
                         </div>
                     </td>
                     <td>
+                        <input type="date" class="form-input" data-employee-id="${employee.id}" value="${employee.budgetStartDate || ''}" onchange="updateEmployeeBudgetStartDate('${employee.id}', this.value)" style="font-size: 13px; padding: 6px 8px;">
+                    </td>
+                    <td>
                         <div class="actions">
                             <button class="icon-btn edit-employee" data-employee-id="${employee.id}" title="Edit">
                                 <i data-lucide="pencil" style="width: 16px; height: 16px;"></i>
@@ -1496,6 +1519,13 @@
             lucide.createIcons();
             updateEmployeeCount();
             setupBudgetPopovers();
+        }
+
+        function updateEmployeeBudgetStartDate(employeeId, date) {
+            const employee = employees.find(function(emp) { return emp.id == employeeId; });
+            if (employee) {
+                employee.budgetStartDate = date;
+            }
         }
 
         function updateEmployeeCount() {
