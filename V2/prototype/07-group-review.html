@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Review - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 75%;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .edit-btn {
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+        }
+
+        th {
+            background: #F9FAFB;
+            padding: 10px 12px;
+            text-align: left;
+            color: #6B7280;
+            font-weight: 700;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        th:last-child {
+            text-align: right;
+            width: 100px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #F3F4F6;
+            color: #221C46;
+        }
+
+        td:last-child {
+            text-align: right;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .group-name {
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-info {
+            background: #EEF2FF;
+            color: #4F46E5;
+        }
+
+        .badge-yes {
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .badge-no {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .add-btn {
+            background: #E5E3EA;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #463F5F;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #D1CFD8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 500px;
+            width: calc(100% - 48px);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .modal-btn-cancel {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #F9FAFB;
+        }
+
+        .modal-btn-save {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 2px solid #2BFD7F;
+        }
+
+        .modal-btn-save:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .icon-btn {
+            display: flex;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: #6B7280;
+            font-size: 16px;
+        }
+
+        .icon-btn:hover {
+            color: #221C46;
+        }
+
+        .icon-btn.delete:hover {
+            color: #DC2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Step 4 of 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Group Review</span>
+        </div>
+
+        <h1>Review your mobility program</h1>
+        <p class="page-description">
+            Verify the mobility services and budget groups configured for your employees.
+        </p>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="section-icon"><i data-lucide="users"></i></span>
+                    Budget Groups
+                </div>
+                <button class="edit-btn" id="editBtn">Edit</button>
+            </div>
+
+            <table id="groupsTable">
+                <thead>
+                    <tr>
+                        <th>Group Name</th>
+                        <th>Top-up Period</th>
+                        <th>Rollover</th>
+                        <th>Budget Amount</th>
+                        <th id="actionsHeader" style="display: none;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="groupsBody">
+                    <tr data-group-id="1">
+                        <td class="group-name">Executives</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td>€800/month</td>
+                        <td class="row-actions" style="display: none;">
+                            <button class="icon-btn edit-group" data-group-id="1"><i data-lucide="pencil"></i></button>
+                            <button class="icon-btn delete delete-group" data-group-id="1"><i data-lucide="trash-2"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-group-id="2">
+                        <td class="group-name">Managers</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td>€500/month</td>
+                        <td class="row-actions" style="display: none;">
+                            <button class="icon-btn edit-group" data-group-id="2"><i data-lucide="pencil"></i></button>
+                            <button class="icon-btn delete delete-group" data-group-id="2"><i data-lucide="trash-2"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-group-id="3">
+                        <td class="group-name">Employees</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                        <td>€300/month</td>
+                        <td class="row-actions" style="display: none;">
+                            <button class="icon-btn edit-group" data-group-id="3"><i data-lucide="pencil"></i></button>
+                            <button class="icon-btn delete delete-group" data-group-id="3"><i data-lucide="trash-2"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-group-id="4">
+                        <td class="group-name">Interns</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                        <td>€150/month</td>
+                        <td class="row-actions" style="display: none;">
+                            <button class="icon-btn edit-group" data-group-id="4"><i data-lucide="pencil"></i></button>
+                            <button class="icon-btn delete delete-group" data-group-id="4"><i data-lucide="trash-2"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="add-btn" id="addGroupBtn">Add groups</button>
+        </div>
+
+        <div class="btn-group">
+            <a href="06-program-review.html" class="btn btn-secondary">← Back</a>
+            <a href="08-invite-employees.html" class="btn btn-primary">Continue to Invite Employees →</a>
+        </div>
+    </div>
+
+    <!-- Add/Edit Group Modal -->
+    <div class="modal-overlay" id="groupModal">
+        <div class="modal">
+            <h2 class="modal-header" id="modalTitle">Add New Budget Group</h2>
+
+            <form id="groupForm">
+                <div class="form-group">
+                    <label class="form-label">Group Name</label>
+                    <input type="text" class="form-input" id="groupName" placeholder="e.g., Sales Team" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Top-up Period</label>
+                    <select class="form-select" id="topupPeriod" required>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Rollover Enabled</label>
+                    <select class="form-select" id="rollover" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Budget Amount (€/month)</label>
+                    <input type="number" class="form-input" id="budgetAmount" placeholder="e.g., 400" min="0" step="50" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-cancel" id="cancelModal">Cancel</button>
+                    <button type="submit" class="modal-btn modal-btn-save">Save Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        console.log('Group Review Script loaded');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Group Review DOM loaded');
+
+            let isEditMode = false;
+            let editingGroupId = null;
+            let nextGroupId = 5;
+
+            const groups = [
+                { id: 1, name: 'Executives', period: 'Monthly', rollover: 'Yes', budget: 800 },
+                { id: 2, name: 'Managers', period: 'Monthly', rollover: 'Yes', budget: 500 },
+                { id: 3, name: 'Employees', period: 'Monthly', rollover: 'No', budget: 300 },
+                { id: 4, name: 'Interns', period: 'Monthly', rollover: 'No', budget: 150 }
+            ];
+
+            const editBtn = document.getElementById('editBtn');
+            const addGroupBtn = document.getElementById('addGroupBtn');
+            const groupModal = document.getElementById('groupModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const groupForm = document.getElementById('groupForm');
+            const cancelModal = document.getElementById('cancelModal');
+            const actionsHeader = document.getElementById('actionsHeader');
+
+            console.log('Found elements:', {
+                editBtn: !!editBtn,
+                addGroupBtn: !!addGroupBtn,
+                groupModal: !!groupModal
+            });
+
+            if (editBtn) {
+                editBtn.addEventListener('click', function() {
+                    console.log('Edit button clicked');
+                    isEditMode = !isEditMode;
+
+                    if (isEditMode) {
+                        editBtn.textContent = 'Done';
+                        editBtn.style.background = '#2BFD7F';
+                        editBtn.style.color = '#362F54';
+                        actionsHeader.style.display = 'table-cell';
+
+                        document.querySelectorAll('.row-actions').forEach(function(el) {
+                            el.style.display = 'flex';
+                        });
+                    } else {
+                        editBtn.textContent = 'Edit';
+                        editBtn.style.background = '#F3F4F6';
+                        editBtn.style.color = '#221C46';
+                        actionsHeader.style.display = 'none';
+
+                        document.querySelectorAll('.row-actions').forEach(function(el) {
+                            el.style.display = 'none';
+                        });
+                    }
+                });
+            }
+
+            if (addGroupBtn) {
+                addGroupBtn.addEventListener('click', function() {
+                    console.log('Add group button clicked');
+                    editingGroupId = null;
+                    modalTitle.textContent = 'Add New Budget Group';
+                    groupForm.reset();
+                    groupModal.classList.add('active');
+                });
+            }
+
+            if (cancelModal) {
+                cancelModal.addEventListener('click', function() {
+                    groupModal.classList.remove('active');
+                });
+            }
+
+            if (groupModal) {
+                groupModal.addEventListener('click', function(e) {
+                    if (e.target === groupModal) {
+                        groupModal.classList.remove('active');
+                    }
+                });
+            }
+
+            if (groupForm) {
+                groupForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted');
+
+                    const groupData = {
+                        id: editingGroupId || nextGroupId++,
+                        name: document.getElementById('groupName').value,
+                        period: document.getElementById('topupPeriod').value,
+                        rollover: document.getElementById('rollover').value,
+                        budget: parseInt(document.getElementById('budgetAmount').value)
+                    };
+
+                    if (editingGroupId) {
+                        const index = groups.findIndex(function(g) {
+                            return g.id === editingGroupId;
+                        });
+                        if (index !== -1) {
+                            groups[index] = groupData;
+                        }
+                    } else {
+                        groups.push(groupData);
+                    }
+
+                    renderGroups();
+                    groupModal.classList.remove('active');
+                });
+            }
+
+            document.addEventListener('click', function(e) {
+                // Check if clicked element or its parent is the edit button
+                const editBtn = e.target.closest('.edit-group');
+                if (editBtn) {
+                    const groupId = parseInt(editBtn.dataset.groupId);
+                    const group = groups.find(function(g) {
+                        return g.id === groupId;
+                    });
+
+                    if (group) {
+                        console.log('Editing group:', group);
+                        editingGroupId = groupId;
+                        modalTitle.textContent = 'Edit Budget Group';
+
+                        document.getElementById('groupName').value = group.name;
+                        document.getElementById('topupPeriod').value = group.period;
+                        document.getElementById('rollover').value = group.rollover;
+                        document.getElementById('budgetAmount').value = group.budget;
+
+                        groupModal.classList.add('active');
+                    }
+                    return;
+                }
+
+                // Check if clicked element or its parent is the delete button
+                const deleteBtn = e.target.closest('.delete-group');
+                if (deleteBtn) {
+                    const groupId = parseInt(deleteBtn.dataset.groupId);
+                    const group = groups.find(function(g) {
+                        return g.id === groupId;
+                    });
+
+                    if (confirm('Are you sure you want to delete the "' + group.name + '" group?')) {
+                        console.log('Deleting group:', group);
+                        const index = groups.findIndex(function(g) {
+                            return g.id === groupId;
+                        });
+                        if (index !== -1) {
+                            groups.splice(index, 1);
+                            renderGroups();
+                        }
+                    }
+                }
+            });
+
+            function renderGroups() {
+                const tbody = document.getElementById('groupsBody');
+                tbody.innerHTML = '';
+
+                groups.forEach(function(group) {
+                    const row = document.createElement('tr');
+                    row.dataset.groupId = group.id;
+
+                    row.innerHTML = '<td class="group-name">' + group.name + '</td>' +
+                        '<td><span class="badge badge-info">' + group.period + '</span></td>' +
+                        '<td><span class="badge ' + (group.rollover === 'Yes' ? 'badge-yes' : 'badge-no') + '">' + group.rollover + '</span></td>' +
+                        '<td>€' + group.budget + '/month</td>' +
+                        '<td class="row-actions" style="' + (isEditMode ? 'display: flex;' : 'display: none;') + '">' +
+                        '<button class="icon-btn edit-group" data-group-id="' + group.id + '"><i data-lucide="pencil"></i></button>' +
+                        '<button class="icon-btn delete delete-group" data-group-id="' + group.id + '"><i data-lucide="trash-2"></i></button>' +
+                        '</td>';
+
+                    tbody.appendChild(row);
+                });
+
+                // Initialize Lucide icons after rendering
+                lucide.createIcons();
+            }
+
+            // Initialize Lucide icons on page load
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

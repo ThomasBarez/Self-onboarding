@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement of Work - Skipr</title>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #FAFAFA;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #00D563;
+            width: 50%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .breadcrumb-sep {
+            color: #D1D5DB;
+        }
+
+        .breadcrumb-current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .info-row {
+            padding: 16px 0;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #6B7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #221C46;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .objectives-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .objective-item {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .objective-number {
+            background: #221C46;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .upload-zone {
+            border: 2px dashed #D1D5DB;
+            border-radius: 12px;
+            padding: 48px 32px;
+            text-align: center;
+            background: #FAFBFC;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 20px;
+        }
+
+        .upload-zone:hover {
+            border-color: #01D253;
+            background: #F9FFF9;
+        }
+
+        .upload-icon {
+            width: 48px;
+            height: 48px;
+            background: #F3F4F6;
+            border-radius: 12px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .upload-text {
+            font-size: 15px;
+            color: #221C46;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .upload-subtext {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .file-icon {
+            width: 32px;
+            height: 32px;
+            background: #EEF2FF;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-size: 14px;
+            color: #221C46;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .file-meta {
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .file-remove {
+            background: none;
+            border: none;
+            color: #EF4444;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .file-remove:hover {
+            background: #FEE2E2;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            flex: 1;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #221C46;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .btn-primary {
+            background: #00D563;
+            color: #221C46;
+        }
+
+        .btn-primary:hover {
+            background: #00E56D;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 213, 99, 0.3);
+        }
+
+        .edit-btn {
+            font-size: 13px;
+            color: #221C46;
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">✕</div>
+            Mobility
+        </div>
+        <div class="progress">
+            <span>Step 2 of 4</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-current">Statement of Work</span>
+        </div>
+
+        <h1>Review your statement of work</h1>
+        <div class="page-description">
+            Verify your project objectives and success metrics. You can upload additional
+            documents or contracts related to this mobility program.
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">🎯</span>
+                Strategic Business Objectives
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <div class="objectives-list">
+                <div class="objective-item">
+                    <span class="objective-number">1</span>
+                    Reduce cost linked to mobility
+                </div>
+                <div class="objective-item">
+                    <span class="objective-number">2</span>
+                    Centralise mobility data
+                </div>
+                <div class="objective-item">
+                    <span class="objective-number">3</span>
+                    Measure CO2 emissions
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">📊</span>
+                Success Metrics
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Primary success metric</div>
+                <div class="info-value">150 starters in the mobility program at launch</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Target date</div>
+                <div class="info-value">Q3 2024</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Secondary metric</div>
+                <div class="info-value">20% reduction in fleet costs within 12 months</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">📎</span>
+                Additional Documents
+            </div>
+
+            <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-icon">📄</div>
+                <div class="upload-text">Click to upload or drag and drop</div>
+                <div class="upload-subtext">PDF, DOC, DOCX up to 10MB</div>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx">
+
+            <div class="file-list">
+                <div class="file-item">
+                    <div class="file-icon">📄</div>
+                    <div class="file-info">
+                        <div class="file-name">Mobility_Policy_2024.pdf</div>
+                        <div class="file-meta">1.2 MB • Uploaded 2 hours ago</div>
+                    </div>
+                    <button class="file-remove">×</button>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">📄</div>
+                    <div class="file-info">
+                        <div class="file-name">Contract_Addendum_v2.docx</div>
+                        <div class="file-meta">458 KB • Uploaded yesterday</div>
+                    </div>
+                    <button class="file-remove">×</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="window.location.href='02-company-info.html'">
+                ← Back
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='04-program-review.html'">
+                Continue to Program Review →
+            </button>
+        </div>
+    </div>
+</body>
+</html>

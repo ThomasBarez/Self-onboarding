@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Information - Skipr</title>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #FAFAFA;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #00D563;
+            width: 25%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .breadcrumb-sep {
+            color: #D1D5DB;
+        }
+
+        .breadcrumb-current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table td {
+            padding: 16px 0;
+            font-size: 14px;
+        }
+
+        .info-label {
+            color: #6B7280;
+            width: 200px;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        .info-value.empty {
+            color: #D1D5DB;
+            font-style: italic;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #D97706;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .contact-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-role {
+            display: inline-block;
+            background: #221C46;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            flex: 1;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #221C46;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .btn-primary {
+            background: #00D563;
+            color: #221C46;
+        }
+
+        .btn-primary:hover {
+            background: #00E56D;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 213, 99, 0.3);
+        }
+
+        .edit-btn {
+            font-size: 13px;
+            color: #221C46;
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">✕</div>
+            Mobility
+        </div>
+        <div class="progress">
+            <span>Step 1 of 4</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-current">Company Information</span>
+        </div>
+
+        <h1>Review your company information</h1>
+        <div class="page-description">
+            Please verify that all details are correct. This information will be used
+            to set up your mobility program and generate invoices.
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">🏢</span>
+                Company Details
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <table class="info-table">
+                <tr>
+                    <td class="info-label">Entity name <span class="required-badge">Required</span></td>
+                    <td class="info-value">Acme Corporation BVBA</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Parent entity</td>
+                    <td class="info-value">Acme Group International</td>
+                </tr>
+                <tr>
+                    <td class="info-label">VAT number <span class="required-badge">Required</span></td>
+                    <td class="info-value">BE 0123.456.789</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Address <span class="required-badge">Required</span></td>
+                    <td class="info-value">Rue de la Loi 123, 1000 Brussels</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Number of employees <span class="required-badge">Required</span></td>
+                    <td class="info-value">245 employees</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Invoice recipient email <span class="required-badge">Required</span></td>
+                    <td class="info-value">accounting@acme.com</td>
+                </tr>
+                <tr>
+                    <td class="info-label">PO number</td>
+                    <td class="info-value">PO-2024-05678</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">👥</span>
+                Points of Contact
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-name">Sarah Johnson</div>
+                <div class="contact-detail">✉️ sarah.johnson@acme.com</div>
+                <div class="contact-detail">📞 +32 475 12 34 56</div>
+                <div class="contact-detail">💼 HR Manager</div>
+                <span class="contact-role">MAIN SPOC</span>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-name">Michael Chen</div>
+                <div class="contact-detail">✉️ michael.chen@acme.com</div>
+                <div class="contact-detail">📞 +32 476 23 45 67</div>
+                <div class="contact-detail">💼 Finance Director</div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-name">Emma Williams</div>
+                <div class="contact-detail">✉️ emma.williams@acme.com</div>
+                <div class="contact-detail">📞 +32 477 34 56 78</div>
+                <div class="contact-detail">💼 Operations Manager</div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="window.location.href='01-invitation.html'">
+                ← Back
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='03-statement-of-work.html'">
+                Continue to Statement of Work →
+            </button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Complete Company Information - Mobility</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 25%;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            color: #6B7280;
+            flex-shrink: 0;
+        }
+
+
+        .edit-btn {
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .edit-actions {
+            display: none;
+            gap: 8px;
+        }
+
+        .edit-actions.active {
+            
+        }
+
+        .btn-save {
+            background: #2BFD7F;
+            border: 1px solid #2BFD7F;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #362F54;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-cancel {
+            background: white;
+            border: 1px solid #E5E7EB;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            cursor: pointer;
+        }
+
+        .btn-cancel:hover {
+            background: #F9FAFB;
+        }
+
+        .table-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-label {
+            display: flex;
+            flex: 0 0 300px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #6B7280;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .table-value {
+            flex: 1;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .table-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .table-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .table-input.error {
+            border-color: #DC2626;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+            
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: flex;
+            flex: 1;
+            padding: 12px 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .edit-mode-notice {
+            display: none;
+            background: #F3F3FC;
+            border: 1px solid #526CF8;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #463F5F;
+        }
+
+        .edit-mode-notice.active {
+            display: block;
+        }
+
+        .edit-mode-notice strong {
+            color: #1B51DC;
+            font-weight: 600;
+        }
+
+        .error-message {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #DC2626;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Complete Setup: Step 1 of 3</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span>Complete Configuration</span>
+            <span>›</span>
+            <span class="current">Company Details</span>
+        </div>
+
+        <h1>Complete your company details</h1>
+        <p class="page-description">
+            Some required fields are missing from your uploaded data. Please fill them in to continue.
+        </p>
+
+        <div class="edit-mode-notice active" style="margin-bottom: 24px; background: #FEF3C7; border: 1px solid #F59E0B;">
+            <strong style="color: #92400E;">⚠️ 3 required fields missing:</strong> <span style="color: #92400E;">Legal Entity Country, Billing Currency, Payment Terms</span>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    Company Details
+                </div>
+                <button class="edit-btn" id="editBtn">Edit</button>
+                <div class="edit-actions" id="editActions">
+                    <button class="btn-cancel" id="cancelBtn">Cancel</button>
+                    <button class="btn-save" id="saveBtn">Save Changes</button>
+                </div>
+            </div>
+
+            <div class="edit-mode-notice" id="editNotice">
+                <strong>Edit Mode:</strong> Update the company information fields below.
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Entity name
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="entityName">Selligent SA / Marigold Europe</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">Parent entity</div>
+                <div class="table-value" data-field="parentEntity">ZETA GLOBAL</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    VAT number
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="vatNumber">BE0433657207 / BE0478839312</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Address
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="address">Avenue de Finlande 8, 1420 Braine l'Alleud</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Number of employees
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="employees">118 employees</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Invoice recipient email
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="email">ZetaMGAPEU@zetaglobal.com</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">Main contacts</div>
+                <div class="table-value" data-field="contacts">Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Legal Entity Country
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="country" style="color: #DC2626; font-style: italic;">Missing - Please add</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Billing Currency
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="currency" style="color: #DC2626; font-style: italic;">Missing - Please add</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Payment Terms
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value" data-field="paymentTerms" style="color: #DC2626; font-style: italic;">Missing - Please add</div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="07-group-review.html" class="btn btn-secondary">← Back</a>
+            <a href="09b-complete-program.html" class="btn btn-primary" id="continueBtn">Continue to Program Setup →</a>
+        </div>
+    </div>
+
+    <script>
+        console.log('Company Info Script loaded');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+            console.log('Company Info DOM loaded');
+
+            let isEditMode = false;
+            let originalValues = {};
+
+            const editBtn = document.getElementById('editBtn');
+            const editActions = document.getElementById('editActions');
+            const editNotice = document.getElementById('editNotice');
+            const saveBtn = document.getElementById('saveBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const valueElements = document.querySelectorAll('.table-value');
+
+            const requiredFields = ['entityName', 'vatNumber', 'address', 'employees', 'email', 'country', 'currency', 'paymentTerms'];
+            const missingFields = ['country', 'currency', 'paymentTerms'];
+            const continueBtn = document.getElementById('continueBtn');
+
+            console.log('Found elements:', {
+                editBtn: !!editBtn,
+                editActions: !!editActions,
+                valueElements: valueElements.length
+            });
+
+            function saveOriginalValues() {
+                originalValues = {};
+                valueElements.forEach(function(el) {
+                    const field = el.dataset.field;
+                    if (field) {
+                        originalValues[field] = el.textContent;
+                    }
+                });
+                console.log('Saved values:', originalValues);
+            }
+
+            if (editBtn) {
+                editBtn.addEventListener('click', function() {
+                    console.log('Edit button clicked');
+                    isEditMode = true;
+                    saveOriginalValues();
+
+                    editBtn.style.display = 'none';
+                    editActions.classList.add('active');
+                    editNotice.classList.add('active');
+
+                    valueElements.forEach(function(el) {
+                        const field = el.dataset.field;
+                        if (!field) return;
+
+                        const currentValue = el.textContent;
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'table-input';
+                        input.value = currentValue;
+                        input.dataset.field = field;
+
+                        if (requiredFields.indexOf(field) !== -1) {
+                            input.required = true;
+                        }
+
+                        el.replaceWith(input);
+                    });
+                });
+            }
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function() {
+                    console.log('Cancel clicked');
+                    exitEditMode(true);
+                });
+            }
+
+            if (saveBtn) {
+                saveBtn.addEventListener('click', function() {
+                    console.log('Save clicked');
+                    const inputs = document.querySelectorAll('.table-input');
+                    let isValid = true;
+
+                    inputs.forEach(function(input) {
+                        const field = input.dataset.field;
+                        const value = input.value.trim();
+
+                        if (requiredFields.indexOf(field) !== -1 && !value) {
+                            input.classList.add('error');
+                            isValid = false;
+                        } else {
+                            input.classList.remove('error');
+                        }
+                    });
+
+                    if (!isValid) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+
+                    exitEditMode(false);
+
+                    const notice = editNotice;
+                    notice.innerHTML = '<strong>Changes saved!</strong> Your company information has been updated.';
+                    notice.style.borderColor = '#00D563';
+                    notice.style.background = '#ECFDF5';
+                    notice.classList.add('active');
+
+                    setTimeout(function() {
+                        notice.classList.remove('active');
+                        notice.innerHTML = '<strong>Edit Mode:</strong> Update the company information fields below.';
+                        notice.style.borderColor = '#526CF8';
+                        notice.style.background = '#F3F3FC';
+                    }, 3000);
+                });
+            }
+
+            function exitEditMode(restore) {
+                isEditMode = false;
+
+                editBtn.style.display = 'block';
+                editActions.classList.remove('active');
+                editNotice.classList.remove('active');
+
+                const inputs = document.querySelectorAll('.table-input');
+                inputs.forEach(function(input) {
+                    const field = input.dataset.field;
+                    const value = restore ? originalValues[field] : input.value;
+
+                    const valueDiv = document.createElement('div');
+                    valueDiv.className = 'table-value';
+                    valueDiv.dataset.field = field;
+                    valueDiv.textContent = value;
+
+                    input.replaceWith(valueDiv);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

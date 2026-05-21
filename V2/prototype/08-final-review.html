@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Review - Mobility</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 45px 33px 33px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #221C46;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .checklist-item {
+            background: #F9FAFB;
+            padding: 16px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .checklist-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #221C46;
+        }
+
+        .checklist-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 19.5px;
+            color: #6B7280;
+        }
+
+        .alert {
+            background: #F3F3FC;
+            border: 1px solid #526CF8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .alert-icon {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #E3E2FA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #1B51DC;
+        }
+
+        .alert-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #1B51DC;
+        }
+
+        .alert-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #463F5F;
+        }
+
+        .timeline-card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 24px;
+        }
+
+        .timeline {
+            background: #F9FAFB;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: -16px;
+            width: 2px;
+            background: #E5E7EB;
+        }
+
+        .timeline-number {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #221C46;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .timeline-item-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 2px;
+        }
+
+        .timeline-item-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Step 5 of 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Final Review</span>
+        </div>
+
+        <h1>You're ready to launch!</h1>
+        <p class="page-description">
+            Review everything one last time, then invite your users to start using Skipr.
+        </p>
+
+        <div class="card">
+            <h2 class="card-title">All Set! Your Configuration is Complete</h2>
+            <p class="card-description">
+                You've successfully configured your mobility program. Review the summary below and send invitations to your users.
+            </p>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checklist-title">Company Information Verified</div>
+                    <div class="checklist-description">
+                        Selligent SA / Marigold Europe (ZETA GLOBAL) • 118 employees • 2 main contacts
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checklist-title">Mobility Program Configured</div>
+                    <div class="checklist-description">
+                        Federal Mobility Budget • 14 services enabled • 2 allowance types configured
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checklist-title">Budget Groups Created</div>
+                    <div class="checklist-description">
+                        4 employee groups • Monthly top-ups • Custom policies per group
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert">
+            <div class="alert-header">
+                <div class="alert-icon">i</div>
+                <div class="alert-title">Before sending invites:</div>
+            </div>
+            <div class="alert-text">
+                Your employees will receive an email with instructions to access their mobility dashboard. Make sure to communicate the launch internally and prepare any support materials.
+            </div>
+        </div>
+
+        <div class="timeline-card">
+            <div class="timeline-title">📅 What Happens Next</div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-item-title">Invitations Sent</div>
+                        <div class="timeline-item-description">
+                            Your employees will receive welcome emails with login credentials
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-item-title">User Training Session</div>
+                        <div class="timeline-item-description">
+                            Scheduled for launch date • Recording will be available
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-item-title">Hypercare Period</div>
+                        <div class="timeline-item-description">
+                            Your dedicated CSM will provide extra support for 4 weeks
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-item-title">First Review</div>
+                        <div class="timeline-item-description">
+                            Check-in meeting to assess adoption and adjust as needed
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="07-group-review.html" class="btn btn-secondary">← Review Configuration</a>
+            <button class="btn btn-primary" onclick="alert('🎉 Invitations sent! Your users will receive their welcome emails shortly.')">
+                I'm Ready — Send User Invites
+            </button>
+        </div>
+    </div>
+</body>
+</html>

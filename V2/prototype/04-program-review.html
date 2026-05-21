@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Review - Skipr</title>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #FAFAFA;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #00D563;
+            width: 75%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .breadcrumb-sep {
+            color: #D1D5DB;
+        }
+
+        .breadcrumb-current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .program-name {
+            background: linear-gradient(135deg, #221C46 0%, #3A3366 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .service-item {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #221C46;
+        }
+
+        .service-item.enabled {
+            background: #ECFDF5;
+            border-color: #00D563;
+        }
+
+        .service-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-item.enabled .service-icon {
+            background: #00D563;
+            color: #221C46;
+        }
+
+        .service-item:not(.enabled) .service-icon {
+            background: #E5E7EB;
+            color: #9CA3AF;
+        }
+
+        .allowance-grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .allowance-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .allowance-header {
+            font-size: 15px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .allowance-detail {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .allowance-value {
+            color: #221C46;
+            font-weight: 600;
+        }
+
+        .group-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        .group-table th {
+            background: #F9FAFB;
+            padding: 10px 12px;
+            text-align: left;
+            color: #6B7280;
+            font-weight: 600;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .group-table td {
+            padding: 12px;
+            border-bottom: 1px solid #F3F4F6;
+            color: #221C46;
+        }
+
+        .group-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-yes {
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .badge-no {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .badge-info {
+            background: #EEF2FF;
+            color: #4F46E5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            flex: 1;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #221C46;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .btn-primary {
+            background: #00D563;
+            color: #221C46;
+        }
+
+        .btn-primary:hover {
+            background: #00E56D;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 213, 99, 0.3);
+        }
+
+        .edit-btn {
+            font-size: 13px;
+            color: #221C46;
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">✕</div>
+            Mobility
+        </div>
+        <div class="progress">
+            <span>Step 3 of 4</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-current">Program Review</span>
+        </div>
+
+        <h1>Review your mobility program</h1>
+        <div class="page-description">
+            Verify the mobility services and budget groups configured for your employees.
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">🚀</span>
+                Program Configuration
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <div class="program-name">
+                Standard Mobility Budget Program
+            </div>
+
+            <div style="font-size: 14px; color: #6B7280; font-weight: 500; margin-bottom: 12px;">
+                Enabled Services (14 active)
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Bike leasing
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Bike purchase
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Bike rent
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Public transport
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Bus
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Car sharing
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Carpooling
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Shared bike
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Kickscooter
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Taxi
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Public parking
+                </div>
+                <div class="service-item enabled">
+                    <div class="service-icon">✓</div>
+                    Housing cost
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">—</div>
+                    Car leasing
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">—</div>
+                    Car rental
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">💰</span>
+                Distance-Based Allowances
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <div class="allowance-grid">
+                <div class="allowance-card">
+                    <div class="allowance-header">🚴 Bike Allowance</div>
+                    <div class="allowance-detail">
+                        <span>Rate per km</span>
+                        <span class="allowance-value">€0.25/km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Max distance per journey</span>
+                        <span class="allowance-value">50 km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Manual distance adaptation</span>
+                        <span class="allowance-value">Allowed</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Admin validation required</span>
+                        <span class="allowance-value">Yes</span>
+                    </div>
+                </div>
+
+                <div class="allowance-card">
+                    <div class="allowance-header">🚗 Car Allowance</div>
+                    <div class="allowance-detail">
+                        <span>Rate per km</span>
+                        <span class="allowance-value">€0.15/km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Max distance per journey</span>
+                        <span class="allowance-value">100 km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Manual distance adaptation</span>
+                        <span class="allowance-value">Not allowed</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Admin validation required</span>
+                        <span class="allowance-value">N/A</span>
+                    </div>
+                </div>
+
+                <div class="allowance-card">
+                    <div class="allowance-header">👥 Carpooling Allowance</div>
+                    <div class="allowance-detail">
+                        <span>Rate per km</span>
+                        <span class="allowance-value">€0.20/km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Max distance per journey</span>
+                        <span class="allowance-value">75 km</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Manual distance adaptation</span>
+                        <span class="allowance-value">Allowed</span>
+                    </div>
+                    <div class="allowance-detail">
+                        <span>Admin validation required</span>
+                        <span class="allowance-value">No</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <span class="section-icon">👥</span>
+                Budget Groups
+                <button class="edit-btn" style="margin-left: auto;">Edit</button>
+            </div>
+
+            <table class="group-table">
+                <thead>
+                    <tr>
+                        <th>Group Name</th>
+                        <th>Budget Amount</th>
+                        <th>Top-up Period</th>
+                        <th>Rollover</th>
+                        <th>Mobility Card</th>
+                        <th>Refunds</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Executives</strong></td>
+                        <td>€800/month</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Managers</strong></td>
+                        <td>€500/month</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Employees</strong></td>
+                        <td>€300/month</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                        <td><span class="badge badge-yes">Yes</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interns</strong></td>
+                        <td>€150/month</td>
+                        <td><span class="badge badge-info">Monthly</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                        <td><span class="badge badge-no">No</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="window.location.href='03-statement-of-work.html'">
+                ← Back
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='05-final-confirmation.html'">
+                Continue to Final Review →
+            </button>
+        </div>
+    </div>
+</body>
+</html>

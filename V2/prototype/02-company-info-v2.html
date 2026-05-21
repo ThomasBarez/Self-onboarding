@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Information - Mobility</title>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            font-size: 20px;
+            font-weight: 700;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 25%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .breadcrumb-sep {
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breadcrumb-current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .edit-btn {
+            background: #F3F4F6;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #221C46;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .table-row {
+            display: flex;
+            padding: 16px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-label {
+            flex: 0 0 200px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6B7280;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .table-value {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: #221C46;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 11px 19px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #221C46;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(43, 253, 127, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">✕</div>
+            Mobility
+        </div>
+        <div class="progress">
+            <span>Step 1 of 4</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-current">Company Information</span>
+        </div>
+
+        <h1>Review your company information</h1>
+        <div class="page-description">
+            Please verify that all details are correct. This information will be used to set up your mobility program and generate invoices.
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="section-icon">🏢</span>
+                    Company Details
+                </div>
+                <button class="edit-btn">Edit</button>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Entity name
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value">Acme Corporation BVBA</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">Parent entity</div>
+                <div class="table-value">Acme Group International</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    VAT number
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value">BE 0123.456.789</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Address
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value">Rue de la Loi 123, 1000 Brussels</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Number of employees
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value">245 employees</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">
+                    Invoice recipient email
+                    <span class="required-badge">Required</span>
+                </div>
+                <div class="table-value">accounting@acme.com</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-label">PO number</div>
+                <div class="table-value">PO-2024-05678</div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="window.location.href='01-invitation.html'">
+                ← Back
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='03-statement-of-work.html'">
+                Continue to Statement of Work →
+            </button>
+        </div>
+    </div>
+</body>
+</html>

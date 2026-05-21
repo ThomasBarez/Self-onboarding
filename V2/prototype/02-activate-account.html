@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Account - Mobility Onboarding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: white;
+            border: 1px solid rgba(208, 202, 244, 0.5);
+            border-radius: 32px;
+            width: 406px;
+            padding: 48px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .icon-container {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            color: #362F54;
+        }
+
+        .description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #4B5563;
+        }
+
+        .form-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 12px 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            color: #221C46;
+            background: white;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #2BFD7F;
+        }
+
+        .input-field.error {
+            border-color: #DC2626;
+        }
+
+        .input-field.success {
+            border-color: #059669;
+        }
+
+        .input-label {
+            position: absolute;
+            left: 12px;
+            top: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 11px;
+            line-height: 14px;
+            color: #6B7280;
+            pointer-events: none;
+        }
+
+        .helper-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .helper-text.error {
+            color: #DC2626;
+        }
+
+        .helper-text.success {
+            color: #059669;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s;
+            width: 0%;
+        }
+
+        .strength-fill.weak {
+            background: #DC2626;
+            width: 33%;
+        }
+
+        .strength-fill.medium {
+            background: #F59E0B;
+            width: 66%;
+        }
+
+        .strength-fill.strong {
+            background: #059669;
+            width: 100%;
+        }
+
+        .strength-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .strength-text.weak {
+            color: #DC2626;
+        }
+
+        .strength-text.medium {
+            color: #F59E0B;
+        }
+
+        .strength-text.strong {
+            color: #059669;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            border: 3px solid #2BFD7F;
+            color: #362F54;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 8px 16px;
+            height: 44px;
+            border-radius: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: white;
+            border-radius: 100px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+        }
+
+        .language-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .language-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: #463F5F;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            display: flex;
+            gap: 32px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #463F5F;
+        }
+
+        .footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .requirements {
+            margin-top: 8px;
+            padding: 12px;
+            background: #F9FAFB;
+            border-radius: 6px;
+        }
+
+        .requirement {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            line-height: 18px;
+            color: #6B7280;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .requirement:last-child {
+            margin-bottom: 0;
+        }
+
+        .requirement.met {
+            color: #059669;
+        }
+
+        .requirement-icon {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <svg class="language-icon" viewBox="0 0 16 16" fill="none">
+            <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="#463F5F" stroke-width="1.5"/>
+            <path d="M2 8H14M8 2C9.5 4 10 6 10 8C10 10 9.5 12 8 14C6.5 12 6 10 6 8C6 6 6.5 4 8 2Z" stroke="#463F5F" stroke-width="1.5"/>
+        </svg>
+        <span class="language-text">English</span>
+    </div>
+
+    <div class="modal-card">
+        <div class="icon-container">
+            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+        </div>
+
+        <div class="content">
+            <h1>Activate your Skipr account</h1>
+            <p class="description">
+                Create your account credentials to access your mobility dashboard.
+            </p>
+        </div>
+
+        <form class="form-section" id="activationForm">
+            <div class="input-group">
+                <label class="input-label">Email</label>
+                <input type="email" class="input-field" value="thomas@skipr.co" readonly>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Password</label>
+                <input type="password" class="input-field" id="password" placeholder="••••••••">
+                <div class="password-strength" id="strengthIndicator" style="display: none;">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthBar"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText"></div>
+                </div>
+                <div class="requirements" id="requirements">
+                    <div class="requirement" id="req-length">
+                        <span class="requirement-icon">○</span>
+                        At least 8 characters
+                    </div>
+                    <div class="requirement" id="req-letter">
+                        <span class="requirement-icon">○</span>
+                        Contains letters
+                    </div>
+                    <div class="requirement" id="req-number">
+                        <span class="requirement-icon">○</span>
+                        Contains numbers
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Confirm Password</label>
+                <input type="password" class="input-field" id="confirmPassword" placeholder="••••••••">
+                <div class="helper-text" id="matchHelper" style="display: none;"></div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="submitBtn" disabled>Create your account</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <a href="#">Privacy & terms</a>
+        <a href="#">Cookie policy</a>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const submitBtn = document.getElementById('submitBtn');
+        const strengthIndicator = document.getElementById('strengthIndicator');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+        const matchHelper = document.getElementById('matchHelper');
+        const form = document.getElementById('activationForm');
+
+        const requirements = {
+            length: document.getElementById('req-length'),
+            letter: document.getElementById('req-letter'),
+            number: document.getElementById('req-number')
+        };
+
+        let passwordValid = false;
+        let passwordsMatch = false;
+
+        function checkRequirement(element, met) {
+            if (met) {
+                element.classList.add('met');
+                element.querySelector('.requirement-icon').textContent = '✓';
+            } else {
+                element.classList.remove('met');
+                element.querySelector('.requirement-icon').textContent = '○';
+            }
+        }
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            const checks = {
+                length: password.length >= 8,
+                letter: /[a-zA-Z]/.test(password),
+                number: /\d/.test(password),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+                uppercase: /[A-Z]/.test(password)
+            };
+
+            // Update requirements
+            checkRequirement(requirements.length, checks.length);
+            checkRequirement(requirements.letter, checks.letter);
+            checkRequirement(requirements.number, checks.number);
+
+            // Calculate strength
+            if (checks.length) strength++;
+            if (checks.letter) strength++;
+            if (checks.number) strength++;
+            if (checks.special) strength++;
+            if (checks.uppercase) strength++;
+
+            return { strength, checks };
+        }
+
+        function checkPasswordsMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (confirmPassword.length === 0) {
+                confirmPasswordInput.classList.remove('error', 'success');
+                matchHelper.style.display = 'none';
+                passwordsMatch = false;
+            } else if (password === confirmPassword) {
+                confirmPasswordInput.classList.remove('error');
+                confirmPasswordInput.classList.add('success');
+                matchHelper.style.display = 'block';
+                matchHelper.className = 'helper-text success';
+                matchHelper.textContent = 'Passwords match';
+                passwordsMatch = true;
+            } else {
+                confirmPasswordInput.classList.add('error');
+                confirmPasswordInput.classList.remove('success');
+                matchHelper.style.display = 'block';
+                matchHelper.className = 'helper-text error';
+                matchHelper.textContent = 'Passwords do not match';
+                passwordsMatch = false;
+            }
+
+            updateSubmitButton();
+        }
+
+        function updateSubmitButton() {
+            submitBtn.disabled = !(passwordValid && passwordsMatch);
+        }
+
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+
+            if (password.length === 0) {
+                strengthIndicator.style.display = 'none';
+                passwordInput.classList.remove('error', 'success');
+                passwordValid = false;
+                updateSubmitButton();
+                return;
+            }
+
+            strengthIndicator.style.display = 'block';
+            const { strength, checks } = calculatePasswordStrength(password);
+
+            // Update strength bar
+            strengthBar.className = 'strength-fill';
+            strengthText.className = 'strength-text';
+
+            const isValid = checks.length && checks.letter && checks.number;
+
+            if (strength <= 2) {
+                strengthBar.classList.add('weak');
+                strengthText.classList.add('weak');
+                strengthText.textContent = 'Weak password';
+                passwordInput.classList.add('error');
+                passwordInput.classList.remove('success');
+                passwordValid = false;
+            } else if (strength <= 3) {
+                strengthBar.classList.add('medium');
+                strengthText.classList.add('medium');
+                strengthText.textContent = 'Medium password';
+                passwordInput.classList.remove('error');
+                passwordInput.classList.remove('success');
+                passwordValid = isValid;
+            } else {
+                strengthBar.classList.add('strong');
+                strengthText.classList.add('strong');
+                strengthText.textContent = 'Strong password';
+                passwordInput.classList.remove('error');
+                passwordInput.classList.add('success');
+                passwordValid = isValid;
+            }
+
+            checkPasswordsMatch();
+        });
+
+        confirmPasswordInput.addEventListener('input', checkPasswordsMatch);
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password) && password === confirmPassword) {
+                // Store password in sessionStorage for demo purposes
+                sessionStorage.setItem('userPassword', password);
+                window.location.href = '03-account-created.html';
+            }
+        });
+    </script>
+</body>
+</html>

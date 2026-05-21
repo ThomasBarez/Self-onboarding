@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Employee Setup - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 90%;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .alert {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #92400E;
+            margin-bottom: 4px;
+        }
+
+        .alert-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #92400E;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+            margin-bottom: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            
+            align-items: center;
+            gap: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .helper-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .readonly-value {
+            background: #F9FAFB;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .group-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .group-table th {
+            background: #F9FAFB;
+            padding: 10px 12px;
+            text-align: left;
+            color: #6B7280;
+            font-weight: 700;
+            font-size: 13px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .group-table td {
+            padding: 12px;
+            border-bottom: 1px solid #F3F4F6;
+            color: #221C46;
+            font-size: 13px;
+        }
+
+        .group-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .group-name {
+            font-weight: 700;
+        }
+
+        .input-cell {
+            padding: 4px;
+        }
+
+        .input-cell input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+        }
+
+        .input-cell input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+            
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: flex;
+            flex: 1;
+            padding: 12px 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .warning-cell {
+            color: #F59E0B;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Complete Setup: Step 3 of 3</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span>Complete Configuration</span>
+            <span>›</span>
+            <span class="current">Employee Assignment</span>
+        </div>
+
+        <h1>Assign employees to budget groups</h1>
+        <p class="page-description">
+            Specify how many employees belong to each budget group. Total must equal 118 employees.
+        </p>
+
+        <div class="alert">
+            
+            <div class="alert-content">
+                <div class="alert-title">Employee count assignment required</div>
+                <div class="alert-text">Distribute all 118 employees across your budget groups.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                    Budget Group Assignments
+            </div>
+
+            <table class="group-table">
+                <thead>
+                    <tr>
+                        <th>Group Name</th>
+                        <th>Budget Amount</th>
+                        <th>Top-up Period</th>
+                        <th style="width: 150px;">Number of Employees</th>
+                    </tr>
+                </thead>
+                <tbody id="groupsBody">
+                    <tr>
+                        <td class="group-name">Executives</td>
+                        <td>€800/month</td>
+                        <td>Monthly</td>
+                        <td class="input-cell">
+                            <input type="number" class="employee-count" min="0" max="118" value="0" data-group="executives">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="group-name">Managers</td>
+                        <td>€500/month</td>
+                        <td>Monthly</td>
+                        <td class="input-cell">
+                            <input type="number" class="employee-count" min="0" max="118" value="0" data-group="managers">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="group-name">Employees</td>
+                        <td>€300/month</td>
+                        <td>Monthly</td>
+                        <td class="input-cell">
+                            <input type="number" class="employee-count" min="0" max="118" value="0" data-group="employees">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="group-name">Interns</td>
+                        <td>€150/month</td>
+                        <td>Monthly</td>
+                        <td class="input-cell">
+                            <input type="number" class="employee-count" min="0" max="118" value="0" data-group="interns">
+                        </td>
+                    </tr>
+                    <tr style="background: #F9FAFB; font-weight: 700;">
+                        <td colspan="3" style="text-align: right; padding-right: 16px;">Total Assigned:</td>
+                        <td id="totalCell" class="warning-cell">0 / 118</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="helper-text" style="margin-top: 16px;">
+                The total must equal exactly 118 employees to proceed.
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="09b-complete-program.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" id="continueBtn" disabled>Complete Setup & Review →</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+
+            const employeeCounts = document.querySelectorAll('.employee-count');
+            const totalCell = document.getElementById('totalCell');
+            const continueBtn = document.getElementById('continueBtn');
+            const TOTAL_EMPLOYEES = 118;
+
+            function updateTotal() {
+                let total = 0;
+                employeeCounts.forEach(function(input) {
+                    total += parseInt(input.value) || 0;
+                });
+
+                totalCell.textContent = total + ' / ' + TOTAL_EMPLOYEES;
+
+                if (total === TOTAL_EMPLOYEES) {
+                    totalCell.className = '';
+                    totalCell.style.color = '#059669';
+                    totalCell.style.fontWeight = '700';
+                    continueBtn.disabled = false;
+                } else {
+                    totalCell.className = 'warning-cell';
+                    continueBtn.disabled = true;
+                }
+            }
+
+            employeeCounts.forEach(function(input) {
+                input.addEventListener('input', updateTotal);
+            });
+
+            continueBtn.addEventListener('click', function() {
+                window.location.href = '10-final-review.html';
+            });
+
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

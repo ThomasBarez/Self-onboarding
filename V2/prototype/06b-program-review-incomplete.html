@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Review - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 60%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .alert-info {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .alert-icon {
+            width: 20px;
+            height: 20px;
+            color: #3B82F6;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1E3A8A;
+            margin-bottom: 6px;
+        }
+
+        .alert-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: #1E40AF;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+        }
+
+        .section-icon {
+            width: 20px;
+            color: #6B7280;
+            height: 20px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .section-subtitle {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .service-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            background: white;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .service-item:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .service-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            background: white;
+            flex-shrink: 0;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .service-checkbox:checked {
+            background: #2BFD7F;
+            border-color: #2BFD7F;
+        }
+
+        .service-checkbox:checked::after {
+            content: '✓';
+            color: #221C46;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .service-item:has(.service-checkbox:checked) {
+            background: #ECFDF5;
+            border-color: #2BFD7F;
+        }
+
+        .allowance-card {
+            background: #F9FAFB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .allowance-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .allowance-card.incomplete {
+            background: #F9FAFB;
+            border-left: 1px solid #F97316;
+            border-radius: 8px 8px 8px 0;
+        }
+
+        .allowance-header {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .allowance-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .allowance-row:last-child {
+            border-bottom: none;
+        }
+
+        .allowance-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .allowance-value {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #221C46;
+        }
+
+        .allowance-value.missing {
+            color: #DC2626;
+            font-style: italic;
+        }
+
+        .allowance-input {
+            padding: 6px 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            width: 120px;
+            text-align: right;
+        }
+
+        select.allowance-input {
+            width: 150px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .allowance-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .allowance-input[data-was-missing="true"] {
+            border-bottom: 1px solid #F97316;
+            padding-bottom: 5px;
+        }
+
+        .allowance-input[data-was-missing="true"]:focus {
+            border-bottom-color: #F97316;
+        }
+
+        .allowance-input[data-was-missing="true"].filled {
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 6px;
+        }
+
+        .allowance-input.filled {
+            border-color: #E5E7EB;
+            background: white;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-tooltip-wrapper {
+            position: relative;
+            display: flex;
+            flex: 1;
+        }
+
+        .btn-tooltip-wrapper[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+        }
+
+        .btn-tooltip-wrapper[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .policy-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .policy-option {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .policy-option:hover {
+            background: white;
+            border-color: #D1D5DB;
+        }
+
+        .policy-option.selected {
+            background: #ECFDF5;
+            border-color: #2BFD7F;
+        }
+
+        .policy-radio {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #D1D5DB;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .policy-option.selected .policy-radio {
+            border-color: #2BFD7F;
+        }
+
+        .policy-radio-inner {
+            width: 10px;
+            height: 10px;
+            background: #2BFD7F;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .policy-option.selected .policy-radio-inner {
+            display: block;
+        }
+
+        .policy-content {
+            flex: 1;
+        }
+
+        .policy-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 4px;
+        }
+
+        .policy-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6B7280;
+        }
+
+        .help-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .help-drawer.active {
+            transform: translateX(0);
+        }
+
+        .help-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .help-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .help-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .help-drawer-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .help-close-btn {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .help-close-btn:hover {
+            background: #F3F4F6;
+            color: #221C46;
+        }
+
+        .help-close-btn i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .help-drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .help-section {
+            margin-bottom: 32px;
+        }
+
+        .help-section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .help-article {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 16px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .help-article:hover {
+            background: #F3F4F6;
+        }
+
+        .help-article-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .help-article-icon.blue {
+            background: #EFF6FF;
+        }
+
+        .help-article-icon.green {
+            background: #ECFDF5;
+        }
+
+        .help-article-icon.purple {
+            background: #F3F0FF;
+        }
+
+        .help-article-icon i {
+            width: 24px;
+            height: 24px;
+        }
+
+        .help-article-icon.blue i {
+            color: #3B82F6;
+        }
+
+        .help-article-icon.green i {
+            color: #059669;
+        }
+
+        .help-article-icon.purple i {
+            color: #7C3AED;
+        }
+
+        .help-article-content {
+            flex: 1;
+        }
+
+        .help-article-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 4px;
+        }
+
+        .help-article-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6B7280;
+        }
+
+        .help-support {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .help-support-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #1E3A8A;
+            margin-bottom: 8px;
+        }
+
+        .help-support-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: #1E40AF;
+            margin-bottom: 12px;
+        }
+
+        .help-support-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: white;
+            border: 1px solid #BFDBFE;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #1E40AF;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .help-support-btn:hover {
+            background: #F9FAFB;
+        }
+
+        .help-support-btn i {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Help Drawer Overlay -->
+    <div class="help-drawer-overlay" id="helpDrawerOverlay"></div>
+
+    <!-- Help Drawer -->
+    <div class="help-drawer" id="helpDrawer">
+        <div class="help-drawer-header">
+            <h2 class="help-drawer-title">We're here to help</h2>
+            <button class="help-close-btn" id="helpCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="help-drawer-content">
+            <div class="help-section">
+                <div class="help-section-title">Program Configuration</div>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon blue">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Which services to enable?</div>
+                        <div class="help-article-description">Guide to choosing mobility services suitable for your company.</div>
+                    </div>
+                </a>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon green">
+                        <i data-lucide="calculator"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Mileage allowance configuration</div>
+                        <div class="help-article-description">How to define rates and maximum distances for each mode of transport.</div>
+                    </div>
+                </a>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon purple">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Regulatory compliance</div>
+                        <div class="help-article-description">Ensure your program complies with Belgian legislation.</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="help-section">
+                <div class="help-section-title">Additional Help</div>
+<a href="#" class="help-article">
+                    <div class="help-article-icon green">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Complete Help Center</div>
+                        <div class="help-article-description">Browse our complete documentation and step-by-step guides.</div>
+                    </div>
+                </a>
+            </div></div>
+    </div>
+
+
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#221C46"/>
+</svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Step 3 of 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn" id="questionsBtn">Questions?</button>
+            <button class="header-btn" id="saveExitBtn">Save and exit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Program Review</span>
+        </div>
+
+        <h1>Complete your mobility program</h1>
+        <p class="page-description">
+            Review and adjust the services below. Car allowance information is missing - please complete it before continuing.
+        </p>
+
+        <div class="alert-info">
+            <i data-lucide="info" class="alert-icon"></i>
+            <div class="alert-content">
+                <div class="alert-title">Configure your mobility program</div>
+                <div class="alert-text">Review your mobility services and allowances. These settings will define the benefits available to your employees and ensure compliance with your company policies.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="section-icon"><i data-lucide="settings"></i></span>
+                    Program Configuration
+                </div>
+            </div>
+
+            <div class="section-subtitle" id="servicesCount">Enabled Services (14 active)</div>
+
+            <div class="services-grid">
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="b-parking" checked>
+                    <span>B-parking</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="bike-leasing">
+                    <span>Bike leasing</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="bike-purchase" checked>
+                    <span>Bike purchase & Accessories</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="bike-rent" checked>
+                    <span>Bike rent</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="bus" checked>
+                    <span>Bus</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="car-leasing" checked>
+                    <span>Car leasing (pillar 1)</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="car-rental" checked>
+                    <span>Car rental</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="car-sharing" checked>
+                    <span>Car sharing</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="carpooling" checked>
+                    <span>Carpooling</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="shared-bike" checked>
+                    <span>Shared bike</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="kickscooter">
+                    <span>Kickscooter</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="scooter" checked>
+                    <span>Scooter</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="public-parking">
+                    <span>Public parking</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="public-transport-tickets" checked>
+                    <span>Public transport tickets</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="public-transport-subscriptions" checked>
+                    <span>Public transport subscriptions</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="taxi" checked>
+                    <span>Taxi</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="fuel-stations">
+                    <span>Fuel stations</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="toll">
+                    <span>Toll</span>
+                </label>
+                <label class="service-item">
+                    <input type="checkbox" class="service-checkbox" data-service="housing-cost" checked>
+                    <span>Housing cost</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="section-icon"><i data-lucide="banknote"></i></span>
+                    Distance-Based Allowances
+                </div>
+            </div>
+
+            <div class="allowance-card">
+                <div class="allowance-header">🚴 Bike Allowance</div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Rate per km</span>
+                    <input type="text" class="allowance-input filled" id="bikeRate" value="0.37">
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Max distance per journey</span>
+                    <input type="number" class="allowance-input filled" id="bikeMaxDistance" value="120">
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Manual distance adaptation</span>
+                    <select class="allowance-input filled" id="bikeManualAdaptation">
+                        <option value="Not allowed" selected>Not allowed</option>
+                        <option value="Allowed">Allowed</option>
+                    </select>
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Admin validation required</span>
+                    <select class="allowance-input filled" id="bikeAdminValidation">
+                        <option value="Auto-approved" selected>Auto-approved</option>
+                        <option value="Required">Required</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="allowance-card incomplete">
+                <div class="allowance-header">🚗 Car Allowance</div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Rate per km</span>
+                    <input type="text" class="allowance-input" id="carRate" placeholder="e.g., 0.45" data-required="true" data-was-missing="true">
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Max distance per journey</span>
+                    <input type="number" class="allowance-input" id="carMaxDistance" placeholder="e.g., 100" data-required="true" data-was-missing="true">
+                </div>
+            </div>
+
+            <div class="allowance-card">
+                <div class="allowance-header">🚶 Pedestrian Allowance</div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Rate per km</span>
+                    <input type="text" class="allowance-input filled" id="pedestrianRate" value="0.36">
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Max distance per journey</span>
+                    <input type="number" class="allowance-input filled" id="pedestrianMaxDistance" value="15">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="section-icon"><i data-lucide="clipboard-check"></i></span>
+                    Expense Approval Policy
+                </div>
+            </div>
+
+            <div class="policy-options">
+                <div class="policy-option" data-policy="light">
+                    <div class="policy-radio">
+                        <div class="policy-radio-inner"></div>
+                    </div>
+                    <div class="policy-content">
+                        <div class="policy-title">Light</div>
+                        <div class="policy-description">All expenses automatically approved by the system</div>
+                    </div>
+                </div>
+
+                <div class="policy-option selected" data-policy="standard">
+                    <div class="policy-radio">
+                        <div class="policy-radio-inner"></div>
+                    </div>
+                    <div class="policy-content">
+                        <div class="policy-title">Standard</div>
+                        <div class="policy-description">Receipt required, automatically approved by the system</div>
+                    </div>
+                </div>
+
+                <div class="policy-option" data-policy="maximum">
+                    <div class="policy-radio">
+                        <div class="policy-radio-inner"></div>
+                    </div>
+                    <div class="policy-content">
+                        <div class="policy-title">Maximum Control</div>
+                        <div class="policy-description">Admin validation required with mandatory receipt</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="05b-company-info-incomplete.html" class="btn btn-secondary">← Back</a>
+            <div class="btn-tooltip-wrapper" id="continueBtnWrapper" data-tooltip="Please select at least one service">
+                <button class="btn btn-primary" id="continueBtn" disabled>Continue to Budget Groups →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+
+            const servicesCount = document.getElementById('servicesCount');
+            const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
+            const requiredInputs = document.querySelectorAll('input[data-required="true"]');
+            const continueBtn = document.getElementById('continueBtn');
+
+            // Service checkbox functionality
+            serviceCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    updateServicesCount();
+                });
+            });
+
+            function updateServicesCount() {
+                const enabledCount = document.querySelectorAll('.service-checkbox:checked').length;
+                servicesCount.textContent = 'Enabled Services (' + enabledCount + ' active)';
+            }
+
+            // Initial count
+            updateServicesCount();
+
+            // Required fields validation
+            function checkAllFieldsFilled() {
+                let allFilled = true;
+                let emptyCount = 0;
+
+                requiredInputs.forEach(function(input) {
+                    const value = input.value.trim();
+
+                    if (value) {
+                        input.classList.add('filled');
+                    } else {
+                        allFilled = false;
+                        emptyCount++;
+                        input.classList.remove('filled');
+                    }
+                });
+
+                continueBtn.disabled = !allFilled;
+
+                // Update tooltip visibility
+                const wrapper = document.getElementById('continueBtnWrapper');
+                if (allFilled) {
+                    wrapper.removeAttribute('data-tooltip');
+                } else {
+                    const fieldText = emptyCount === 1 ? 'field needs' : 'fields need';
+                    wrapper.setAttribute('data-tooltip', emptyCount + ' ' + fieldText + ' your attention');
+                }
+            }
+
+            requiredInputs.forEach(function(input) {
+                input.addEventListener('input', checkAllFieldsFilled);
+            });
+
+            // Initial check
+            checkAllFieldsFilled();
+
+            continueBtn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    window.location.href = '07b-group-review-incomplete.html';
+                }
+            });
+
+            // Policy selection functionality
+            const policyOptions = document.querySelectorAll('.policy-option');
+
+            policyOptions.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    policyOptions.forEach(function(opt) {
+                        opt.classList.remove('selected');
+                    });
+
+                    // Add selected class to clicked option
+                    option.classList.add('selected');
+                });
+            });
+
+            // Help Drawer functionality
+            const questionsBtn = document.getElementById('questionsBtn');
+            const helpDrawer = document.getElementById('helpDrawer');
+            const helpDrawerOverlay = document.getElementById('helpDrawerOverlay');
+            const helpCloseBtn = document.getElementById('helpCloseBtn');
+
+            if (questionsBtn && helpDrawer) {
+                questionsBtn.addEventListener('click', function() {
+                    helpDrawer.classList.add('active');
+                    helpDrawerOverlay.classList.add('active');
+                });
+
+                helpCloseBtn.addEventListener('click', function() {
+                    helpDrawer.classList.remove('active');
+                    helpDrawerOverlay.classList.remove('active');
+                });
+
+                helpDrawerOverlay.addEventListener('click', function() {
+                    helpDrawer.classList.remove('active');
+                    helpDrawerOverlay.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

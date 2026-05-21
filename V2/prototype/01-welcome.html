@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Mobility Onboarding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: white;
+            border: 1px solid rgba(208, 202, 244, 0.5);
+            border-radius: 32px;
+            width: 406px;
+            padding: 48px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .icon-container {
+            width: 55px;
+            height: 55px;
+            background: #00D563;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-x {
+            font-size: 32px;
+            font-weight: 700;
+            color: #221C46;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            color: #362F54;
+        }
+
+        .description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #4B5563;
+        }
+
+        .cta-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            border: 3px solid #2BFD7F;
+            color: #362F54;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 8px 16px;
+            height: 44px;
+            border-radius: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .login-prompt {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #6B7280;
+            text-align: center;
+        }
+
+        .login-prompt a {
+            color: #221C46;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: white;
+            border-radius: 100px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+        }
+
+        .language-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .language-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: #463F5F;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            display: flex;
+            gap: 32px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #463F5F;
+        }
+
+        .footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <svg class="language-icon" viewBox="0 0 16 16" fill="none">
+            <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="#463F5F" stroke-width="1.5"/>
+            <path d="M2 8H14M8 2C9.5 4 10 6 10 8C10 10 9.5 12 8 14C6.5 12 6 10 6 8C6 6 6.5 4 8 2Z" stroke="#463F5F" stroke-width="1.5"/>
+        </svg>
+        <span class="language-text">English</span>
+    </div>
+
+    <div class="modal-card">
+        <div class="icon-container">
+            <span class="icon-x">✕</span>
+        </div>
+
+        <div class="content">
+            <h1>Welcome to your Pluxee organisation</h1>
+            <p class="description">
+                Get started with your mobility program by activating your account and setting up your organization.
+            </p>
+        </div>
+
+        <div class="cta-section">
+            <a href="02-activate-account.html" class="btn-primary">Get started</a>
+            <p class="login-prompt">Already have an account? <a href="04-login.html">Log in</a></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#">Privacy & terms</a>
+        <a href="#">Cookie policy</a>
+    </div>
+</body>
+</html>

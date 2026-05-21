@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Employees - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+        }
+
+
+        .employee-count {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+        }
+
+        th {
+            background: #F9FAFB;
+            padding: 10px 12px;
+            text-align: left;
+            color: #6B7280;
+            font-weight: 700;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #F3F4F6;
+            color: #221C46;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .employee-name {
+            font-weight: 700;
+        }
+
+        .employee-email {
+            color: #6B7280;
+            font-size: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-group {
+            background: #EEF2FF;
+            color: #4F46E5;
+        }
+
+        .budget-amount {
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .actions {
+            display: flex;
+            
+            gap: 4px;
+        }
+
+        .icon-btn {
+            display: flex;
+            background: none;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            color: #6B7280;
+            
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #F3F4F6;
+            color: #221C46;
+        }
+
+        .add-btn {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #E5E7EB;
+            border-color: #D1D5DB;
+        }
+
+        .budget-cell {
+            display: flex;
+            position: relative;
+            
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+        }
+
+        .budget-edit-btn {
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 11px;
+            color: #221C46;
+            transition: all 0.2s;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .budget-edit-btn:hover {
+            background: #2BFD7F;
+            border-color: #2BFD7F;
+            color: #362F54;
+        }
+
+        .budget-edit-btn::after {
+            content: 'Adapt this budget specifically for this user';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .budget-edit-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .budget-edit-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .budget-edit-btn:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .budget-popover {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .budget-popover.active {
+            display: block;
+        }
+
+        .budget-option {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .budget-option:hover {
+            background: white;
+            border-color: #D1D5DB;
+        }
+
+        .budget-option.selected {
+            background: #ECFDF5;
+            border-color: #2BFD7F;
+        }
+
+        .budget-option-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .budget-radio {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #D1D5DB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .budget-option.selected .budget-radio {
+            border-color: #2BFD7F;
+        }
+
+        .budget-radio-dot {
+            width: 6px;
+            height: 6px;
+            background: #2BFD7F;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .budget-option.selected .budget-radio-dot {
+            display: block;
+        }
+
+        .budget-option-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #221C46;
+        }
+
+        .budget-option-value {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            padding-left: 22px;
+        }
+
+        .budget-custom-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .budget-option.selected .budget-custom-input {
+            display: block;
+        }
+
+        .budget-custom-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .budget-popover-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .budget-btn {
+            flex: 1;
+            padding: 8px 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .budget-btn-cancel {
+            background: white;
+            color: #6B7280;
+            border: 1px solid #E5E7EB;
+        }
+
+        .budget-btn-cancel:hover {
+            background: #F9FAFB;
+        }
+
+        .budget-btn-apply {
+            background: #2BFD7F;
+            color: #221C46;
+        }
+
+        .budget-btn-apply:hover {
+            background: #45FD8F;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #221C46;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #221C46;
+            margin-bottom: 6px;
+        }
+
+        .required {
+            color: #DC2626;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-hint {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .date-option:hover {
+            border-color: #2BFD7F !important;
+            background: #F9FAFB;
+        }
+
+        .date-option:has(input:checked) {
+            border-color: #2BFD7F !important;
+            background: #ECFDF5;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            display: flex;
+            flex: 1;
+            padding: 12px 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .info-box {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            color: #3B82F6;
+            flex-shrink: 0;
+        }
+
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1E3A8A;
+            margin-bottom: 6px;
+        }
+
+        .info-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: #1E40AF;
+        }
+
+        .upload-zone {
+            border: 1px dashed #E5E7EB;
+            border-radius: 12px;
+            padding: 40px 24px;
+            text-align: center;
+            background: #FAFBFC;
+            transition: all 0.2s;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .upload-zone:hover {
+            border-color: #2BFD7F;
+            background: #F0FDF4;
+        }
+
+        .upload-zone.dragover {
+            border-color: #2BFD7F;
+            background: #ECFDF5;
+            border-style: solid;
+        }
+
+        .upload-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            color: #6B7280;
+        }
+
+        .upload-zone.dragover .upload-icon {
+            color: #059669;
+        }
+
+        .upload-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .upload-subtitle {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .upload-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-upload {
+            background: #2BFD7F;
+            color: #221C46;
+            border: 1px solid #2BFD7F;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-upload:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-template {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-template:hover {
+            background: #F9FAFB;
+        }
+
+        .upload-help {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-top: 12px;
+        }
+
+        .csv-error {
+            background: #FEE2E2;
+            border: 1px solid #DC2626;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .csv-error.active {
+            display: block;
+        }
+
+        .csv-error-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #991B1B;
+            margin-bottom: 4px;
+        }
+
+        .csv-error-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #991B1B;
+        }
+
+        .csv-success {
+            background: #ECFDF5;
+            border: 1px solid #2BFD7F;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 16px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .csv-success.active {
+            display: flex;
+        }
+
+        .csv-success-icon {
+            width: 20px;
+            height: 20px;
+            color: #059669;
+            flex-shrink: 0;
+        }
+
+        .csv-success-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #065F46;
+            flex: 1;
+        }
+
+        .help-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .help-drawer.active {
+            transform: translateX(0);
+        }
+
+        .help-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .help-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .help-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .help-drawer-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .help-close-btn {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .help-close-btn:hover {
+            background: #F3F4F6;
+            color: #221C46;
+        }
+
+        .help-close-btn i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .help-drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .help-section {
+            margin-bottom: 32px;
+        }
+
+        .help-section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .help-article {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 16px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .help-article:hover {
+            background: #F3F4F6;
+        }
+
+        .help-article-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .help-article-icon.blue {
+            background: #EFF6FF;
+        }
+
+        .help-article-icon.green {
+            background: #ECFDF5;
+        }
+
+        .help-article-icon.purple {
+            background: #F3F0FF;
+        }
+
+        .help-article-icon i {
+            width: 24px;
+            height: 24px;
+        }
+
+        .help-article-icon.blue i {
+            color: #3B82F6;
+        }
+
+        .help-article-icon.green i {
+            color: #059669;
+        }
+
+        .help-article-icon.purple i {
+            color: #7C3AED;
+        }
+
+        .help-article-content {
+            flex: 1;
+        }
+
+        .help-article-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 4px;
+        }
+
+        .help-article-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6B7280;
+        }
+
+        .help-support {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .help-support-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #1E3A8A;
+            margin-bottom: 8px;
+        }
+
+        .help-support-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: #1E40AF;
+            margin-bottom: 12px;
+        }
+
+        .help-support-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: white;
+            border: 1px solid #BFDBFE;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #1E40AF;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .help-support-btn:hover {
+            background: #F9FAFB;
+        }
+
+        .help-support-btn i {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Help Drawer Overlay -->
+    <div class="help-drawer-overlay" id="helpDrawerOverlay"></div>
+
+    <!-- Help Drawer -->
+    <div class="help-drawer" id="helpDrawer">
+        <div class="help-drawer-header">
+            <h2 class="help-drawer-title">We're here to help</h2>
+            <button class="help-close-btn" id="helpCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="help-drawer-content">
+            <div class="help-section">
+                <div class="help-section-title">Employee Invitations</div>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon blue">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">What does the invitation email contain?</div>
+                        <div class="help-article-description">Discover the content and activation process for your employees.</div>
+                    </div>
+                </a>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon green">
+                        <i data-lucide="upload"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">CSV Employee Import</div>
+                        <div class="help-article-description">CSV file format and required columns for bulk import.</div>
+                    </div>
+                </a>
+
+                <a href="#" class="help-article">
+                    <div class="help-article-icon purple">
+                        <i data-lucide="edit"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Customized budgets</div>
+                        <div class="help-article-description">How to customize the budget for a specific employee.</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="help-section">
+                <div class="help-section-title">Additional Help</div>
+<a href="#" class="help-article">
+                    <div class="help-article-icon green">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="help-article-content">
+                        <div class="help-article-title">Complete Help Center</div>
+                        <div class="help-article-description">Browse our complete documentation and step-by-step guides.</div>
+                    </div>
+                </a>
+            </div></div>
+    </div>
+
+
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#221C46"/>
+</svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Step 5 of 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn" id="questionsBtn">Questions?</button>
+            <button class="header-btn" id="saveExitBtn">Save and exit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Invite Employees</span>
+        </div>
+
+        <h1>Add your employees</h1>
+        <p class="page-description">
+            Review employees extracted from your file, edit as needed, and add any additional team members manually.
+        </p>
+
+        <div class="info-box">
+            <i data-lucide="info" class="info-icon"></i>
+            <div class="info-content">
+                <div class="info-title">Employees will receive invitation emails</div>
+                <div class="info-text">Each employee will get a personalized invitation to set up their account. Budgets are automatically assigned based on group membership, but you can <strong>customize individual budgets</strong> using the "Customize" button in the table below.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    Import from CSV
+                </div>
+            </div>
+
+            <div class="upload-zone" id="uploadZone">
+                <i data-lucide="upload" class="upload-icon"></i>
+                <div class="upload-title">Drag and drop your CSV file here</div>
+                <div class="upload-subtitle">or click to browse your files</div>
+                <div class="upload-actions">
+                    <button class="btn-upload" id="browseBtn">Browse Files</button>
+                    <button class="btn-template" id="downloadTemplateBtn">
+                        <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                        Download Template
+                    </button>
+                </div>
+                <div class="upload-help">Supported format: .csv (Maximum 1000 employees)</div>
+                <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+            </div>
+
+            <div class="csv-error" id="csvError">
+                <div class="csv-error-title">Upload Error</div>
+                <div class="csv-error-text" id="csvErrorText"></div>
+            </div>
+
+            <div class="csv-success" id="csvSuccess">
+                <i data-lucide="check-circle" class="csv-success-icon"></i>
+                <div class="csv-success-text" id="csvSuccessText"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    Employee List
+                </div>
+            </div>
+
+            <div class="employee-count" id="employeeCount">8 employees ready to invite</div>
+
+            <table id="employeesTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Group</th>
+                        <th>Budget <span style="color: #6B7280; font-weight: 400; font-size: 11px;">(Customizable)</span></th>
+                        <th style="width: 80px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Employees will be rendered here -->
+                </tbody>
+            </table>
+
+            <button class="add-btn" id="addEmployeeBtn">Add employee</button>
+        </div>
+
+        <div class="btn-group">
+            <a href="07-group-review.html" class="btn btn-secondary" id="backBtn">← Back</a>
+            <button class="btn btn-primary" id="sendInvitesBtn">Send Invitations →</button>
+        </div>
+    </div>
+
+    <!-- Add/Edit Employee Modal -->
+    <div class="modal" id="employeeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Add Employee</h2>
+                <button class="close-btn" id="closeModal">
+                    <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+
+            <form id="employeeForm">
+                <div class="form-group">
+                    <label class="form-label">
+                        First name <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" id="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Last name <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" id="lastName" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Email address <span class="required">*</span>
+                    </label>
+                    <input type="email" class="form-input" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Budget Group <span class="required">*</span>
+                    </label>
+                    <select class="form-select" id="budgetGroup" required>
+                        <option value="">Select a group...</option>
+                        <option value="Executives">Executives (€800/month)</option>
+                        <option value="Managers">Managers (€500/month)</option>
+                        <option value="Employees">Employees (€300/month)</option>
+                        <option value="Interns">Interns (€150/month)</option>
+                    </select>
+                    <div class="form-hint">You can customize individual budgets directly in the table after adding</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="customBudgetToggle" style="width: auto; cursor: pointer;">
+                        Custom budget amount
+                    </label>
+                    <input type="number" class="form-input" id="customBudget" placeholder="Enter custom budget (€/month)" disabled style="display: none;">
+                    <div class="form-hint" id="customBudgetHint" style="display: none;">Override the default group budget with a custom amount</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payroll ID (optional)</label>
+                    <input type="text" class="form-input" id="payrollId">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Internal reference (optional)</label>
+                    <input type="text" class="form-input" id="internalRef">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cost center (optional)</label>
+                    <input type="text" class="form-input" id="costCenter">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Language</label>
+                    <select class="form-select" id="language">
+                        <option value="English" selected>English</option>
+                        <option value="French">French</option>
+                        <option value="Dutch">Dutch</option>
+                        <option value="German">German</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveBtn">Save Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Send Invitations Date Modal -->
+    <div class="modal" id="sendDateModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Schedule Invitations</h2>
+                <button class="close-btn" id="closeSendDateModal">
+                    <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+
+            <form id="sendDateForm">
+                <div class="form-group">
+                    <label class="form-label">
+                        When should the invitations be sent? <span class="required">*</span>
+                    </label>
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+                        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 12px; border: 1px solid #E5E7EB; border-radius: 6px; transition: all 0.2s;" class="date-option">
+                            <input type="radio" name="sendTiming" value="now" checked style="width: 18px; height: 18px; cursor: pointer;">
+                            <div>
+                                <div style="font-weight: 500; color: #221C46;">Send now</div>
+                                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Employees will receive invitations immediately</div>
+                            </div>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 12px; border: 1px solid #E5E7EB; border-radius: 6px; transition: all 0.2s;" class="date-option">
+                            <input type="radio" name="sendTiming" value="scheduled" style="width: 18px; height: 18px; cursor: pointer;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 500; color: #221C46;">Schedule for later</div>
+                                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Choose a specific date and time</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="scheduledDateGroup" style="display: none;">
+                    <label class="form-label">
+                        Select date and time <span class="required">*</span>
+                    </label>
+                    <input type="datetime-local" class="form-input" id="scheduledDate" name="scheduledDate">
+                    <div class="form-hint" style="margin-top: 6px;">Invitations will be sent on the selected date</div>
+                </div>
+
+                <div class="modal-actions" style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button type="button" class="btn btn-secondary" id="cancelSendDate" style="flex: 1; padding: 12px 24px; font-family: 'TT Travels', sans-serif; font-weight: 500; font-size: 14px; border-radius: 6px; cursor: pointer; background: white; color: #362F54; border: 1px solid #E5E7EB;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px 24px; font-family: 'TT Travels', sans-serif; font-weight: 500; font-size: 14px; border-radius: 6px; cursor: pointer; background: #2BFD7F; color: #362F54; border: 1px solid #2BFD7F;">Confirm & Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Budget group mapping
+        const groupBudgets = {
+            'Executives': 800,
+            'Managers': 500,
+            'Employees': 300,
+            'Interns': 150
+        };
+
+        // Mock employees extracted from file
+        let employees = [
+            { id: 1, firstName: 'Elisa', lastName: 'De Becker', email: 'elisa.debecker@selligent.com', group: 'Managers', payrollId: 'EMP001', internalRef: 'MGR-01', costCenter: 'HR', language: 'English' },
+            { id: 2, firstName: 'Christina', lastName: 'Tsiaflakis', email: 'christina.tsiaflakis@selligent.com', group: 'Managers', payrollId: 'EMP002', internalRef: 'MGR-02', costCenter: 'HR', language: 'English' },
+            { id: 3, firstName: 'Thomas', lastName: 'Anderson', email: 'thomas.anderson@selligent.com', group: 'Executives', payrollId: 'EMP003', internalRef: 'EXEC-01', costCenter: 'EXEC', language: 'English' },
+            { id: 4, firstName: 'Marie', lastName: 'Dubois', email: 'marie.dubois@selligent.com', group: 'Employees', payrollId: 'EMP004', internalRef: 'EMP-01', costCenter: 'IT', language: 'French' },
+            { id: 5, firstName: 'Jan', lastName: 'Vermeulen', email: 'jan.vermeulen@selligent.com', group: 'Employees', payrollId: 'EMP005', internalRef: 'EMP-02', costCenter: 'SALES', language: 'Dutch' },
+            { id: 6, firstName: 'Sophie', lastName: 'Laurent', email: 'sophie.laurent@selligent.com', group: 'Employees', payrollId: 'EMP006', internalRef: 'EMP-03', costCenter: 'MARKETING', language: 'French' },
+            { id: 7, firstName: 'Lucas', lastName: 'Schmidt', email: 'lucas.schmidt@selligent.com', group: 'Interns', payrollId: 'INT001', internalRef: 'INT-01', costCenter: 'IT', language: 'German' },
+            { id: 8, firstName: 'Emma', lastName: 'Johnson', email: 'emma.johnson@selligent.com', group: 'Interns', payrollId: 'INT002', internalRef: 'INT-02', costCenter: 'MARKETING', language: 'English' }
+        ];
+
+        let nextId = 9;
+        let editingId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+            renderEmployees();
+            setupEventListeners();
+
+            // Set correct back button based on referrer
+            const backBtn = document.getElementById('backBtn');
+            const referrer = document.referrer;
+            if (referrer.includes('07b-group-review-incomplete.html')) {
+                backBtn.href = '07b-group-review-incomplete.html';
+            } else {
+                backBtn.href = '07-group-review.html';
+            }
+        });
+
+        function renderEmployees() {
+            const tbody = document.querySelector('#employeesTable tbody');
+            tbody.innerHTML = '';
+
+            employees.forEach(function(employee) {
+                const budget = employee.customBudget || groupBudgets[employee.group];
+                const groupBudget = groupBudgets[employee.group];
+                const budgetLabel = employee.customBudget ? `<span class="budget-amount" style="color: #4F46E5;">€${budget}</span>/month <span style="font-size: 11px; color: #6B7280;">(Custom)</span>` : `<span class="budget-amount">€${budget}</span>/month`;
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>
+                        <div class="employee-name">${employee.firstName} ${employee.lastName}</div>
+                        ${employee.payrollId ? `<div class="employee-email">ID: ${employee.payrollId}</div>` : ''}
+                    </td>
+                    <td>${employee.email}</td>
+                    <td><span class="badge badge-group">${employee.group}</span></td>
+                    <td>
+                        <div class="budget-cell">
+                            ${budgetLabel}
+                            <button class="budget-edit-btn" data-employee-id="${employee.id}">
+                                Customize
+                            </button>
+                            <div class="budget-popover" id="budget-popover-${employee.id}">
+                                <div class="budget-option ${!employee.customBudget ? 'selected' : ''}" data-type="group" data-employee-id="${employee.id}">
+                                    <div class="budget-option-header">
+                                        <div class="budget-radio">
+                                            <div class="budget-radio-dot"></div>
+                                        </div>
+                                        <span class="budget-option-title">Group Budget</span>
+                                    </div>
+                                    <div class="budget-option-value">€${groupBudget}/month (from ${employee.group})</div>
+                                </div>
+                                <div class="budget-option ${employee.customBudget ? 'selected' : ''}" data-type="custom" data-employee-id="${employee.id}">
+                                    <div class="budget-option-header">
+                                        <div class="budget-radio">
+                                            <div class="budget-radio-dot"></div>
+                                        </div>
+                                        <span class="budget-option-title">Custom Budget</span>
+                                    </div>
+                                    <input type="number" class="budget-custom-input" placeholder="Enter amount" value="${employee.customBudget || ''}" data-employee-id="${employee.id}">
+                                </div>
+                                <div class="budget-popover-actions">
+                                    <button class="budget-btn budget-btn-cancel" data-employee-id="${employee.id}">Cancel</button>
+                                    <button class="budget-btn budget-btn-apply" data-employee-id="${employee.id}">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="actions">
+                            <button class="icon-btn edit-employee" data-employee-id="${employee.id}" title="Edit">
+                                <i data-lucide="pencil" style="width: 16px; height: 16px;"></i>
+                            </button>
+                            <button class="icon-btn delete-employee" data-employee-id="${employee.id}" title="Delete">
+                                <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            lucide.createIcons();
+            updateEmployeeCount();
+            setupBudgetPopovers();
+        }
+
+        function updateEmployeeCount() {
+            const count = employees.length;
+            document.getElementById('employeeCount').textContent = `${count} employee${count !== 1 ? 's' : ''} ready to invite`;
+        }
+
+        function setupEventListeners() {
+            const modal = document.getElementById('employeeModal');
+            const form = document.getElementById('employeeForm');
+            const addBtn = document.getElementById('addEmployeeBtn');
+            const closeBtn = document.getElementById('closeModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+
+            addBtn.addEventListener('click', function() {
+                openModal();
+            });
+
+            closeBtn.addEventListener('click', function() {
+                closeModal();
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                closeModal();
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveEmployee();
+            });
+
+            // Event delegation for edit and delete buttons
+            document.querySelector('#employeesTable tbody').addEventListener('click', function(e) {
+                const editBtn = e.target.closest('.edit-employee');
+                if (editBtn) {
+                    const employeeId = parseInt(editBtn.dataset.employeeId);
+                    openEditModal(employeeId);
+                    return;
+                }
+
+                const deleteBtn = e.target.closest('.delete-employee');
+                if (deleteBtn) {
+                    const employeeId = parseInt(deleteBtn.dataset.employeeId);
+                    deleteEmployee(employeeId);
+                }
+            });
+
+            // Send Invitations Modal
+            const sendDateModal = document.getElementById('sendDateModal');
+            const sendInvitesBtn = document.getElementById('sendInvitesBtn');
+            const closeSendDateModal = document.getElementById('closeSendDateModal');
+            const cancelSendDate = document.getElementById('cancelSendDate');
+            const sendDateForm = document.getElementById('sendDateForm');
+            const scheduledDateGroup = document.getElementById('scheduledDateGroup');
+            const scheduledDateInput = document.getElementById('scheduledDate');
+
+            sendInvitesBtn.addEventListener('click', function() {
+                sendDateModal.classList.add('active');
+                lucide.createIcons();
+            });
+
+            closeSendDateModal.addEventListener('click', function() {
+                sendDateModal.classList.remove('active');
+                sendDateForm.reset();
+                scheduledDateGroup.style.display = 'none';
+            });
+
+            cancelSendDate.addEventListener('click', function() {
+                sendDateModal.classList.remove('active');
+                sendDateForm.reset();
+                scheduledDateGroup.style.display = 'none';
+            });
+
+            // Handle radio button change
+            document.querySelectorAll('input[name="sendTiming"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'scheduled') {
+                        scheduledDateGroup.style.display = 'block';
+                        scheduledDateInput.required = true;
+
+                        // Set minimum date to now
+                        const now = new Date();
+                        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                        scheduledDateInput.min = now.toISOString().slice(0, 16);
+                    } else {
+                        scheduledDateGroup.style.display = 'none';
+                        scheduledDateInput.required = false;
+                    }
+                });
+            });
+
+            // Handle form submission
+            sendDateForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const sendTiming = document.querySelector('input[name="sendTiming"]:checked').value;
+                let message = '';
+
+                if (sendTiming === 'now') {
+                    message = '🎉 Invitations sent! Your employees will receive their welcome emails shortly.';
+                } else {
+                    const selectedDate = new Date(scheduledDateInput.value);
+                    const formattedDate = selectedDate.toLocaleString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+                    message = `🎉 Invitations scheduled! Your employees will receive their welcome emails on ${formattedDate}.`;
+                }
+
+                sendDateModal.classList.remove('active');
+                sendDateForm.reset();
+                scheduledDateGroup.style.display = 'none';
+
+                // Redirect to confirmation page
+                window.location.href = '09-confirmation.html';
+            });
+
+            // Close modal when clicking outside
+            sendDateModal.addEventListener('click', function(e) {
+                if (e.target === sendDateModal) {
+                    sendDateModal.classList.remove('active');
+                    sendDateForm.reset();
+                    scheduledDateGroup.style.display = 'none';
+                }
+            });
+
+            // Custom budget toggle functionality
+            const customBudgetToggle = document.getElementById('customBudgetToggle');
+            const customBudgetInput = document.getElementById('customBudget');
+            const customBudgetHint = document.getElementById('customBudgetHint');
+            const budgetHint = document.getElementById('budgetHint');
+
+            customBudgetToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    customBudgetInput.style.display = 'block';
+                    customBudgetInput.disabled = false;
+                    customBudgetHint.style.display = 'block';
+                    budgetHint.style.display = 'none';
+                } else {
+                    customBudgetInput.style.display = 'none';
+                    customBudgetInput.disabled = true;
+                    customBudgetInput.value = '';
+                    customBudgetHint.style.display = 'none';
+                    budgetHint.style.display = 'block';
+                }
+            });
+
+            // CSV Upload functionality
+            const uploadZone = document.getElementById('uploadZone');
+            const csvFileInput = document.getElementById('csvFileInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
+            const csvError = document.getElementById('csvError');
+            const csvErrorText = document.getElementById('csvErrorText');
+            const csvSuccess = document.getElementById('csvSuccess');
+            const csvSuccessText = document.getElementById('csvSuccessText');
+
+            // Click to browse
+            browseBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                csvFileInput.click();
+            });
+
+            uploadZone.addEventListener('click', function() {
+                csvFileInput.click();
+            });
+
+            // Download template
+            downloadTemplateBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                downloadCSVTemplate();
+            });
+
+            // Drag and drop events
+            uploadZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', function() {
+                uploadZone.classList.remove('dragover');
+            });
+
+            uploadZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleCSVFile(files[0]);
+                }
+            });
+
+            // File input change
+            csvFileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleCSVFile(e.target.files[0]);
+                }
+            });
+        }
+
+        function downloadCSVTemplate() {
+            const template = 'First Name,Last Name,Email,Budget Group,Payroll ID,Internal Reference,Cost Center,Language\n' +
+                           'John,Doe,john.doe@example.com,Employees,EMP001,EMP-001,IT,English\n' +
+                           'Jane,Smith,jane.smith@example.com,Managers,MGR001,MGR-001,HR,English';
+
+            const blob = new Blob([template], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'employee_import_template.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function handleCSVFile(file) {
+            // Hide previous messages
+            document.getElementById('csvError').classList.remove('active');
+            document.getElementById('csvSuccess').classList.remove('active');
+
+            // Validate file type
+            if (!file.name.endsWith('.csv')) {
+                showCSVError('Invalid file type. Please upload a CSV file.');
+                return;
+            }
+
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showCSVError('File too large. Maximum size is 5MB.');
+                return;
+            }
+
+            // Read file
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const csv = e.target.result;
+                    const parsedData = parseCSV(csv);
+
+                    if (parsedData.length === 0) {
+                        showCSVError('No valid employee data found in CSV file.');
+                        return;
+                    }
+
+                    if (parsedData.length > 1000) {
+                        showCSVError('Too many employees. Maximum is 1000 per import.');
+                        return;
+                    }
+
+                    // Add employees to list
+                    let importCount = 0;
+                    parsedData.forEach(function(row) {
+                        if (row.email && row.firstName && row.lastName && row.group) {
+                            employees.push({
+                                id: nextId++,
+                                firstName: row.firstName,
+                                lastName: row.lastName,
+                                email: row.email,
+                                group: row.group || 'Employees',
+                                payrollId: row.payrollId || '',
+                                internalRef: row.internalRef || '',
+                                costCenter: row.costCenter || '',
+                                language: row.language || 'English'
+                            });
+                            importCount++;
+                        }
+                    });
+
+                    renderEmployees();
+                    showCSVSuccess(`Successfully imported ${importCount} employee${importCount !== 1 ? 's' : ''} from CSV.`);
+
+                    // Reset file input
+                    csvFileInput.value = '';
+                } catch (error) {
+                    showCSVError('Error parsing CSV file. Please check the file format and try again.');
+                    console.error('CSV parse error:', error);
+                }
+            };
+
+            reader.onerror = function() {
+                showCSVError('Error reading file. Please try again.');
+            };
+
+            reader.readAsText(file);
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+
+            if (lines.length < 2) {
+                return result;
+            }
+
+            // Parse header
+            const headers = lines[0].split(',').map(function(h) { return h.trim().toLowerCase(); });
+
+            // Map headers to expected fields
+            const fieldMap = {
+                'first name': 'firstName',
+                'firstname': 'firstName',
+                'last name': 'lastName',
+                'lastname': 'lastName',
+                'email': 'email',
+                'email address': 'email',
+                'budget group': 'group',
+                'group': 'group',
+                'payroll id': 'payrollId',
+                'payrollid': 'payrollId',
+                'internal reference': 'internalRef',
+                'internalreference': 'internalRef',
+                'reference': 'internalRef',
+                'cost center': 'costCenter',
+                'costcenter': 'costCenter',
+                'language': 'language'
+            };
+
+            // Parse data rows
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                const values = line.split(',').map(function(v) { return v.trim(); });
+                const row = {};
+
+                headers.forEach(function(header, index) {
+                    const mappedField = fieldMap[header];
+                    if (mappedField && values[index]) {
+                        row[mappedField] = values[index];
+                    }
+                });
+
+                // Validate required fields
+                if (row.firstName && row.lastName && row.email) {
+                    result.push(row);
+                }
+            }
+
+            return result;
+        }
+
+        function showCSVError(message) {
+            document.getElementById('csvErrorText').textContent = message;
+            document.getElementById('csvError').classList.add('active');
+            document.getElementById('csvSuccess').classList.remove('active');
+        }
+
+        function showCSVSuccess(message) {
+            document.getElementById('csvSuccessText').textContent = message;
+            document.getElementById('csvSuccess').classList.add('active');
+            document.getElementById('csvError').classList.remove('active');
+        }
+
+        function openModal() {
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'Add Employee';
+            document.getElementById('employeeForm').reset();
+
+            document.getElementById('employeeModal').classList.add('active');
+            lucide.createIcons();
+        }
+
+        function openEditModal(employeeId) {
+            editingId = employeeId;
+            const employee = employees.find(function(e) { return e.id === employeeId; });
+
+            if (employee) {
+                document.getElementById('modalTitle').textContent = 'Edit Employee';
+                document.getElementById('firstName').value = employee.firstName;
+                document.getElementById('lastName').value = employee.lastName;
+                document.getElementById('email').value = employee.email;
+                document.getElementById('budgetGroup').value = employee.group;
+                document.getElementById('payrollId').value = employee.payrollId || '';
+                document.getElementById('internalRef').value = employee.internalRef || '';
+                document.getElementById('costCenter').value = employee.costCenter || '';
+                document.getElementById('language').value = employee.language;
+
+                document.getElementById('employeeModal').classList.add('active');
+                lucide.createIcons();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('employeeModal').classList.remove('active');
+            document.getElementById('employeeForm').reset();
+
+            editingId = null;
+        }
+
+        function saveEmployee() {
+            const employeeData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                group: document.getElementById('budgetGroup').value,
+                payrollId: document.getElementById('payrollId').value,
+                internalRef: document.getElementById('internalRef').value,
+                costCenter: document.getElementById('costCenter').value,
+                language: document.getElementById('language').value
+            };
+
+            if (editingId !== null) {
+                // Edit existing employee
+                const index = employees.findIndex(function(e) { return e.id === editingId; });
+                if (index !== -1) {
+                    // Preserve custom budget if it exists
+                    const customBudget = employees[index].customBudget;
+                    employees[index] = { ...employees[index], ...employeeData };
+                    if (customBudget) {
+                        employees[index].customBudget = customBudget;
+                    }
+                }
+            } else {
+                // Add new employee
+                employees.push({
+                    id: nextId++,
+                    ...employeeData
+                });
+            }
+
+            renderEmployees();
+            closeModal();
+        }
+
+        function deleteEmployee(employeeId) {
+            const employee = employees.find(function(e) { return e.id === employeeId; });
+            if (employee && confirm(`Remove ${employee.firstName} ${employee.lastName} from the list?`)) {
+                employees = employees.filter(function(e) { return e.id !== employeeId; });
+                renderEmployees();
+            }
+        }
+
+        function setupBudgetPopovers() {
+            // Open budget popover
+            document.querySelectorAll('.budget-edit-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = this.dataset.employeeId;
+                    const popover = document.getElementById('budget-popover-' + employeeId);
+
+                    // Close all other popovers
+                    document.querySelectorAll('.budget-popover').forEach(function(p) {
+                        if (p.id !== 'budget-popover-' + employeeId) {
+                            p.classList.remove('active');
+                        }
+                    });
+
+                    popover.classList.toggle('active');
+                });
+            });
+
+            // Budget option selection
+            document.querySelectorAll('.budget-option').forEach(function(option) {
+                option.addEventListener('click', function() {
+                    const employeeId = this.dataset.employeeId;
+                    const type = this.dataset.type;
+
+                    // Update selection within this popover
+                    const popover = document.getElementById('budget-popover-' + employeeId);
+                    popover.querySelectorAll('.budget-option').forEach(function(opt) {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+
+            // Cancel button
+            document.querySelectorAll('.budget-btn-cancel').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = this.dataset.employeeId;
+                    const popover = document.getElementById('budget-popover-' + employeeId);
+                    popover.classList.remove('active');
+                });
+            });
+
+            // Apply button
+            document.querySelectorAll('.budget-btn-apply').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = parseInt(this.dataset.employeeId);
+                    const popover = document.getElementById('budget-popover-' + employeeId);
+                    const selectedOption = popover.querySelector('.budget-option.selected');
+                    const type = selectedOption.dataset.type;
+
+                    const employee = employees.find(function(e) { return e.id === employeeId; });
+
+                    if (type === 'group') {
+                        // Use group budget - remove custom
+                        delete employee.customBudget;
+                    } else {
+                        // Use custom budget
+                        const customInput = popover.querySelector('.budget-custom-input');
+                        const customValue = parseFloat(customInput.value);
+                        if (customValue && customValue > 0) {
+                            employee.customBudget = customValue;
+                        }
+                    }
+
+                    popover.classList.remove('active');
+                    renderEmployees();
+                });
+            });
+
+            // Close popovers when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.budget-popover') && !e.target.closest('.budget-edit-btn')) {
+                    document.querySelectorAll('.budget-popover').forEach(function(p) {
+                        p.classList.remove('active');
+                    });
+                }
+            });
+
+            // Help Drawer functionality
+            const questionsBtn = document.getElementById('questionsBtn');
+            const helpDrawer = document.getElementById('helpDrawer');
+            const helpDrawerOverlay = document.getElementById('helpDrawerOverlay');
+            const helpCloseBtn = document.getElementById('helpCloseBtn');
+
+            if (questionsBtn && helpDrawer) {
+                questionsBtn.addEventListener('click', function() {
+                    helpDrawer.classList.add('active');
+                    helpDrawerOverlay.classList.add('active');
+                });
+
+                helpCloseBtn.addEventListener('click', function() {
+                    helpDrawer.classList.remove('active');
+                    helpDrawerOverlay.classList.remove('active');
+                });
+
+                helpDrawerOverlay.addEventListener('click', function() {
+                    helpDrawer.classList.remove('active');
+                    helpDrawerOverlay.classList.remove('active');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

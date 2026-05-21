@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobility Onboarding Prototype - Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            padding: 48px;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 48px;
+        }
+
+        .flow-section {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .flow-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+            margin-bottom: 24px;
+        }
+
+        .screen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .screen-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .screen-card:hover {
+            background: white;
+            border-color: #2BFD7F;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43, 253, 127, 0.2);
+        }
+
+        .screen-number {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+
+        .screen-name {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 4px;
+        }
+
+        .screen-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 18px;
+            color: #6B7280;
+        }
+
+        .design-info {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .design-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .color-info {
+            font-family: 'TT Travels', sans-serif;
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .color-value {
+            font-weight: 400;
+            font-size: 12px;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mobility Onboarding Prototype</h1>
+        <p class="description">
+            Complete 10-step onboarding flow based on Figma designs. Navigate through the entire flow below.
+        </p>
+
+        <div class="flow-section">
+            <div class="flow-title">Authentication Flow (Modal Cards)</div>
+            <div class="screen-grid">
+                <a href="01-welcome.html" class="screen-card">
+                    <div class="screen-number">STEP 1</div>
+                    <div class="screen-name">Welcome</div>
+                    <div class="screen-description">Landing page with organization welcome message</div>
+                </a>
+
+                <a href="02-activate-account.html" class="screen-card">
+                    <div class="screen-number">STEP 2</div>
+                    <div class="screen-name">Activate Account</div>
+                    <div class="screen-description">Create password with live validation</div>
+                </a>
+
+                <a href="03-account-created.html" class="screen-card">
+                    <div class="screen-number">STEP 3</div>
+                    <div class="screen-name">Account Created</div>
+                    <div class="screen-description">Confirmation screen with login CTA</div>
+                </a>
+
+                <a href="04-login.html" class="screen-card">
+                    <div class="screen-number">STEP 4</div>
+                    <div class="screen-name">Login</div>
+                    <div class="screen-description">User login with credentials</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="flow-section">
+            <div class="flow-title">Configuration Flow (Full-Width Layout) - Complete Data</div>
+            <div class="screen-grid">
+                <a href="04a-upload-data.html" class="screen-card">
+                    <div class="screen-number">STEP 5</div>
+                    <div class="screen-name">Upload Data</div>
+                    <div class="screen-description">Drag & drop configuration files</div>
+                </a>
+
+                <a href="05-company-info.html" class="screen-card">
+                    <div class="screen-number">STEP 6</div>
+                    <div class="screen-name">Company Information</div>
+                    <div class="screen-description">Review and edit company details</div>
+                </a>
+
+                <a href="06-program-review.html" class="screen-card">
+                    <div class="screen-number">STEP 7</div>
+                    <div class="screen-name">Program Review</div>
+                    <div class="screen-description">Toggle services and review allowances</div>
+                </a>
+
+                <a href="07-group-review.html" class="screen-card">
+                    <div class="screen-number">STEP 8</div>
+                    <div class="screen-name">Group Review</div>
+                    <div class="screen-description">Add, edit, and manage budget groups</div>
+                </a>
+
+                <a href="08-invite-employees.html" class="screen-card">
+                    <div class="screen-number">STEP 9</div>
+                    <div class="screen-name">Invite Employees</div>
+                    <div class="screen-description">Add employees and send invitations</div>
+                </a>
+
+                <a href="09-confirmation.html" class="screen-card">
+                    <div class="screen-number">STEP 10</div>
+                    <div class="screen-name">Setup Complete</div>
+                    <div class="screen-description">Confirmation with recap and PDF download</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="flow-section">
+            <div class="flow-title">Configuration Flow - Incomplete Data (Missing Fields)</div>
+            <div class="screen-grid">
+                <a href="04a-upload-data.html" class="screen-card">
+                    <div class="screen-number">STEP 5</div>
+                    <div class="screen-name">Upload Data</div>
+                    <div class="screen-description">Drag & drop configuration files</div>
+                </a>
+
+                <a href="05b-company-info-incomplete.html" class="screen-card">
+                    <div class="screen-number">STEP 6</div>
+                    <div class="screen-name">Company Info (Incomplete)</div>
+                    <div class="screen-description">Fill in missing required fields</div>
+                </a>
+
+                <a href="06b-program-review-incomplete.html" class="screen-card">
+                    <div class="screen-number">STEP 7</div>
+                    <div class="screen-name">Program Review (Incomplete)</div>
+                    <div class="screen-description">Complete missing allowance data</div>
+                </a>
+
+                <a href="07b-group-review-incomplete.html" class="screen-card">
+                    <div class="screen-number">STEP 8</div>
+                    <div class="screen-name">Budget Groups (Incomplete)</div>
+                    <div class="screen-description">Fill in missing budget amounts</div>
+                </a>
+
+                <a href="08-invite-employees.html" class="screen-card">
+                    <div class="screen-number">STEP 9</div>
+                    <div class="screen-name">Invite Employees</div>
+                    <div class="screen-description">Add employees and send invitations</div>
+                </a>
+
+                <a href="09-confirmation.html" class="screen-card">
+                    <div class="screen-number">STEP 10</div>
+                    <div class="screen-name">Setup Complete</div>
+                    <div class="screen-description">Confirmation with recap and PDF download</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="design-info">
+            <div class="design-title">Design System</div>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FAF8FF;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Background</div>
+                        <div class="color-value">#FAF8FF</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #221C46;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Text</div>
+                        <div class="color-value">#221C46</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #2BFD7F;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Button/CTA</div>
+                        <div class="color-value">#2BFD7F</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #01D253;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Progress</div>
+                        <div class="color-value">#01D253</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #00D563;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Logo Icon</div>
+                        <div class="color-value">#00D563</div>
+                    </div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #362F54;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Button Text</div>
+                        <div class="color-value">#362F54</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

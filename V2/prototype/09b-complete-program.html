@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Program Configuration - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 16px 32px;
+            
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #00D563;
+            border-radius: 6px;
+            
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 75%;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .alert {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #92400E;
+            margin-bottom: 4px;
+        }
+
+        .alert-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #92400E;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+            margin-bottom: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            
+            align-items: center;
+            gap: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .helper-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .readonly-value {
+            background: #F9FAFB;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+            
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: flex;
+            flex: 1;
+            padding: 12px 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="55" height="55" rx="12" fill="#00D563"/><g transform="translate(27.5, 20)"><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(45)"/><rect x="-2" y="-10" width="4" height="20" rx="2" fill="#221C46" transform="rotate(-45)"/></g><text x="27.5" y="48" text-anchor="middle" font-family="'TT Travels', Arial, sans-serif" font-size="5.5" fill="#221C46" font-weight="500" letter-spacing="0.3">mobility</text></svg>
+            <span class="logo-text">Mobility</span>
+        </div>
+        <div class="progress">
+            <span class="progress-text">Complete Setup: Step 2 of 3</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span>Complete Configuration</span>
+            <span>›</span>
+            <span class="current">Program Details</span>
+        </div>
+
+        <h1>Complete program configuration</h1>
+        <p class="page-description">
+            Specify additional settings for your Federal Mobility Budget program.
+        </p>
+
+        <div class="alert">
+            
+            <div class="alert-content">
+                <div class="alert-title">2 required fields need your attention</div>
+                <div class="alert-text">These settings will apply to all mobility services.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                    Program Settings
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Program Name
+                    <span class="readonly-value" style="flex: 1; margin-left: auto;">Federal Mobility Budget</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Enabled Services
+                    <span class="readonly-value" style="flex: 1; margin-left: auto;">14 services configured</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Go-Live Date
+                    <span class="required-badge">Required</span>
+                </label>
+                <input type="date" class="form-input" id="goLiveDate" required min="2026-05-20">
+                <div class="helper-text">When should the mobility program become active for employees?</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Budget Refresh Behavior
+                    <span class="required-badge">Required</span>
+                </label>
+                <select class="form-input" id="budgetRefresh" required>
+                    <option value="">Select option...</option>
+                    <option value="cumulative">Cumulative (rollover unused balance)</option>
+                    <option value="reset">Reset monthly (no rollover)</option>
+                    <option value="capped">Capped rollover (max 3 months)</option>
+                </select>
+                <div class="helper-text">How should unused budget be handled at the end of each period?</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Expense Approval Workflow
+                </label>
+                <select class="form-input" id="approvalWorkflow">
+                    <option value="auto">Auto-approve all expenses</option>
+                    <option value="manager">Require manager approval</option>
+                    <option value="threshold">Auto-approve under €500, else manager</option>
+                </select>
+                <div class="helper-text">Optional: Set approval requirements for employee expenses</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Distance-Based Allowances
+                    <span class="readonly-value" style="flex: 1; margin-left: auto;">2 configured (Bike: €0.37/km, Pedestrian: €0.36/km)</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="09a-complete-company.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" id="continueBtn" disabled>Continue to Employee Setup →</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+
+            const goLiveDate = document.getElementById('goLiveDate');
+            const budgetRefresh = document.getElementById('budgetRefresh');
+            const continueBtn = document.getElementById('continueBtn');
+
+            function checkCompletion() {
+                const isComplete = goLiveDate.value && budgetRefresh.value;
+                continueBtn.disabled = !isComplete;
+            }
+
+            goLiveDate.addEventListener('change', checkCompletion);
+            budgetRefresh.addEventListener('change', checkCompletion);
+
+            continueBtn.addEventListener('click', function() {
+                window.location.href = '09c-complete-employees.html';
+            });
+        });
+    </script>
+</body>
+</html>
