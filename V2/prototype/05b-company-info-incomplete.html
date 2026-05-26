@@ -874,7 +874,9 @@
                 if (allFilled) {
                     continueBtn.removeAttribute('data-validation-message');
                 } else {
-                    const message = 'Required fields missing (' + missingFields.join(', ') + ')';
+                    const count = missingFields.length;
+                    const fieldWord = count === 1 ? 'field' : 'fields';
+                    const message = count + ' required ' + fieldWord + ' missing (' + missingFields.join(', ') + ')';
                     continueBtn.setAttribute('data-validation-message', message);
                 }
             }

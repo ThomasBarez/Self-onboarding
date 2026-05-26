@@ -451,7 +451,24 @@
         }
 
         function updateSubmitButton() {
-            submitBtn.disabled = !(passwordValid && passwordsMatch);
+            const missingFields = [];
+
+            if (!passwordValid) {
+                missingFields.push('Valid password (min 8 chars, letters & numbers)');
+            }
+            if (!passwordsMatch) {
+                missingFields.push('Passwords must match');
+            }
+
+            if (missingFields.length > 0) {
+                submitBtn.disabled = true;
+                const count = missingFields.length;
+                const fieldWord = count === 1 ? 'requirement' : 'requirements';
+                submitBtn.setAttribute('data-validation-message', count + ' ' + fieldWord + ' missing (' + missingFields.join(', ') + ')');
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('data-validation-message');
+            }
         }
 
         passwordInput.addEventListener('input', (e) => {
