@@ -208,57 +208,6 @@
         .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            position: relative;
-        }
-
-        .btn-primary:disabled::after {
-            content: attr(data-validation-message);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 8px;
-            padding: 12px 16px;
-            background: #463F5F;
-            color: white;
-            border-radius: 8px;
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.5;
-            white-space: nowrap;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s, visibility 0.2s;
-        }
-
-        .btn-primary:disabled:hover::after {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .btn-primary:disabled::before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 2px;
-            border: 6px solid transparent;
-            border-top-color: #463F5F;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s, visibility 0.2s;
-        }
-
-        .btn-primary:disabled:hover::before {
-            opacity: 1;
-            visibility: visible;
         }
 
         .language-selector {
@@ -489,22 +438,7 @@
         }
 
         function updateSubmitButton() {
-            const missingFields = [];
-
-            if (!passwordValid) {
-                missingFields.push('Valid password (min 8 chars, letters & numbers)');
-            }
-            if (!passwordsMatch) {
-                missingFields.push('Passwords must match');
-            }
-
-            if (missingFields.length > 0) {
-                submitBtn.disabled = true;
-                submitBtn.setAttribute('data-validation-message', 'Required: ' + missingFields.join(', '));
-            } else {
-                submitBtn.disabled = false;
-                submitBtn.removeAttribute('data-validation-message');
-            }
+            submitBtn.disabled = !(passwordValid && passwordsMatch);
         }
 
         passwordInput.addEventListener('input', (e) => {

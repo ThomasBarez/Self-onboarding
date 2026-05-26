@@ -353,60 +353,11 @@
         .btn-primary:hover:not(:disabled) {
             background: #45FD8F;
             border-color: #45FD8F;
-        }        .btn-primary:disabled {
+        }
+
+        .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            position: relative;
-        }
-
-        .btn-primary:disabled::after {
-            content: attr(data-validation-message);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 8px;
-            padding: 12px 16px;
-            background: #463F5F;
-            color: white;
-            border-radius: 8px;
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.5;
-            white-space: nowrap;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s, visibility 0.2s;
-        }
-
-        .btn-primary:disabled:hover::after {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .btn-primary:disabled::before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 2px;
-            border: 6px solid transparent;
-            border-top-color: #463F5F;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s, visibility 0.2s;
-        }
-
-        .btn-primary:disabled:hover::before {
-            opacity: 1;
-            visibility: visible;
         }
 
         .btn-tooltip-wrapper {
@@ -829,9 +780,7 @@
 
         <div class="btn-group">
             <a href="04a-upload-data.html" class="btn btn-secondary">← Back</a>
-            <div class="btn-tooltip-wrapper" id="continueBtnWrapper" data-tooltip="Please fill in all required fields">
-                <button class="btn btn-primary" id="continueBtn" disabled>Continue to Program Review →</button>
-            </div>
+            <button class="btn btn-primary" id="continueBtn" disabled>Continue to Program Review →</button>
         </div>
     </div>
 
@@ -843,7 +792,7 @@
 
             function checkAllFieldsFilled() {
                 let allFilled = true;
-                let emptyCount = 0;
+                const missingFields = [];
 
                 requiredInputs.forEach(function(input) {
                     const value = input.value.trim();
@@ -853,20 +802,29 @@
                         input.classList.add('filled');
                     } else {
                         allFilled = false;
-                        emptyCount++;
                         input.classList.remove('filled');
+
+                        // Get the field label from the previous sibling
+                        const row = input.closest('.table-row');
+                        if (row) {
+                            const label = row.querySelector('.table-label');
+                            if (label) {
+                                // Get just the text, not the "Required" badge
+                                const labelText = label.childNodes[0].textContent.trim();
+                                missingFields.push(labelText);
+                            }
+                        }
                     }
                 });
 
                 continueBtn.disabled = !allFilled;
 
-                // Update tooltip visibility
-                const wrapper = document.getElementById('continueBtnWrapper');
+                // Update tooltip with specific missing fields
                 if (allFilled) {
-                    wrapper.removeAttribute('data-tooltip');
+                    continueBtn.removeAttribute('data-validation-message');
                 } else {
-                    const fieldText = emptyCount === 1 ? 'field needs' : 'fields need';
-                    wrapper.setAttribute('data-tooltip', emptyCount + ' ' + fieldText + ' your attention');
+                    const message = 'Required fields missing (' + missingFields.join(', ') + ')';
+                    continueBtn.setAttribute('data-validation-message', message);
                 }
             }
 
