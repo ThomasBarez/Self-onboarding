@@ -245,16 +245,167 @@
             padding: 4px;
             cursor: pointer;
             color: #6B7280;
-            
+
             align-items: center;
             justify-content: center;
             border-radius: 4px;
             transition: all 0.2s;
+            position: relative;
         }
 
         .icon-btn:hover {
             background: #F3F4F6;
             color: #221C46;
+        }
+
+        .date-picker-btn::after {
+            content: 'Select budget start date';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .date-picker-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .date-picker-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .date-picker-btn:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .edit-employee::after {
+            content: 'Edit employee details';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .edit-employee:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .edit-employee::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .edit-employee:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .delete-employee::after {
+            content: 'Remove employee from list';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .delete-employee:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .delete-employee::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .delete-employee:hover::before {
+            opacity: 1;
+            visibility: visible;
         }
 
         .add-btn {
@@ -1236,8 +1387,7 @@
                         <th>Email</th>
                         <th>Group</th>
                         <th>Budget <span style="color: #6B7280; font-weight: 400; font-size: 11px;">(Customizable)</span></th>
-                        <th style="width: 160px;">Budget Start Date</th>
-                        <th style="width: 80px;"></th>
+                        <th style="width: 120px;"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1480,16 +1630,26 @@
                         </div>
                     </td>
                     <td>
-                        <input type="date" class="form-input" data-employee-id="${employee.id}" value="${employee.budgetStartDate || ''}" onchange="updateEmployeeBudgetStartDate('${employee.id}', this.value)" style="font-size: 13px; padding: 6px 8px;">
-                    </td>
-                    <td>
-                        <div class="actions">
+                        <div class="actions" style="position: relative;">
+                            <button class="icon-btn date-picker-btn" data-employee-id="${employee.id}" title="Select date">
+                                <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+                            </button>
                             <button class="icon-btn edit-employee" data-employee-id="${employee.id}" title="Edit">
                                 <i data-lucide="pencil" style="width: 16px; height: 16px;"></i>
                             </button>
                             <button class="icon-btn delete-employee" data-employee-id="${employee.id}" title="Delete">
                                 <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
                             </button>
+                            <div class="budget-popover" id="date-popover-${employee.id}">
+                                <div style="margin-bottom: 12px;">
+                                    <label class="form-label" style="margin-bottom: 8px; display: block;">Budget Start Date</label>
+                                    <input type="date" class="form-input date-picker-input" data-employee-id="${employee.id}" value="${employee.budgetStartDate || ''}" style="width: 100%;">
+                                </div>
+                                <div class="budget-popover-actions">
+                                    <button class="budget-btn budget-btn-cancel date-cancel-btn" data-employee-id="${employee.id}">Cancel</button>
+                                    <button class="budget-btn budget-btn-apply date-apply-btn" data-employee-id="${employee.id}">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 `;
@@ -1500,13 +1660,6 @@
             lucide.createIcons();
             updateEmployeeCount();
             setupBudgetPopovers();
-        }
-
-        function updateEmployeeBudgetStartDate(employeeId, date) {
-            const employee = employees.find(function(emp) { return emp.id == employeeId; });
-            if (employee) {
-                employee.budgetStartDate = date;
-            }
         }
 
         function updateEmployeeCount() {
@@ -2030,6 +2183,53 @@
                         p.classList.remove('active');
                     });
                 }
+            });
+
+            // Date Picker Popover functionality
+            document.querySelectorAll('.date-picker-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = this.dataset.employeeId;
+                    const popover = document.getElementById('date-popover-' + employeeId);
+
+                    // Close all other popovers (both budget and date)
+                    document.querySelectorAll('.budget-popover').forEach(function(p) {
+                        if (p.id !== 'date-popover-' + employeeId) {
+                            p.classList.remove('active');
+                        }
+                    });
+
+                    popover.classList.toggle('active');
+                });
+            });
+
+            // Date cancel button
+            document.querySelectorAll('.date-cancel-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = this.dataset.employeeId;
+                    const popover = document.getElementById('date-popover-' + employeeId);
+                    popover.classList.remove('active');
+                });
+            });
+
+            // Date apply button
+            document.querySelectorAll('.date-apply-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const employeeId = this.dataset.employeeId;
+                    const popover = document.getElementById('date-popover-' + employeeId);
+                    const dateInput = popover.querySelector('.date-picker-input');
+                    const selectedDate = dateInput.value;
+
+                    const employee = employees.find(function(emp) { return emp.id == employeeId; });
+                    if (employee) {
+                        employee.budgetStartDate = selectedDate;
+                    }
+
+                    popover.classList.remove('active');
+                    renderEmployees();
+                });
             });
 
             // Help Drawer functionality
