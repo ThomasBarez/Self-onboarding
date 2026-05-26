@@ -1402,9 +1402,7 @@
 
         <div class="btn-group">
             <a href="06b-program-review-incomplete.html" class="btn btn-secondary">← Back</a>
-            <div class="btn-tooltip-wrapper" id="continueBtnWrapper" data-tooltip="Please fill in all required budget amounts">
-                <button class="btn btn-primary" id="continueBtn" disabled>Continue to Invite Employees →</button>
-            </div>
+            <button class="btn btn-primary" id="continueBtn" disabled>Continue to Invite Employees →</button>
         </div>
     </div>
 
@@ -1545,7 +1543,7 @@
             // Form field validation
             function checkAllFieldsFilled() {
                 let allFilled = true;
-                let emptyCount = 0;
+                const missingFields = [];
                 const inputs = document.querySelectorAll('[data-required="true"]');
 
                 inputs.forEach(function(input) {
@@ -1555,20 +1553,30 @@
                         input.classList.add('filled');
                     } else {
                         allFilled = false;
-                        emptyCount++;
                         input.classList.remove('filled');
+
+                        // Get the group name from the row
+                        const row = input.closest('tr');
+                        if (row) {
+                            const groupNameCell = row.querySelector('.group-name-cell');
+                            if (groupNameCell) {
+                                const groupName = groupNameCell.textContent.trim();
+                                missingFields.push(groupName + ' budget');
+                            }
+                        }
                     }
                 });
 
                 continueBtn.disabled = !allFilled;
 
-                // Update tooltip visibility
-                const wrapper = document.getElementById('continueBtnWrapper');
+                // Update tooltip with specific missing fields
                 if (allFilled) {
-                    wrapper.removeAttribute('data-tooltip');
+                    continueBtn.removeAttribute('data-validation-message');
                 } else {
-                    const fieldText = emptyCount === 1 ? 'field needs' : 'fields need';
-                    wrapper.setAttribute('data-tooltip', emptyCount + ' ' + fieldText + ' your attention');
+                    const count = missingFields.length;
+                    const fieldWord = count === 1 ? 'field' : 'fields';
+                    const message = count + ' required ' + fieldWord + ' missing (' + missingFields.join(', ') + ')';
+                    continueBtn.setAttribute('data-validation-message', message);
                 }
             }
 
