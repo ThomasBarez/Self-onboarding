@@ -787,8 +787,11 @@
             </div>
 
             <div class="table-row">
-                <div class="table-label">Parent entity</div>
-                <input type="text" class="table-input" id="parentEntity" value="ZETA GLOBAL">
+                <div class="table-label">
+                    Parent entity
+                    <span class="required-badge">Required</span>
+                </div>
+                <input type="text" class="table-input" id="parentEntity" value="ZETA GLOBAL" data-required="true">
             </div>
 
             <div class="table-row missing">
@@ -796,7 +799,7 @@
                     VAT number
                     <span class="required-badge">Required</span>
                 </div>
-                <input type="text" class="table-input" id="vatNumber" placeholder="Enter VAT number" data-required="true" data-was-missing="true">
+                <input type="text" class="table-input" id="vatNumber" placeholder="Enter VAT number" data-required="true" data-was-missing="true" disabled style="background: #F9FAFB; cursor: not-allowed; opacity: 0.6;">
             </div>
 
             <div class="table-row">
@@ -824,8 +827,11 @@
             </div>
 
             <div class="table-row">
-                <div class="table-label">Main contacts</div>
-                <input type="text" class="table-input" id="contacts" value="Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)">
+                <div class="table-label">
+                    Main contacts
+                    <span class="required-badge">Required</span>
+                </div>
+                <input type="text" class="table-input" id="contacts" value="Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)" data-required="true">
             </div>
         </div>
 

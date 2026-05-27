@@ -409,7 +409,10 @@
             </div>
 
             <div class="table-row">
-                <div class="table-label">Parent entity</div>
+                <div class="table-label">
+                    Parent entity
+                    <span class="required-badge">Required</span>
+                </div>
                 <div class="table-value" data-field="parentEntity">ZETA GLOBAL</div>
             </div>
 
@@ -446,7 +449,10 @@
             </div>
 
             <div class="table-row">
-                <div class="table-label">Main contacts</div>
+                <div class="table-label">
+                    Main contacts
+                    <span class="required-badge">Required</span>
+                </div>
                 <div class="table-value" data-field="contacts">Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)</div>
             </div>
         </div>
@@ -473,7 +479,7 @@
             const cancelBtn = document.getElementById('cancelBtn');
             const valueElements = document.querySelectorAll('.table-value');
 
-            const requiredFields = ['entityName', 'vatNumber', 'address', 'employees', 'email'];
+            const requiredFields = ['entityName', 'parentEntity', 'vatNumber', 'address', 'employees', 'email', 'contacts'];
 
             console.log('Found elements:', {
                 editBtn: !!editBtn,
@@ -515,6 +521,13 @@
 
                         if (requiredFields.indexOf(field) !== -1) {
                             input.required = true;
+                        }
+
+                        if (field === 'vatNumber') {
+                            input.disabled = true;
+                            input.style.background = '#F9FAFB';
+                            input.style.cursor = 'not-allowed';
+                            input.style.opacity = '0.6';
                         }
 
                         el.replaceWith(input);
