@@ -299,6 +299,101 @@
             padding-bottom: 10px;
         }
 
+        .welcome-banner {
+            background: linear-gradient(135deg, #F0F9FF 0%, #F5F3FF 100%);
+            border: 1px solid #E0E7FF;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+            animation: welcomeSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: welcomeShine 2s ease-in-out 0.3s;
+        }
+
+        @keyframes welcomeSlideIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes welcomeShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-greeting {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .welcome-greeting .user-name {
+            background: linear-gradient(135deg, #526CF8 0%, #BE449B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-message {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 22px;
+            color: #4B5563;
+            margin-bottom: 16px;
+        }
+
+        .welcome-highlights {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .welcome-highlight {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #059669;
+            animation: highlightFadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .welcome-highlight:nth-child(1) { animation-delay: 0.4s; }
+        .welcome-highlight:nth-child(2) { animation-delay: 0.6s; }
+        .welcome-highlight:nth-child(3) { animation-delay: 0.8s; }
+
+        @keyframes highlightFadeIn {
+            0% { opacity: 0; transform: translateX(-10px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .welcome-highlight svg {
+            width: 16px;
+            height: 16px;
+            stroke: #059669;
+        }
+
         .required-badge {
             display: inline-block;
             background: #FFEDD5;
@@ -756,6 +851,38 @@
             <span>Onboarding</span>
             <span>›</span>
             <span class="current">Company Information</span>
+        </div>
+
+        <div class="welcome-banner">
+            <div class="welcome-content">
+                <div class="welcome-greeting">
+                    Welcome <span class="user-name">Thomas</span> 👋
+                </div>
+                <div class="welcome-message">
+                    Great news! We've pre-filled your company information from the documents you uploaded. Just verify the details below and fill in the missing fields.
+                </div>
+                <div class="welcome-highlights">
+                    <div class="welcome-highlight">
+                        <svg viewBox="0 0 16 16" fill="none">
+                            <path d="M13.3337 4L6.00033 11.3333L2.66699 8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Most fields already filled
+                    </div>
+                    <div class="welcome-highlight">
+                        <svg viewBox="0 0 16 16" fill="none">
+                            <path d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Z" stroke-width="1.5"/>
+                            <path d="M8 4.66667V8L10 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Saves you time
+                    </div>
+                    <div class="welcome-highlight">
+                        <svg viewBox="0 0 16 16" fill="none">
+                            <path d="M7.33301 2.66669H4.53301C3.4131 2.66669 2.85315 2.66669 2.42502 2.88465C2.04907 3.07639 1.74307 3.38239 1.55132 3.75834C1.33301 4.18716 1.33301 4.74778 1.33301 5.86669V11.4667C1.33301 12.5858 1.33301 13.1453 1.55132 13.5741C1.74307 13.9501 2.04907 14.2561 2.42502 14.4478C2.85384 14.6667 3.41379 14.6667 4.53301 14.6667H10.133C11.2528 14.6667 11.8127 14.6667 12.2415 14.4478C12.6175 14.2561 12.9235 13.9501 13.1152 13.5741C13.333 13.1459 13.333 12.5864 13.333 11.4667V8.66669M5.33301 10.6667H6.78632C7.13481 10.6667 7.30906 10.6667 7.4732 10.6298C7.61892 10.5973 7.75875 10.5427 7.88768 10.4679C8.03299 10.3836 8.15926 10.2673 8.41179 10.0347L14.333 4.00002C14.8853 3.42859 14.8853 2.50478 14.333 1.93335C13.7806 1.36192 12.8853 1.36192 12.333 1.93335L6.41179 8.04669C6.15926 8.27936 6.03299 8.39569 5.94966 8.54169C5.87579 8.67119 5.82167 8.81169 5.78966 8.95802C5.75301 9.12269 5.75301 9.29736 5.75301 9.64669L5.33301 10.6667Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        All fields editable
+                    </div>
+                </div>
+            </div>
         </div>
 
         <h1>Complete your company information</h1>
