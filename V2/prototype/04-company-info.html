@@ -447,14 +447,6 @@
                 </div>
                 <div class="table-value" data-field="email">ZetaMGAPEU@zetaglobal.com</div>
             </div>
-
-            <div class="table-row">
-                <div class="table-label">
-                    Main contacts
-                    <span class="required-badge">Required</span>
-                </div>
-                <div class="table-value" data-field="contacts">Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)</div>
-            </div>
         </div>
 
         <div class="btn-group">
@@ -479,7 +471,7 @@
             const cancelBtn = document.getElementById('cancelBtn');
             const valueElements = document.querySelectorAll('.table-value');
 
-            const requiredFields = ['entityName', 'parentEntity', 'vatNumber', 'address', 'employees', 'email', 'contacts'];
+            const requiredFields = ['entityName', 'parentEntity', 'vatNumber', 'address', 'employees', 'email'];
 
             console.log('Found elements:', {
                 editBtn: !!editBtn,
