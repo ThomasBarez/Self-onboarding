@@ -827,6 +827,357 @@
             width: 16px;
             height: 16px;
         }
+
+        /* A/B Testing Toggle */
+        .ab-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ab-toggle-label {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            font-weight: 500;
+        }
+
+        .ab-toggle {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: #E5E7EB;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .ab-toggle.active {
+            background: #2BFD7F;
+        }
+
+        .ab-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .ab-toggle.active .ab-toggle-slider {
+            transform: translateX(20px);
+        }
+
+        /* Policy Version B */
+        .policy-version-b {
+            display: none;
+        }
+
+        .policy-version-b.active {
+            display: block;
+        }
+
+        .policy-version-a.hidden {
+            display: none;
+        }
+
+        .policy-description-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 20px;
+            margin-bottom: 20px;
+        }
+
+        .edit-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #221C46;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #F9FAFB;
+        }
+
+        .policy-agent-card {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: start;
+            gap: 16px;
+        }
+
+        .agent-orb {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #A5B4FC 0%, #6366F1 50%, #4F46E5 100%);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            flex-shrink: 0;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            }
+        }
+
+        .agent-content {
+            flex: 1;
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .agent-title {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #221C46;
+        }
+
+        .live-badge {
+            background: #ECFDF5;
+            color: #059669;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #059669;
+            border-radius: 50%;
+            animation: livePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        .agent-description {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 20px;
+        }
+
+        .compliance-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .article-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .article-item:hover {
+            background: #FAFAFA;
+            border-color: #D1D5DB;
+        }
+
+        .article-item.expanded {
+            background: #FAFBFF;
+            border-color: #C7D2FE;
+            box-shadow: 0 1px 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .article-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .article-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .article-badge {
+            background: #EEF2FF;
+            color: #6366F1;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .article-title {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #221C46;
+        }
+
+        .article-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-count {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .article-chevron {
+            width: 16px;
+            height: 16px;
+            color: #9CA3AF;
+            transition: transform 0.3s;
+        }
+
+        .article-item.expanded .article-chevron {
+            transform: rotate(180deg);
+        }
+
+        .article-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .article-item.expanded .article-content {
+            max-height: 1000px;
+        }
+
+        .article-rules {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .rule-item {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+
+        .rule-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rule-item:hover {
+            border-color: #D1D5DB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .rule-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .rule-name {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #221C46;
+        }
+
+        .rule-type {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .rule-type.validate {
+            color: #6366F1;
+            background: #EEF2FF;
+        }
+
+        .rule-type.defer {
+            color: #F59E0B;
+            background: #FEF3C7;
+        }
+
+        .rule-type.escalate {
+            color: #DC2626;
+            background: #FEE2E2;
+        }
+
+        .rule-description {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            line-height: 18px;
+        }
+
+        .rule-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .rule-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 11px;
+            color: #9CA3AF;
+        }
+
+        .rule-meta-item i {
+            width: 12px;
+            height: 12px;
+        }
     </style>
 </head>
 <body>
@@ -1085,43 +1436,300 @@
                     <span class="section-icon"><i data-lucide="clipboard-check"></i></span>
                     Expense Approval Policy
                 </div>
+                <div class="ab-toggle-wrapper">
+                    <span class="ab-toggle-label">A/B Test</span>
+                    <div class="ab-toggle" id="abToggle">
+                        <div class="ab-toggle-slider"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="policy-options">
-                <div class="policy-option" data-policy="light">
-                    <div class="policy-radio">
-                        <div class="policy-radio-inner"></div>
+            <!-- Version A (Current) -->
+            <div class="policy-version-a" id="policyVersionA">
+                <div class="policy-options">
+                    <div class="policy-option" data-policy="light">
+                        <div class="policy-radio">
+                            <div class="policy-radio-inner"></div>
+                        </div>
+                        <div class="policy-content">
+                            <div class="policy-title">Light</div>
+                            <div class="policy-description">All expenses automatically approved by the system</div>
+                        </div>
                     </div>
-                    <div class="policy-content">
-                        <div class="policy-title">Light</div>
-                        <div class="policy-description">All expenses automatically approved by the system</div>
+
+                    <div class="policy-option selected" data-policy="standard">
+                        <div class="policy-radio">
+                            <div class="policy-radio-inner"></div>
+                        </div>
+                        <div class="policy-content">
+                            <div class="policy-title">Standard</div>
+                            <div class="policy-description">Receipt required, automatically approved by the system</div>
+                        </div>
+                    </div>
+
+                    <div class="policy-option" data-policy="maximum">
+                        <div class="policy-radio">
+                            <div class="policy-radio-inner"></div>
+                        </div>
+                        <div class="policy-content">
+                            <div class="policy-title">Maximum Control</div>
+                            <div class="policy-description">Admin validation required with mandatory receipt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Version B (Compliance Rules) -->
+            <div class="policy-version-b" id="policyVersionB">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="font-family: 'TT Travels', sans-serif; font-size: 18px; font-weight: 700; color: #221C46;">Compliance Rules</h3>
+                    <button class="edit-btn">Edit</button>
+                </div>
+
+                <p class="policy-description-text">
+                    Your Policy Agent enforces these rules automatically — validating, deferring, or escalating each expense. Click an article to review its provisions.
+                </p>
+
+                <div class="policy-agent-card">
+                    <div class="agent-orb"></div>
+                    <div class="agent-content">
+                        <div class="agent-header">
+                            <span class="agent-title">Policy Agent</span>
+                            <span class="live-badge">
+                                <span class="live-dot"></span>
+                                LIVE
+                            </span>
+                        </div>
+                        <div class="agent-description">
+                            Autonomously enforces 10 rules across 4 categories — validating, deferring, and escalating each expense in real time.
+                        </div>
                     </div>
                 </div>
 
-                <div class="policy-option selected" data-policy="standard">
-                    <div class="policy-radio">
-                        <div class="policy-radio-inner"></div>
+                <div class="compliance-articles">
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Article1</span>
+                                <span class="article-title">Required justifications</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">3 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Receipt mandatory above €25</span>
+                                        <span class="rule-type validate">Validate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Any expense above €25 requires a valid receipt to be uploaded within 48 hours.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="check-circle"></i>
+                                            Auto-approved
+                                        </div>
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="clock"></i>
+                                            48h window
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Business purpose required</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        All expenses must include a business justification before approval.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="alert-circle"></i>
+                                            Manager review
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Odometer proof for car allowance</span>
+                                        <span class="rule-type validate">Validate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Car mileage claims require odometer photo or GPS tracking data.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="camera"></i>
+                                            Photo required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="policy-content">
-                        <div class="policy-title">Standard</div>
-                        <div class="policy-description">Receipt required, automatically approved by the system</div>
-                    </div>
-                </div>
 
-                <div class="policy-option" data-policy="maximum">
-                    <div class="policy-radio">
-                        <div class="policy-radio-inner"></div>
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Article2</span>
+                                <span class="article-title">Deadlines & time windows</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">3 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">30-day submission window</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Expenses must be submitted within 30 days of the transaction date.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="calendar"></i>
+                                            30-day limit
+                                        </div>
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="user"></i>
+                                            Admin approval required if late
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">End-of-month cutoff</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Submissions after the 25th are processed in the following month's payroll.
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Weekend approval delay</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Expenses submitted during weekends are queued for Monday processing.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="policy-content">
-                        <div class="policy-title">Maximum Control</div>
-                        <div class="policy-description">Admin validation required with mandatory receipt</div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Article3</span>
+                                <span class="article-title">Caps & thresholds</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">1 rule</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">€500 escalation threshold</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Any single expense over €500 requires C-level approval before reimbursement.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="euro"></i>
+                                            €500 threshold
+                                        </div>
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="shield"></i>
+                                            C-level approval
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Article4</span>
+                                <span class="article-title">Bike accessories</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">3 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Safety equipment approved</span>
+                                        <span class="rule-type validate">Validate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Helmets, lights, locks, and reflective gear are pre-approved accessories.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="check-circle"></i>
+                                            Pre-approved
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Annual €150 cap</span>
+                                        <span class="rule-type validate">Validate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Bike accessories are capped at €150 per employee per calendar year.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="euro"></i>
+                                            €150/year
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Clothing requires approval</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Cycling apparel (jerseys, shorts, shoes) requires manager pre-approval.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="user"></i>
+                                            Manager approval
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="btn-group">
-            <a href="05b-company-info-incomplete.html" class="btn btn-secondary">← Back</a>
+            <a href="05a-upload-data.html" class="btn btn-secondary">← Back</a>
             <button class="btn btn-primary" id="continueBtn" disabled>Continue to Budget Groups →</button>
         </div>
     </div>
@@ -1238,6 +1846,57 @@
                     helpDrawerOverlay.classList.remove('active');
                 });
             }
+
+            // A/B Testing Toggle
+            const abToggle = document.getElementById('abToggle');
+            const policyVersionA = document.getElementById('policyVersionA');
+            const policyVersionB = document.getElementById('policyVersionB');
+
+            abToggle.addEventListener('click', function() {
+                abToggle.classList.toggle('active');
+
+                if (abToggle.classList.contains('active')) {
+                    // Show Version B (Compliance Rules)
+                    policyVersionA.classList.add('hidden');
+                    policyVersionB.classList.add('active');
+                } else {
+                    // Show Version A (Current)
+                    policyVersionA.classList.remove('hidden');
+                    policyVersionB.classList.remove('active');
+                }
+
+                // Re-initialize Lucide icons for the newly shown content
+                lucide.createIcons();
+            });
+
+            // Article Expansion
+            const articleItems = document.querySelectorAll('.article-item');
+
+            articleItems.forEach(function(article) {
+                const articleHeader = article.querySelector('.article-header');
+
+                articleHeader.addEventListener('click', function() {
+                    // Toggle expanded class
+                    const isExpanded = article.classList.contains('expanded');
+
+                    // Close all other articles
+                    articleItems.forEach(function(item) {
+                        if (item !== article) {
+                            item.classList.remove('expanded');
+                        }
+                    });
+
+                    // Toggle current article
+                    if (isExpanded) {
+                        article.classList.remove('expanded');
+                    } else {
+                        article.classList.add('expanded');
+                    }
+
+                    // Re-initialize Lucide icons
+                    lucide.createIcons();
+                });
+            });
         });
     </script>
 </body>
