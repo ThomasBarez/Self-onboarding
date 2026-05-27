@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Skipr Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=TT+Travels:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', sans-serif;
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: white;
+            padding: 24px 32px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #221C46;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .skip-link {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .skip-link:hover {
+            color: #01D253;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .welcome-container {
+            background: white;
+            border-radius: 24px;
+            padding: 64px 56px;
+            max-width: 720px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .emoji-hero {
+            font-size: 72px;
+            margin-bottom: 32px;
+        }
+
+        h1 {
+            color: #221C46;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 18px;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+            text-align: left;
+        }
+
+        .step {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #01D253;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            color: #221C46;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            color: #6B7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .time-estimate {
+            background: #F0F9FF;
+            border: 1px solid #BAE6FD;
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .time-estimate svg {
+            width: 20px;
+            height: 20px;
+            color: #0284C7;
+        }
+
+        .time-estimate span {
+            color: #0C4A6E;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .primary-button {
+            padding: 16px 48px;
+            background: #01D253;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-button:hover {
+            background: #00B945;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(1, 210, 83, 0.3);
+        }
+
+        .features {
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .features-title {
+            color: #9CA3AF;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .feature-item svg {
+            width: 16px;
+            height: 16px;
+            color: #01D253;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Skipr</div>
+        <a href="https://app.skipr.com" class="skip-link">Skip to platform →</a>
+    </div>
+
+    <div class="main-content">
+        <div class="welcome-container">
+            <div class="emoji-hero">👋</div>
+            <h1>Hey Thomas, let's get you set up!</h1>
+            <p class="subtitle">We'll help you complete your onboarding in just a few minutes. Our AI will do most of the heavy lifting.</p>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Upload documents</div>
+                    <div class="step-description">Share your company and program documents—we'll extract the info automatically</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Review & edit</div>
+                    <div class="step-description">Check what we found and fill in any missing details</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">You're done!</div>
+                    <div class="step-description">Get instant access to your personalized workspace</div>
+                </div>
+            </div>
+
+            <div class="time-estimate">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Takes about 5 minutes</span>
+            </div>
+
+            <a href="03-upload-data.html" class="primary-button">Let's get started</a>
+
+            <div class="features">
+                <div class="features-title">What makes it easy</div>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>AI-powered extraction</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Smart defaults</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Save progress anytime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

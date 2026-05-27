@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Skipr Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=TT+Travels:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', sans-serif;
+            background: #F8F9FA;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: white;
+            padding: 24px 32px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .logo {
+            color: #221C46;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            color: #221C46;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #221C46;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 15px;
+            color: #221C46;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #01D253;
+            box-shadow: 0 0 0 3px rgba(1, 210, 83, 0.1);
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 14px 24px;
+            background: #01D253;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .primary-button:hover {
+            background: #00B945;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(1, 210, 83, 0.3);
+        }
+
+        .secondary-button {
+            width: 100%;
+            padding: 14px 24px;
+            background: white;
+            color: #6B7280;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .secondary-button:hover {
+            border-color: #01D253;
+            color: #01D253;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #E5E7EB;
+            z-index: 0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 16px;
+            color: #9CA3AF;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .power-user-section {
+            background: #F9FAFB;
+            border: 1px dashed #D1D5DB;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .power-user-section .label {
+            color: #6B7280;
+            font-size: 13px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .power-user-section .hint {
+            color: #9CA3AF;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .remember-me label {
+            margin: 0;
+            font-weight: 400;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -16px;
+            margin-bottom: 24px;
+        }
+
+        .forgot-password a {
+            color: #01D253;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Skipr</div>
+    </div>
+
+    <div class="main-content">
+        <div class="login-container">
+            <h1>Welcome back!</h1>
+            <p class="subtitle">Log in to continue setting up your onboarding or access your workspace.</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" value="thomas@zetaglobal.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" value="••••••••" required>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <button type="submit" class="primary-button">Continue</button>
+            </form>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div class="power-user-section">
+                <div class="label">Already completed onboarding?</div>
+                <a href="https://app.skipr.com" class="secondary-button">Skip to platform →</a>
+                <div class="hint">Access your workspace directly</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = '02-welcome.html';
+        });
+    </script>
+</body>
+</html>

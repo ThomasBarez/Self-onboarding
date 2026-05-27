@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Complete! - Skipr</title>
+    <link href="https://fonts.googleapis.com/css2?family=TT+Travels:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', sans-serif;
+            background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 50%, #86EFAC 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .completion-container {
+            background: white;
+            border-radius: 24px;
+            padding: 64px 56px;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confetti-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            color: #221C46;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 18px;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+
+        .success-summary {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 48px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-value {
+            color: #14532D;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .summary-label {
+            color: #166534;
+            font-size: 14px;
+        }
+
+        .next-steps {
+            text-align: left;
+            margin-bottom: 48px;
+        }
+
+        .next-steps-title {
+            color: #221C46;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 20px;
+            background: #F9FAFB;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #01D253;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #221C46;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .step-description {
+            color: #6B7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 18px 48px;
+            background: #01D253;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .primary-button:hover {
+            background: #00B945;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(1, 210, 83, 0.3);
+        }
+
+        .secondary-link {
+            color: #6B7280;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .secondary-link:hover {
+            color: #01D253;
+        }
+
+        .help-section {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .help-title {
+            color: #9CA3AF;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .help-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .help-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6B7280;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .help-link:hover {
+            color: #01D253;
+        }
+
+        .help-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkmark-animation {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: #DCFCE7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .checkmark-animation svg {
+            width: 40px;
+            height: 40px;
+            color: #01D253;
+            stroke-width: 3;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(1, 210, 83, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(1, 210, 83, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="completion-container">
+        <div class="checkmark-animation">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+
+        <h1>You're all set, Thomas! 🎉</h1>
+        <p class="subtitle">Your onboarding is complete. Your mobility program is now ready for your employees to use.</p>
+
+        <div class="success-summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-value">✓</div>
+                    <div class="summary-label">Company verified</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">€500</div>
+                    <div class="summary-label">Monthly budget</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">20</div>
+                    <div class="summary-label">Employees ready</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-steps">
+            <div class="next-steps-title">What happens next?</div>
+
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Explore your dashboard</div>
+                    <div class="step-description">View employee usage, manage budgets, and track mobility expenses in real-time</div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Invite your employees</div>
+                    <div class="step-description">Send invitations so your team can start using their mobility benefits right away</div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Get support</div>
+                    <div class="step-description">Our team is here to help with onboarding, training, and any questions you have</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://app.skipr.com" class="primary-button">Access Your Workspace →</a>
+
+        <div>
+            <a href="index.html" class="secondary-link">← Back to prototype menu</a>
+        </div>
+
+        <div class="help-section">
+            <div class="help-title">Need help?</div>
+            <div class="help-links">
+                <a href="#" class="help-link">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    Documentation
+                </a>
+                <a href="#" class="help-link">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    Live Chat
+                </a>
+                <a href="#" class="help-link">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Email Support
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

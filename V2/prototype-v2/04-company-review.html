@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Company Info - Skipr Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=TT+Travels:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', sans-serif;
+            background: #F8F9FA;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 32px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #221C46;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .progress-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 140px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 66%;
+            transition: width 0.3s;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .save-exit-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            color: #6B7280;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .save-exit-btn:hover {
+            border-color: #01D253;
+            color: #01D253;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        h1 {
+            color: #221C46;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-description {
+            color: #6B7280;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .wow-banner {
+            background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+            border: 1px solid #86EFAC;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .wow-banner .icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .wow-banner .text {
+            flex: 1;
+        }
+
+        .wow-banner .title {
+            color: #14532D;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .wow-banner .subtitle {
+            color: #166534;
+            font-size: 14px;
+        }
+
+        .info-cards {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .card-title {
+            color: #221C46;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title svg {
+            width: 20px;
+            height: 20px;
+            color: #01D253;
+        }
+
+        .edit-btn {
+            padding: 8px 16px;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            color: #6B7280;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: white;
+            border-color: #01D253;
+            color: #01D253;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid #F3F4F6;
+            align-items: start;
+        }
+
+        .field-row:last-child {
+            border-bottom: none;
+        }
+
+        .field-label {
+            color: #6B7280;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-top: 8px;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #FFEDD5;
+            color: #C2410C;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 10px;
+        }
+
+        .tooltip-trigger {
+            width: 14px;
+            height: 14px;
+            background: #E5E7EB;
+            color: #6B7280;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: help;
+            position: relative;
+        }
+
+        .tooltip-trigger:hover .tooltip {
+            display: block;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #221C46;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            width: 260px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tooltip:before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #221C46;
+        }
+
+        .field-value {
+            color: #221C46;
+            font-size: 15px;
+            font-weight: 500;
+            background: #F9FAFB;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .field-value.editable {
+            cursor: text;
+        }
+
+        .field-value.editable:hover {
+            background: white;
+            border-color: #E5E7EB;
+        }
+
+        .field-value.editable:focus {
+            outline: none;
+            background: white;
+            border-color: #01D253;
+            box-shadow: 0 0 0 3px rgba(1, 210, 83, 0.1);
+        }
+
+        .field-value.empty {
+            color: #9CA3AF;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .back-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            color: #6B7280;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            border-color: #01D253;
+            color: #01D253;
+        }
+
+        .continue-btn {
+            padding: 14px 32px;
+            background: #01D253;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .continue-btn:hover {
+            background: #00B945;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(1, 210, 83, 0.3);
+        }
+
+        .skip-hint {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .skip-hint a {
+            color: #6B7280;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .skip-hint a:hover {
+            color: #01D253;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Skipr</div>
+        <div class="progress-indicator">
+            <span class="progress-text">Step 2 of 3</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="save-exit-btn">Save & Exit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Looking good! Review your company details</h1>
+        <p class="page-description">We've extracted this information from your documents. Take a moment to verify everything is correct and fill in any missing fields.</p>
+
+        <div class="wow-banner">
+            <div class="icon">✨</div>
+            <div class="text">
+                <div class="title">Most of your info is ready!</div>
+                <div class="subtitle">We found 85% of your company details automatically. Just verify and fill in the gaps.</div>
+            </div>
+        </div>
+
+        <div class="info-cards">
+            <!-- Basic Information Card -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        Basic Information
+                    </div>
+                    <button class="edit-btn">Edit</button>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        Entity name
+                        <span class="required-badge">Required</span>
+                    </div>
+                    <div class="field-value editable" contenteditable="true">Zeta Global Holding Corp.</div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        Parent entity
+                        <div class="tooltip-trigger">?
+                            <div class="tooltip">The parent company if this entity is part of a larger corporate structure. Leave blank if this is the top-level entity.</div>
+                        </div>
+                    </div>
+                    <div class="field-value editable empty" contenteditable="true">Click to add parent entity</div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        VAT number
+                        <span class="required-badge">Required</span>
+                        <div class="tooltip-trigger">?
+                            <div class="tooltip">Your company's Value Added Tax identification number. This should be in the format BE1234567890.</div>
+                        </div>
+                    </div>
+                    <div class="field-value editable" contenteditable="true">BE12 2345 2435 2344 2343</div>
+                </div>
+            </div>
+
+            <!-- Contact Information Card -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Contact Details
+                    </div>
+                    <button class="edit-btn">Edit</button>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        Address
+                        <span class="required-badge">Required</span>
+                    </div>
+                    <div class="field-value editable" contenteditable="true">575 Lexington Ave, New York, NY 10022, USA</div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        Invoice email
+                        <span class="required-badge">Required</span>
+                        <div class="tooltip-trigger">?
+                            <div class="tooltip">The email address where you want to receive invoices and billing communications.</div>
+                        </div>
+                    </div>
+                    <div class="field-value editable" contenteditable="true">accounting@zetaglobal.com</div>
+                </div>
+            </div>
+
+            <!-- Organization Details Card -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Organization
+                    </div>
+                    <button class="edit-btn">Edit</button>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-label">
+                        Number of employees
+                        <span class="required-badge">Required</span>
+                        <div class="tooltip-trigger">?
+                            <div class="tooltip">The total number of employees currently working at your company. This helps us tailor your mobility program.</div>
+                        </div>
+                    </div>
+                    <div class="field-value editable" contenteditable="true">20</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="03-upload-data.html" class="back-btn">← Back</a>
+            <a href="05-program-review.html" class="continue-btn">Continue to Program Review →</a>
+        </div>
+
+        <div class="skip-hint">
+            <a href="06-completion.html">Skip program review and finish →</a>
+        </div>
+    </div>
+
+    <script>
+        // Make empty fields clickable
+        document.querySelectorAll('.field-value.empty').forEach(field => {
+            field.addEventListener('focus', function() {
+                if (this.classList.contains('empty')) {
+                    this.textContent = '';
+                    this.classList.remove('empty');
+                }
+            });
+
+            field.addEventListener('blur', function() {
+                if (this.textContent.trim() === '') {
+                    this.textContent = 'Click to add parent entity';
+                    this.classList.add('empty');
+                }
+            });
+        });
+
+        // Edit button handlers
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.info-card');
+                const firstEditableField = card.querySelector('.field-value.editable');
+                if (firstEditableField) {
+                    firstEditableField.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

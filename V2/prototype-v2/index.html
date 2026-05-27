@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skipr Onboarding Prototype V2 - User Journey Optimized</title>
+    <link href="https://fonts.googleapis.com/css2?family=TT+Travels:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', sans-serif;
+            background: #F8F9FA;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #221C46;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .journey-section {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .journey-section h2 {
+            color: #221C46;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emoji {
+            font-size: 32px;
+        }
+
+        .journey-section p {
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .prototype-link {
+            display: block;
+            padding: 20px;
+            background: #F8F9FA;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .prototype-link:hover {
+            background: #01D253;
+            border-color: #01D253;
+            transform: translateY(-2px);
+        }
+
+        .prototype-link:hover .link-title {
+            color: white;
+        }
+
+        .prototype-link:hover .link-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-title {
+            color: #221C46;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .link-description {
+            color: #6B7280;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .badge-new {
+            background: #DCFCE7;
+            color: #166534;
+        }
+
+        .badge-improved {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .insights {
+            background: #F0F9FF;
+            border-left: 4px solid #0284C7;
+            padding: 20px;
+            margin-top: 24px;
+            border-radius: 8px;
+        }
+
+        .insights h3 {
+            color: #0C4A6E;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .insights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insights li {
+            color: #0C4A6E;
+            font-size: 13px;
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .insights li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0284C7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skipr Onboarding Prototype V2</h1>
+        <p class="subtitle">User journey optimized • Based on José, Michelle & Max personas</p>
+
+        <div class="journey-section">
+            <h2><span class="emoji">🚀</span> Access & Touch Down</h2>
+            <p>First impressions matter. Welcoming experience with power user shortcuts.</p>
+            <div class="link-grid">
+                <a href="01-login.html" class="prototype-link">
+                    <div class="link-title">01 - Login <span class="badge badge-improved">Improved</span></div>
+                    <div class="link-description">Clean login with "Skip to platform" option for power users (Max persona)</div>
+                </a>
+                <a href="02-welcome.html" class="prototype-link">
+                    <div class="link-title">02 - Welcome <span class="badge badge-new">New</span></div>
+                    <div class="link-description">Warm welcome with clear value proposition and skip option</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="journey-section">
+            <h2><span class="emoji">📤</span> Upload Stage</h2>
+            <p>Show don't tell. Transparent AI extraction with real-time progress.</p>
+            <div class="link-grid">
+                <a href="03-upload-data.html" class="prototype-link">
+                    <div class="link-title">03 - Upload Data <span class="badge badge-improved">Improved</span></div>
+                    <div class="link-description">Enhanced AI extraction progress with status updates and estimated time</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="journey-section">
+            <h2><span class="emoji">✅</span> Review Stage</h2>
+            <p>Digestible information with inline editing helpers. No overwhelm.</p>
+            <div class="link-grid">
+                <a href="04-company-review.html" class="prototype-link">
+                    <div class="link-title">04 - Company Info Review <span class="badge badge-new">New</span></div>
+                    <div class="link-description">Card-based layout with inline editing and helpful tooltips</div>
+                </a>
+                <a href="05-program-review.html" class="prototype-link">
+                    <div class="link-title">05 - Program Review <span class="badge badge-improved">Improved</span></div>
+                    <div class="link-description">Simplified review with clear edit affordances</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="journey-section">
+            <h2><span class="emoji">🎉</span> Completion</h2>
+            <p>Celebrate success! Clear next steps and platform access.</p>
+            <div class="link-grid">
+                <a href="06-completion.html" class="prototype-link">
+                    <div class="link-title">06 - Completion <span class="badge badge-new">New</span></div>
+                    <div class="link-description">Celebratory finish screen with next steps and platform access link</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="insights">
+            <h3>Key Improvements from User Journey Analysis</h3>
+            <ul>
+                <li><strong>Power user shortcuts:</strong> "Skip this step" and "Skip to platform" CTAs for experienced users (Max)</li>
+                <li><strong>AI transparency:</strong> Show extraction progress, what's being analyzed, estimated completion time</li>
+                <li><strong>Inline helpers:</strong> Tooltips and contextual help for uncertain users (José)</li>
+                <li><strong>Card-based review:</strong> Digestible information chunks instead of overwhelming tables</li>
+                <li><strong>Celebratory completion:</strong> Positive reinforcement with clear next steps</li>
+                <li><strong>Emotional arc:</strong> Designed for 😐 → 😐 → 😄 → 😄 → 😄 progression</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
