@@ -22,7 +22,7 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             background: white;
-            border-bottom: 1px solid #E5E5E5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             padding: 16px 32px;
             align-items: center;
             position: sticky;
@@ -87,48 +87,29 @@
         }
 
         .container {
-            max-width: 1024px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 48px 24px;
+            padding: 64px 24px;
         }
 
         .success-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .success-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: #ECFDF5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-        }
-
-        .success-icon {
-            width: 48px;
-            height: 48px;
-            color: #059669;
+            margin-bottom: 56px;
         }
 
         h1 {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 32px;
-            color: #221C46;
-            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 28px;
+            color: #111827;
+            margin-bottom: 12px;
         }
 
         .page-description {
             font-family: 'TT Travels', sans-serif;
             font-weight: 400;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 24px;
             color: #6B7280;
-            margin-bottom: 32px;
         }
 
         .card {
@@ -184,55 +165,227 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 24px;
+            gap: 12px;
+            margin-bottom: 48px;
         }
 
         .stat-card {
-            background: #F9FAFB;
+            background: white;
             border-radius: 8px;
-            padding: 20px;
+            padding: 24px;
             text-align: center;
+            transition: all 0.2s;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
         .stat-value {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 32px;
-            color: #221C46;
-            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 28px;
+            color: #111827;
+            margin-bottom: 6px;
         }
 
         .stat-label {
             font-family: 'TT Travels', sans-serif;
             font-weight: 400;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .policy-document-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 32px;
+        }
+
+        .policy-document-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .policy-document-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 64px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            position: relative;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+
+        .policy-header {
+            margin-bottom: 40px;
+        }
+
+        .policy-company-name {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .policy-document-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .policy-date {
             font-size: 13px;
             color: #6B7280;
         }
 
+        .policy-section {
+            margin-bottom: 36px;
+        }
+
+        .policy-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+            margin-top: 28px;
+        }
+
+        .policy-text {
+            font-size: 15px;
+            line-height: 26px;
+            color: #374151;
+            margin-bottom: 14px;
+        }
+
+        .policy-text strong {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .policy-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 18px;
+        }
+
+        .policy-list li {
+            font-size: 15px;
+            line-height: 26px;
+            color: #374151;
+            padding-left: 24px;
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .policy-list li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #D1D5DB;
+            font-size: 16px;
+        }
+
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .policy-table th,
+        .policy-table td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .policy-table th {
+            font-weight: 500;
+            font-size: 11px;
+            color: #6B7280;
+            background: #FAFAFA;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .policy-table td {
+            color: #111827;
+            font-size: 14px;
+        }
+
+        .policy-table tbody tr:hover {
+            background: #FAFAFA;
+        }
+
+        .policy-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .policy-footer {
+            margin-top: 56px;
+            padding-top: 20px;
+            border-top: 1px solid #F3F4F6;
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .download-button-wrapper {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #F9FAFB;
+            border: none;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #F3F4F6;
+        }
+
+        .download-btn i {
+            width: 16px;
+            height: 16px;
+        }
+
         .next-steps {
-            background: #EFF6FF;
-            border: 1px solid #BFDBFE;
+            background: white;
             border-radius: 12px;
-            padding: 24px;
+            padding: 32px;
             margin-top: 24px;
         }
 
         .next-steps-title {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            color: #1E3A8A;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .next-steps-title i {
-            width: 20px;
-            height: 20px;
-            color: #3B82F6;
+            font-weight: 600;
+            font-size: 18px;
+            color: #111827;
+            margin-bottom: 24px;
         }
 
         .next-steps-list {
@@ -240,60 +393,73 @@
             padding: 0;
         }
 
-        .next-steps-list li {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            color: #1E40AF;
-            padding: 8px 0;
-            padding-left: 28px;
-            position: relative;
+        .next-steps-item {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #F3F4F6;
         }
 
-        .next-steps-list li::before {
-            content: '→';
-            position: absolute;
-            left: 8px;
-            color: #3B82F6;
+        .next-steps-item:last-child {
+            border-bottom: none;
+        }
+
+        .next-steps-icon {
+            width: 40px;
+            height: 40px;
+            background: #F9FAFB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .next-steps-icon i {
+            width: 20px;
+            height: 20px;
+            color: #6B7280;
+        }
+
+        .next-steps-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+
+        .next-steps-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 15px;
+            line-height: 24px;
+            color: #374151;
         }
 
         .btn-group {
             display: flex;
-            gap: 12px;
-            margin-top: 32px;
+            margin-top: 40px;
         }
 
         .btn {
-            display: flex;
-            flex: 1;
-            padding: 12px 24px;
+            display: inline-flex;
+            padding: 13px 25px;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
             line-height: 20px;
-            border-radius: 6px;
+            border-radius: 0;
             cursor: pointer;
-            border: none;
             text-align: center;
             text-decoration: none;
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #362F54;
-            border: 1px solid #E5E7EB;
-        }
-
-        .btn-secondary:hover {
-            background: #F9FAFB;
+            transition: all 0.2s;
         }
 
         .btn-primary {
             background: #2BFD7F;
             color: #362F54;
-            border: 1px solid #2BFD7F;
+            border: 3px solid #2BFD7F;
         }
 
         .btn-primary:hover {
@@ -617,109 +783,177 @@
 
     <div class="container">
         <div class="success-header">
-            <div class="success-icon-wrapper">
-                <i data-lucide="check-circle" class="success-icon"></i>
-            </div>
             <h1>Your mobility program is ready!</h1>
             <p class="page-description">
                 Your configuration has been saved and invitation emails have been sent to your employees.
             </p>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">118</div>
-                <div class="stat-label">Employees Invited</div>
+        <div class="policy-document-wrapper">
+        <div class="policy-document-preview">
+            <div class="policy-header">
+                <div class="policy-company-name">Selligent SA / Marigold Europe</div>
+                <div class="policy-document-title">Federal Mobility Budget Policy</div>
+                <div class="policy-date">Effective Date: June 23, 2026</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">4</div>
-                <div class="stat-label">Budget Groups</div>
+
+            <div class="policy-section">
+                <div class="policy-section-title">Program Overview</div>
+                <p class="policy-text">
+                    This document outlines the Federal Mobility Budget policy for Selligent SA / Marigold Europe, a subsidiary of ZETA GLOBAL. This policy has been configured to comply with Belgian Federal Mobility Budget regulations and provides eligible employees with flexible transportation alternatives to company vehicles.
+                </p>
+                <p class="policy-text">
+                    The program is administered by Pluxee and applies to all 118 employees across four distinct budget groups. This policy was established on June 23, 2026, and remains a living document subject to periodic review and updates.
+                </p>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">14</div>
-                <div class="stat-label">Services Enabled</div>
+
+            <div class="policy-section">
+                <div class="policy-section-title">Eligibility & Budget Allocation</div>
+                <p class="policy-text">
+                    Budget allocations are determined by employee classification and reset on a monthly basis. All budgets include prorated entry and exit provisions to ensure fair treatment during hiring and departure periods.
+                </p>
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Employee Group</th>
+                            <th>Monthly Budget</th>
+                            <th>Reset Frequency</th>
+                            <th>Proration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Executives</td>
+                            <td>€800</td>
+                            <td>Monthly</td>
+                            <td>Entry & Exit</td>
+                        </tr>
+                        <tr>
+                            <td>Managers</td>
+                            <td>€500</td>
+                            <td>Monthly</td>
+                            <td>Entry & Exit</td>
+                        </tr>
+                        <tr>
+                            <td>Employees</td>
+                            <td>€300</td>
+                            <td>Monthly</td>
+                            <td>Entry & Exit</td>
+                        </tr>
+                        <tr>
+                            <td>Interns</td>
+                            <td>€150</td>
+                            <td>Monthly</td>
+                            <td>Entry & Exit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="policy-section">
+                <div class="policy-section-title">Approved Transportation Services</div>
+                <p class="policy-text">
+                    The following fourteen (14) transportation services are approved for use under this mobility budget program:
+                </p>
+                <ul class="policy-list">
+                    <li>B-parking (Public parking facilities)</li>
+                    <li>Bike purchase & Accessories</li>
+                    <li>Bike rental services</li>
+                    <li>Bus transportation</li>
+                    <li>Car leasing (Pillar 1 - compliant vehicles)</li>
+                    <li>Car rental services</li>
+                    <li>Car sharing programs</li>
+                    <li>Carpooling platforms</li>
+                    <li>Shared bike services</li>
+                    <li>Scooter rentals (electric and non-electric)</li>
+                    <li>Public transport tickets (train, metro, tram)</li>
+                    <li>Taxi and ride-hailing services</li>
+                    <li>Pedestrian allowance (per km)</li>
+                    <li>Bike allowance (per km)</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <div class="policy-section-title">Compliance Rules</div>
+                <p class="policy-text">
+                    This mobility budget program is established in accordance with Belgian Federal Mobility Budget regulations as defined in the Royal Decree of 21 February 2019. All participating employees and the organization must adhere to the following compliance requirements:
+                </p>
+                <ul class="policy-list">
+                    <li>Eligible employees must have had access to a company car for at least 12 months, or be entitled to one based on their role</li>
+                    <li>The mobility budget amount cannot exceed the Total Cost of Ownership (TCO) of the company car that could have been provided</li>
+                    <li>Only transportation services approved under Pillar 2 of the Federal Mobility Budget framework are permitted</li>
+                    <li>Employees must maintain accurate records of all mobility-related expenditures for tax and audit purposes</li>
+                    <li>The mobility budget is subject to specific tax treatment as defined by Belgian tax authorities</li>
+                    <li>Annual reporting to the Belgian Federal Public Service Finance is required for all participating organizations</li>
+                    <li>Any unused budget at year-end will be handled according to the provisions outlined in the Royal Decree</li>
+                </ul>
+                <p class="policy-text">
+                    Selligent SA / Marigold Europe commits to maintaining full compliance with all applicable Belgian federal regulations governing mobility budgets. This includes regular audits, proper documentation, and transparent reporting to relevant authorities.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <div class="policy-section-title">Program Administration</div>
+                <p class="policy-text">
+                    <strong>Main Contacts:</strong> Elisa De Becker (Fleet Manager) and Christina Tsiaflakis (HR Manager) serve as the primary administrators of this mobility program.
+                </p>
+                <p class="policy-text">
+                    Employees access their mobility budgets through the Pluxee platform and may combine multiple approved services within their allocated monthly budget. Unused budget does not carry over to subsequent months unless specifically authorized.
+                </p>
+            </div>
+
+            <div class="policy-footer">
+                This is a living document. Last updated: June 23, 2026 | Administered by Pluxee
+            </div>
+
+            <div style="margin-top: 40px;">
+                <button class="download-btn" id="downloadPdfBtn">
+                    <i data-lucide="download"></i>
+                    Download Policy Document
+                </button>
             </div>
         </div>
-
-        <div class="card">
-            <div class="section-header">
-                <div class="section-title">Company Information</div>
-            </div>
-
-            <div class="recap-row">
-                <div class="recap-label">Entity Name</div>
-                <div class="recap-value">Selligent SA / Marigold Europe</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Parent Entity</div>
-                <div class="recap-value">ZETA GLOBAL</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Total Employees</div>
-                <div class="recap-value">118</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Main Contacts</div>
-                <div class="recap-value">Elisa De Becker (Fleet manager), Christina Tsiaflakis (HR manager)</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="section-header">
-                <div class="section-title">Mobility Program</div>
-            </div>
-
-            <div class="recap-row">
-                <div class="recap-label">Program Type</div>
-                <div class="recap-value">Federal Mobility Budget</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Services Enabled</div>
-                <div class="recap-value">B-parking, Bike purchase & Accessories, Bike rent, Bus, Car leasing (pillar 1), Car rental, Car sharing, Carpooling, Shared bike, Scooter, Public transport tickets, Taxi, Pedestrian allowance, Bike allowance (14 active)</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="section-header">
-                <div class="section-title">Budget Groups</div>
-            </div>
-
-            <div class="recap-row">
-                <div class="recap-label">Executives</div>
-                <div class="recap-value">€800/month - Monthly reset, Prorate entry & exit</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Managers</div>
-                <div class="recap-value">€500/month - Monthly reset, Prorate entry & exit</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Employees</div>
-                <div class="recap-value">€300/month - Monthly reset, Prorate entry & exit</div>
-            </div>
-            <div class="recap-row">
-                <div class="recap-label">Interns</div>
-                <div class="recap-value">€150/month - Monthly reset, Prorate entry & exit</div>
-            </div>
         </div>
 
         <div class="next-steps">
-            <div class="next-steps-title">
-                <i data-lucide="info"></i>
-                What happens next?
-            </div>
+            <div class="next-steps-title">What happens next?</div>
             <ul class="next-steps-list">
-                <li>Employees will receive invitation emails at the scheduled time</li>
-                <li>They can set up their accounts and start using their mobility budgets</li>
-                <li>You can manage employees, budgets, and settings from your dashboard</li>
-                <li>Track usage and generate reports through the admin panel</li>
+                <li class="next-steps-item">
+                    <div class="next-steps-icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div class="next-steps-content">
+                        <div class="next-steps-text">Employees will receive invitation emails at the scheduled time</div>
+                    </div>
+                </li>
+                <li class="next-steps-item">
+                    <div class="next-steps-icon">
+                        <i data-lucide="user-check"></i>
+                    </div>
+                    <div class="next-steps-content">
+                        <div class="next-steps-text">They can set up their accounts and start using their mobility budgets</div>
+                    </div>
+                </li>
+                <li class="next-steps-item">
+                    <div class="next-steps-icon">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <div class="next-steps-content">
+                        <div class="next-steps-text">You can manage employees, budgets, and settings from your dashboard</div>
+                    </div>
+                </li>
+                <li class="next-steps-item">
+                    <div class="next-steps-icon">
+                        <i data-lucide="bar-chart-2"></i>
+                    </div>
+                    <div class="next-steps-content">
+                        <div class="next-steps-text">Track usage and generate reports through the admin panel</div>
+                    </div>
+                </li>
             </ul>
         </div>
 
         <div class="btn-group">
-            <button class="btn btn-secondary" id="downloadPdfBtn">
-                <i data-lucide="download"></i>
-                Download Configuration PDF
-            </button>
             <a href="#" class="btn btn-primary">
                 Go to Dashboard
                 <i data-lucide="arrow-right"></i>
