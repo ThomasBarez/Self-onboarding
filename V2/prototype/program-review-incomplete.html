@@ -191,11 +191,15 @@
 
         .card {
             background: white;
-
             border-radius: 12px;
             padding: 33px;
             margin-bottom: 24px;
             overflow: visible;
+            position: relative;
+        }
+
+        .card.card-with-footer {
+            padding-bottom: 140px;
         }
 
 
@@ -925,25 +929,6 @@
             gap: 16px;
         }
 
-        .agent-orb {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #A5B4FC 0%, #6366F1 50%, #4F46E5 100%);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-            flex-shrink: 0;
-            position: relative;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-            }
-            50% {
-                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-            }
-        }
 
         .agent-content {
             flex: 1;
@@ -1362,8 +1347,8 @@
         }
 
         .add-btn {
-            background: white;
-            border: 1px dashed #D1D5DB;
+            background: #F3F4F6;
+            border: none;
             padding: 12px 16px;
             border-radius: 8px;
             font-family: 'TT Travels', sans-serif;
@@ -1373,6 +1358,7 @@
             cursor: pointer;
             width: 100%;
             margin-top: 16px;
+            margin-bottom: 16px;
             transition: all 0.2s;
             display: flex;
             align-items: center;
@@ -1381,8 +1367,7 @@
         }
 
         .add-btn:hover {
-            background: #F9FAFB;
-            border-color: #2BFD7F;
+            background: #E5E7EB;
             color: #221C46;
         }
 
@@ -1731,7 +1716,7 @@
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
-                    Distance-Based Allowances
+                    Allowances Configuration
                 </div>
             </div>
 
@@ -1815,19 +1800,15 @@
         </div>
 
 
-        <div class="card">
+        <div class="card card-with-footer">
             <div class="section-header">
                 <div class="section-title">
                     Budget Groups
                 </div>
-            </div>
-
-            <div class="alert-warning" style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: start; gap: 16px;">
-                <i data-lucide="info" style="width: 20px; height: 20px; color: #D97706; flex-shrink: 0;"></i>
-                <div style="flex: 1;">
-                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 600; font-size: 14px; color: #78350F; margin-bottom: 6px;">Important Note</div>
-                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 400; font-size: 13px; line-height: 20px; color: #92400E;">These budget amounts are for guidance only — not a legal certification. We'll show a clear disclaimer before you finalize everything.</div>
-                </div>
+                <a href="#" style="font-family: 'TT Travels', sans-serif; font-size: 14px; font-weight: 500; color: #5B67F5; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                    How to calculate the TCO
+                    <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
+                </a>
             </div>
 
             <div class="groups-table-wrapper">
@@ -2006,6 +1987,14 @@
                 <i data-lucide="plus"></i>
                 Add budget group
             </button>
+
+            <div class="alert-warning" style="position: absolute; bottom: 0; left: 0; right: 0; background: #FFFBEB; border-top: 1px solid #FDE68A; border-radius: 0 0 12px 12px; padding: 20px 33px; margin: 0; display: flex; align-items: start; gap: 16px;">
+                <i data-lucide="info" style="width: 20px; height: 20px; color: #D97706; flex-shrink: 0;"></i>
+                <div style="flex: 1;">
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 600; font-size: 14px; color: #78350F; margin-bottom: 6px;">Important Note</div>
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 400; font-size: 13px; line-height: 20px; color: #92400E;">Pluxee provides informational Total Cost of Ownership guidance only, not a legal TCO certification. Pluxee is not responsible for these budget amounts. This is a draft calculation to help you get started. You are responsible for validating and approving the final budget amounts for your organization.</div>
+                </div>
+            </div>
         </div>
 
         <div class="card">
@@ -2020,7 +2009,6 @@
             </p>
 
             <div class="policy-agent-card">
-                <div class="agent-orb"></div>
                 <div class="agent-content">
                     <div class="agent-header">
                         <span class="agent-title">Policy Agent</span>
