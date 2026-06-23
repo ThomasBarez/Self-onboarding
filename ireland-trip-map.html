@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ireland Trip Map - June 15-21, 2026</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+        }
+
+        #header {
+            background: linear-gradient(135deg, #169b62 0%, #0d5c3a 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        #header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        #header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        #container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        #sidebar {
+            width: 350px;
+            background: white;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+
+        .day-section {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+        }
+
+        .day-section:hover {
+            background: #f9f9f9;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .day-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            flex: 1;
+        }
+
+        .day-title h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .day-title p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .day-details {
+            margin-left: 52px;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .stop-item {
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .stop-item::before {
+            content: "📍";
+            margin-right: 8px;
+        }
+
+        .legend {
+            padding: 15px;
+            background: #f9f9f9;
+            border-top: 2px solid #169b62;
+        }
+
+        .legend h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 4px;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .accommodation {
+            background: #fff3cd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+            font-size: 12px;
+        }
+
+        .accommodation strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 768px) {
+            #container {
+                flex-direction: column;
+            }
+
+            #sidebar {
+                width: 100%;
+                height: 40vh;
+            }
+
+            #map {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>🇮🇪 Ireland Road Trip - 7 Days</h1>
+        <p>June 15-21, 2026 | Dublin → Cork → Killarney → Connemara → Dublin</p>
+    </div>
+
+    <div id="container">
+        <div id="sidebar">
+            <div class="day-section" onclick="map.fitBounds(routes.day0.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #6c757d;">0</div>
+                    <div class="day-title">
+                        <h3>June 14 - Arrival</h3>
+                        <p>Dublin</p>
+                    </div>
+                </div>
+                <div class="accommodation">
+                    <strong>🏨 Overnight: Dublin City Center</strong>
+                    Temple Bar area recommended
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day1.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #dc3545;">1</div>
+                    <div class="day-title">
+                        <h3>June 15 - Drive Day</h3>
+                        <p>Dublin → Killarney (5-6h)</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Cobh (Titanic Experience)</div>
+                    <div class="stop-item">Cork City (English Market)</div>
+                    <div class="stop-item">Gougane Barra (optional)</div>
+                </div>
+                <div class="accommodation">
+                    <strong>🏨 Check-in: Killarney Airbnb</strong>
+                    Nights 1-3 (June 15-17)
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day2.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #fd7e14;">2</div>
+                    <div class="day-title">
+                        <h3>June 16 - Ring of Kerry</h3>
+                        <p>~180km loop from Killarney</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Killarney National Park</div>
+                    <div class="stop-item">Gap of Dunloe</div>
+                    <div class="stop-item">Cahersiveen</div>
+                    <div class="stop-item">Skellig Michael viewpoint</div>
+                    <div class="stop-item">Pine Island Viewpoint ⭐4.7</div>
+                    <div class="stop-item">Kenmare</div>
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day3.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #ffc107;">3</div>
+                    <div class="day-title">
+                        <h3>June 17 - Dingle Peninsula</h3>
+                        <p>~150km loop from Killarney</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Connor Pass</div>
+                    <div class="stop-item">Dingle Town</div>
+                    <div class="stop-item">Slea Head Drive</div>
+                    <div class="stop-item">Inch Beach</div>
+                    <div class="stop-item">Castlegregory ⭐4.8</div>
+                    <div class="stop-item">Maharees ⭐4.9</div>
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day4.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #20c997;">4</div>
+                    <div class="day-title">
+                        <h3>June 18 - Coastal Drive</h3>
+                        <p>Killarney → Connemara (5-6h)</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Loop Head (optional)</div>
+                    <div class="stop-item">Cliffs of Moher ⭐4.7</div>
+                    <div class="stop-item">Doolin Village</div>
+                    <div class="stop-item">Burren Coastal Drive</div>
+                    <div class="stop-item">Lahinch</div>
+                    <div class="stop-item">Galway City (quick stop)</div>
+                </div>
+                <div class="accommodation">
+                    <strong>🏨 Check-in: Connemara Airbnb</strong>
+                    Nights 4-5 (June 18-19)
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day5.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #17a2b8;">5</div>
+                    <div class="day-title">
+                        <h3>June 19 - Connemara</h3>
+                        <p>Full day exploration</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Kylemore Abbey ⭐4.6</div>
+                    <div class="stop-item">Sky Road (Clifden)</div>
+                    <div class="stop-item">Clifden Town</div>
+                    <div class="stop-item">Connemara National Park</div>
+                    <div class="stop-item">Diamond Hill hike (optional)</div>
+                </div>
+            </div>
+
+            <div class="day-section" onclick="map.fitBounds(routes.day6.getBounds())">
+                <div class="day-header">
+                    <div class="day-number" style="background: #6610f2;">6</div>
+                    <div class="day-title">
+                        <h3>June 20 - Return to Dublin</h3>
+                        <p>Connemara → Dublin Airport (3.5h)</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Galway stop (optional)</div>
+                    <div class="stop-item">M6 motorway to Dublin</div>
+                </div>
+                <div class="accommodation" style="background: #ffe6e6; border-left-color: #dc3545;">
+                    <strong>⚠️ CRITICAL: Airport Hotel</strong>
+                    Must be near Dublin Airport! Early flight 06:30 next morning
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-number" style="background: #343a40;">7</div>
+                    <div class="day-title">
+                        <h3>June 21 - Departure</h3>
+                        <p>Flight 06:30 AM</p>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="stop-item">Wake 04:00 AM</div>
+                    <div class="stop-item">At airport by 04:30-05:00</div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h4>Route Legend</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #dc3545;"></div>
+                    Day 1: Dublin → Killarney
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fd7e14;"></div>
+                    Day 2: Ring of Kerry
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffc107;"></div>
+                    Day 3: Dingle Peninsula
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #20c997;"></div>
+                    Day 4: Killarney → Connemara
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #17a2b8;"></div>
+                    Day 5: Connemara exploration
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #6610f2;"></div>
+                    Day 6: Connemara → Dublin
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Ireland
+        const map = L.map('map').setView([53.0, -8.5], 7);
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Define locations with coordinates
+        const locations = {
+            dublin: [53.3498, -6.2603],
+            dublinAirport: [53.4213, -6.2701],
+            cobh: [51.8508, -8.2944],
+            cork: [51.8985, -8.4756],
+            gouganeBarra: [51.8333, -9.2833],
+            killarney: [52.0599, -9.5044],
+            rossRcastle: [52.0367, -9.5150],
+            gapOfDunloe: [52.0500, -9.6833],
+            cahersiveen: [51.9478, -10.2242],
+            skelligRing: [51.8333, -10.3167],
+            pineIsland: [51.9167, -10.0833],
+            kenmare: [51.8806, -9.5844],
+            connorPass: [52.2167, -10.2833],
+            dingle: [52.1408, -10.2683],
+            sleaHead: [52.0833, -10.4667],
+            inchBeach: [52.1167, -9.9833],
+            castlegregory: [52.2667, -10.0167],
+            loopHead: [52.5611, -9.9306],
+            cliffsOfMoher: [52.9719, -9.4264],
+            doolin: [53.0147, -9.3783],
+            lahinch: [52.9344, -9.3508],
+            burrenCoast: [53.1167, -9.2500],
+            galway: [53.2707, -9.0568],
+            kylemore: [53.5608, -9.8867],
+            clifden: [53.4886, -10.0203],
+            skyRoad: [53.5000, -10.0667],
+            connemaraPark: [53.5444, -9.9339]
+        };
+
+        // Custom icon function
+        function createIcon(color, number) {
+            return L.divIcon({
+                html: `<div style="background: ${color}; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${number}</div>`,
+                className: '',
+                iconSize: [30, 30]
+            });
+        }
+
+        // Store routes for clicking
+        const routes = {};
+
+        // Day 0 - Dublin arrival
+        routes.day0 = L.marker(locations.dublin, {
+            icon: createIcon('#6c757d', '0')
+        }).addTo(map).bindPopup('<b>Day 0 - June 14</b><br>Arrival in Dublin<br>Temple Bar area');
+
+        // Day 1 - Dublin to Killarney via Cork
+        routes.day1 = L.polyline([
+            locations.dublin,
+            locations.cobh,
+            locations.cork,
+            locations.gouganeBarra,
+            locations.killarney
+        ], {color: '#dc3545', weight: 4}).addTo(map);
+
+        L.marker(locations.cobh).addTo(map).bindPopup('<b>Cobh</b><br>Titanic Experience');
+        L.marker(locations.cork).addTo(map).bindPopup('<b>Cork City</b><br>English Market');
+        L.marker(locations.gouganeBarra).addTo(map).bindPopup('<b>Gougane Barra</b><br>Optional: Glacial lake valley');
+        L.marker(locations.killarney, {
+            icon: createIcon('#dc3545', '1')
+        }).addTo(map).bindPopup('<b>Day 1 - June 15</b><br>Killarney (Nights 1-3)');
+
+        // Day 2 - Ring of Kerry
+        routes.day2 = L.polyline([
+            locations.killarney,
+            locations.rossRcastle,
+            locations.gapOfDunloe,
+            locations.cahersiveen,
+            locations.skelligRing,
+            locations.pineIsland,
+            locations.kenmare,
+            locations.killarney
+        ], {color: '#fd7e14', weight: 4}).addTo(map);
+
+        L.marker(locations.skelligRing).addTo(map).bindPopup('<b>Skellig Michael Viewpoint</b><br>⭐ 4.8 (326 reviews)');
+        L.marker(locations.pineIsland).addTo(map).bindPopup('<b>Pine Island Viewpoint</b><br>⭐ 4.7 (661 reviews)');
+
+        // Day 3 - Dingle Peninsula
+        routes.day3 = L.polyline([
+            locations.killarney,
+            locations.castlegregory,
+            locations.connorPass,
+            locations.dingle,
+            locations.sleaHead,
+            locations.inchBeach,
+            locations.killarney
+        ], {color: '#ffc107', weight: 4}).addTo(map);
+
+        L.marker(locations.dingle).addTo(map).bindPopup('<b>Dingle Town</b><br>Harbor & Slea Head Drive');
+        L.marker(locations.castlegregory).addTo(map).bindPopup('<b>Castlegregory</b><br>⭐ 4.8 Beach area');
+
+        // Day 4 - Killarney to Connemara
+        routes.day4 = L.polyline([
+            locations.killarney,
+            locations.loopHead,
+            locations.cliffsOfMoher,
+            locations.doolin,
+            locations.lahinch,
+            locations.burrenCoast,
+            locations.galway,
+            locations.clifden
+        ], {color: '#20c997', weight: 4}).addTo(map);
+
+        L.marker(locations.cliffsOfMoher).addTo(map).bindPopup('<b>Cliffs of Moher</b><br>⭐ 4.7 (8944 reviews)<br>Falaises de Moher');
+        L.marker(locations.doolin).addTo(map).bindPopup('<b>Doolin</b><br>Traditional music village');
+        L.marker(locations.galway).addTo(map).bindPopup('<b>Galway City</b><br>Latin Quarter stop');
+        L.marker(locations.clifden, {
+            icon: createIcon('#20c997', '4')
+        }).addTo(map).bindPopup('<b>Day 4 - June 18</b><br>Connemara (Nights 4-5)');
+
+        // Day 5 - Connemara exploration
+        routes.day5 = L.polyline([
+            locations.clifden,
+            locations.kylemore,
+            locations.skyRoad,
+            locations.connemaraPark,
+            locations.clifden
+        ], {color: '#17a2b8', weight: 4}).addTo(map);
+
+        L.marker(locations.kylemore).addTo(map).bindPopup('<b>Kylemore Abbey</b><br>⭐ 4.6 (17,403 reviews)<br>Victorian castle & gardens');
+        L.marker(locations.connemaraPark).addTo(map).bindPopup('<b>Connemara National Park</b><br>Diamond Hill hike');
+
+        // Day 6 - Connemara to Dublin
+        routes.day6 = L.polyline([
+            locations.clifden,
+            locations.galway,
+            locations.dublinAirport
+        ], {color: '#6610f2', weight: 4}).addTo(map);
+
+        L.marker(locations.dublinAirport, {
+            icon: createIcon('#6610f2', '6')
+        }).addTo(map).bindPopup('<b>Day 6 - June 20</b><br>Dublin Airport Hotel<br>⚠️ Early flight 06:30 next day!');
+
+        // Fit map to show all routes
+        const allPoints = [
+            locations.dublin,
+            locations.cobh,
+            locations.killarney,
+            locations.skelligRing,
+            locations.dingle,
+            locations.cliffsOfMoher,
+            locations.clifden,
+            locations.kylemore
+        ];
+        map.fitBounds(L.latLngBounds(allPoints));
+    </script>
+</body>
+</html>
