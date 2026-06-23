@@ -463,6 +463,7 @@
 
         .btn {
             padding: 13px 25px;
+            white-space: nowrap;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
@@ -476,7 +477,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
-            white-space: nowrap;
         }
 
         .btn-secondary {
@@ -1628,153 +1628,6 @@
             height: 16px;
         }
 
-        /* Stepper */
-        .stepper-container {
-            margin: 32px 0;
-            padding: 24px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        }
-
-        .stepper-steps {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .stepper-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .step-number {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #F3F4F6;
-            color: #9CA3AF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .step-label {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            color: #9CA3AF;
-            font-weight: 400;
-            transition: all 0.2s;
-        }
-
-        .stepper-step.active .step-number {
-            background: #6366F1;
-            color: white;
-        }
-
-        .stepper-step.active .step-label {
-            color: #221C46;
-            font-weight: 500;
-        }
-
-        .stepper-step.completed .step-number {
-            background: #01D253;
-            color: white;
-        }
-
-        .stepper-step.completed .step-label {
-            color: #221C46;
-        }
-
-        .stepper-line {
-            flex: 1;
-            height: 2px;
-            background: #E5E7EB;
-            margin: 0 16px;
-            margin-bottom: 28px;
-        }
-
-        .stepper-step.completed + .stepper-line {
-            background: #01D253;
-        }
-
-        /* Step content */
-        .step-content {
-            display: none;
-        }
-
-        .step-content.active {
-            display: block;
-        }
-
-        /* Stepper navigation */
-        .stepper-nav {
-            display: flex;
-            gap: 12px;
-            margin-top: 32px;
-            justify-content: flex-start;
-        }
-
-        .stepper-btn {
-            padding: 13px 25px;
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            border-radius: 0;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .stepper-btn-prev {
-            background: white;
-            color: #362F54;
-            border: 1px solid #E5E7EB;
-        }
-
-        .stepper-btn-prev:hover:not(:disabled) {
-            background: #F9FAFB;
-        }
-
-        .stepper-btn-next {
-            background: #2BFD7F;
-            color: #362F54;
-            border: 1px solid #2BFD7F;
-        }
-
-        .stepper-btn-next:hover:not(:disabled) {
-            background: #45FD8F;
-            border-color: #45FD8F;
-        }
-
-        .stepper-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .stepper-btn i {
-            width: 16px;
-            height: 16px;
-        }
-
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -2023,28 +1876,6 @@
             We know that the blank page is hard. I've configured it based on what 500+ companies with 20 employees actually do. Just review and adjust if needed.
         </p>
 
-        <!-- Stepper -->
-        <div class="stepper-container">
-            <div class="stepper-steps">
-                <div class="stepper-step active" data-step="1">
-                    <div class="step-number">1</div>
-                    <div class="step-label">Allowances</div>
-                </div>
-                <div class="stepper-line"></div>
-                <div class="stepper-step" data-step="2">
-                    <div class="step-number">2</div>
-                    <div class="step-label">Budget Groups</div>
-                </div>
-                <div class="stepper-line"></div>
-                <div class="stepper-step" data-step="3">
-                    <div class="step-number">3</div>
-                    <div class="step-label">Policy Agent</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 1: Allowances Configuration -->
-        <div class="step-content active" data-step="1">
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
@@ -2248,21 +2079,7 @@
             </div>
         </div>
 
-        <!-- Stepper Navigation -->
-        <div class="stepper-nav">
-            <button class="stepper-btn stepper-btn-prev" onclick="previousStep()" disabled>
-                <i data-lucide="arrow-left"></i>
-                Previous
-            </button>
-            <button class="stepper-btn stepper-btn-next" onclick="nextStep()">
-                Next
-                <i data-lucide="arrow-right"></i>
-            </button>
-        </div>
-        </div><!-- End Step 1 -->
 
-        <!-- Step 2: Budget Groups -->
-        <div class="step-content" data-step="2">
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
@@ -2491,21 +2308,6 @@
             </button>
         </div>
 
-        <!-- Stepper Navigation -->
-        <div class="stepper-nav">
-            <button class="stepper-btn stepper-btn-prev" onclick="previousStep()">
-                <i data-lucide="arrow-left"></i>
-                Previous
-            </button>
-            <button class="stepper-btn stepper-btn-next" onclick="nextStep()">
-                Next
-                <i data-lucide="arrow-right"></i>
-            </button>
-        </div>
-        </div><!-- End Step 2 -->
-
-        <!-- Step 3: Policy Agent -->
-        <div class="step-content" data-step="3">
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
@@ -2745,93 +2547,15 @@
                 </div>
         </div>
 
-        <!-- Stepper Navigation -->
-        <div class="stepper-nav">
-            <button class="stepper-btn stepper-btn-prev" onclick="previousStep()">
-                <i data-lucide="arrow-left"></i>
-                Previous
-            </button>
-            <button class="stepper-btn stepper-btn-next" onclick="finishStepper()">
-                Confirm & Continue
-                <i data-lucide="arrow-right"></i>
-            </button>
+        <div class="btn-group">
+            <a href="upload-data.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" id="continueBtn">Confirm & Continue →</button>
         </div>
-        </div><!-- End Step 3 -->
-
     </div>
 
     <script>
-        // Stepper state
-        let currentStep = 1;
-        const totalSteps = 3;
-
-        function updateStepper() {
-            // Update step indicators
-            document.querySelectorAll('.stepper-step').forEach(function(step) {
-                const stepNum = parseInt(step.getAttribute('data-step'));
-                step.classList.remove('active', 'completed');
-
-                if (stepNum < currentStep) {
-                    step.classList.add('completed');
-                } else if (stepNum === currentStep) {
-                    step.classList.add('active');
-                }
-            });
-
-            // Update content visibility
-            document.querySelectorAll('.step-content').forEach(function(content) {
-                const stepNum = parseInt(content.getAttribute('data-step'));
-                content.classList.remove('active');
-
-                if (stepNum === currentStep) {
-                    content.classList.add('active');
-                }
-            });
-
-            // Update navigation buttons
-            document.querySelectorAll('.stepper-btn-prev').forEach(function(btn) {
-                btn.disabled = currentStep === 1;
-            });
-
-            // Update next button text on last step
-            document.querySelectorAll('.stepper-btn-next').forEach(function(btn) {
-                if (currentStep === totalSteps) {
-                    btn.innerHTML = 'Confirm & Continue<i data-lucide="arrow-right"></i>';
-                } else {
-                    btn.innerHTML = 'Next<i data-lucide="arrow-right"></i>';
-                }
-            });
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Reinitialize icons
-            lucide.createIcons();
-        }
-
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                updateStepper();
-            } else {
-                finishStepper();
-            }
-        }
-
-        function previousStep() {
-            if (currentStep > 1) {
-                currentStep--;
-                updateStepper();
-            }
-        }
-
-        function finishStepper() {
-            window.location.href = 'invite-employees.html';
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
-            updateStepper();
 
             const continueBtn = document.getElementById('continueBtn');
 
@@ -2851,16 +2575,9 @@
 
             initOptionTags();
 
-            // Stepper step click handlers
-            document.querySelectorAll('.stepper-step').forEach(function(step) {
-                step.addEventListener('click', function() {
-                    const stepNum = parseInt(this.getAttribute('data-step'));
-                    // Only allow navigation to completed or current steps
-                    if (stepNum <= currentStep || stepNum === currentStep - 1 || stepNum === currentStep + 1) {
-                        currentStep = stepNum;
-                        updateStepper();
-                    }
-                });
+            // Continue button - always enabled, simple navigation
+            continueBtn.addEventListener('click', function() {
+                window.location.href = 'invite-employees.html';
             });
 
             // Conditional Admin Validation fields
