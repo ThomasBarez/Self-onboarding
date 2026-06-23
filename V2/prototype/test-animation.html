@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .btn { padding: 12px 24px; background: #2BFD7F; border: none; cursor: pointer; }
+        .overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(250,248,255,0.98); 
+                   display: none; align-items: center; justify-content: center; z-index: 10000; }
+        .overlay.active { display: flex; }
+        .orb { width: 120px; height: 120px; border-radius: 50%; 
+               background: radial-gradient(circle, #A5B4FC, #6366F1, #4F46E5); 
+               animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
+</head>
+<body>
+    <button id="testBtn" class="btn">Test Animation</button>
+    
+    <div id="overlay" class="overlay">
+        <div class="orb"></div>
+    </div>
+    
+    <script>
+        document.getElementById('testBtn').addEventListener('click', function() {
+            document.getElementById('overlay').classList.add('active');
+            setTimeout(function() {
+                alert('Animation working!');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
