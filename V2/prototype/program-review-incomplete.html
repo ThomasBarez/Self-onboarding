@@ -1286,6 +1286,71 @@
             font-weight: 700;
         }
 
+        .option-tags {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .option-tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #F3F4F6;
+            color: #9CA3AF;
+            border: 1px solid transparent;
+            position: relative;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .option-tag:hover {
+            background: #E5E7EB;
+        }
+
+        .option-tag.active {
+            background: #EEF2FF;
+            color: #5B67F5;
+            border-color: #5B67F5;
+        }
+
+        .option-tag[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: normal;
+            max-width: 300px;
+            width: max-content;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+        }
+
+        .option-tag[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1001;
+        }
+
         .table-input-sm {
             width: 100%;
             padding: 8px 10px;
@@ -1816,10 +1881,7 @@
                             <th>Group Name</th>
                             <th>Period</th>
                             <th>Budget Amount</th>
-                            <th style="text-align: center;">Hide Budget</th>
-                            <th style="text-align: center;">Reset Budget</th>
-                            <th style="text-align: center;">Prorate Entry</th>
-                            <th style="text-align: center;">Prorate Exit</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody id="groupsTableBody">
@@ -1840,23 +1902,19 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
-                                    <input type="checkbox" class="table-checkbox" id="executives-hide-budget">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
-                                    <input type="checkbox" class="table-checkbox" id="executives-reset" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
-                                    <input type="checkbox" class="table-checkbox" id="executives-prorate-entry" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
-                                    <input type="checkbox" class="table-checkbox" id="executives-prorate-exit" checked>
+                                <div class="option-tags">
+                                    <span class="option-tag" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                        Hide Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                        Reset Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                        Prorate Entry
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                        Prorate Exit
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -1878,23 +1936,19 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
-                                    <input type="checkbox" class="table-checkbox" id="managers-hide-budget">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
-                                    <input type="checkbox" class="table-checkbox" id="managers-reset" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
-                                    <input type="checkbox" class="table-checkbox" id="managers-prorate-entry" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
-                                    <input type="checkbox" class="table-checkbox" id="managers-prorate-exit" checked>
+                                <div class="option-tags">
+                                    <span class="option-tag" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                        Hide Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                        Reset Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                        Prorate Entry
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                        Prorate Exit
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -1917,23 +1971,19 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
-                                    <input type="checkbox" class="table-checkbox" id="employees-hide-budget">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
-                                    <input type="checkbox" class="table-checkbox" id="employees-reset">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
-                                    <input type="checkbox" class="table-checkbox" id="employees-prorate-entry" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
-                                    <input type="checkbox" class="table-checkbox" id="employees-prorate-exit" checked>
+                                <div class="option-tags">
+                                    <span class="option-tag" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                        Hide Budget
+                                    </span>
+                                    <span class="option-tag" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                        Reset Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                        Prorate Entry
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                        Prorate Exit
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -1956,23 +2006,19 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
-                                    <input type="checkbox" class="table-checkbox" id="interns-hide-budget">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
-                                    <input type="checkbox" class="table-checkbox" id="interns-reset">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
-                                    <input type="checkbox" class="table-checkbox" id="interns-prorate-entry" checked>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
-                                    <input type="checkbox" class="table-checkbox" id="interns-prorate-exit" checked>
+                                <div class="option-tags">
+                                    <span class="option-tag" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                        Hide Budget
+                                    </span>
+                                    <span class="option-tag" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                        Reset Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                        Prorate Entry
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                        Prorate Exit
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -2254,6 +2300,13 @@
 
             const continueBtn = document.getElementById('continueBtn');
 
+            // Option tag toggle functionality
+            document.querySelectorAll('.option-tag').forEach(function(tag) {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+
             // Continue button - always enabled, simple navigation
             continueBtn.addEventListener('click', function() {
                 window.location.href = 'invite-employees.html';
@@ -2374,28 +2427,31 @@
                             </div>
                         </td>
                         <td>
-                            <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
-                                <input type="checkbox" class="table-checkbox" id="${groupId}-hide-budget" ${hideBudget ? 'checked' : ''}>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
-                                <input type="checkbox" class="table-checkbox" id="${groupId}-reset" ${resetBudget ? 'checked' : ''}>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
-                                <input type="checkbox" class="table-checkbox" id="${groupId}-prorate-entry" ${prorateEntry ? 'checked' : ''}>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
-                                <input type="checkbox" class="table-checkbox" id="${groupId}-prorate-exit" ${prorateExit ? 'checked' : ''}>
+                            <div class="option-tags">
+                                <span class="option-tag ${hideBudget ? 'active' : ''}" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                    Hide Budget
+                                </span>
+                                <span class="option-tag ${resetBudget ? 'active' : ''}" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                    Reset Budget
+                                </span>
+                                <span class="option-tag ${prorateEntry ? 'active' : ''}" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                    Prorate Entry
+                                </span>
+                                <span class="option-tag ${prorateExit ? 'active' : ''}" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                    Prorate Exit
+                                </span>
                             </div>
                         </td>
                     `;
 
                     groupsTableBody.appendChild(newRow);
+
+                    // Attach click handlers to the new tags
+                    newRow.querySelectorAll('.option-tag').forEach(function(tag) {
+                        tag.addEventListener('click', function() {
+                            this.classList.toggle('active');
+                        });
+                    });
 
                     // Close modal
                     addGroupModal.classList.remove('active');
