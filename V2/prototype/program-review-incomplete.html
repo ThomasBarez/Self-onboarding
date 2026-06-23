@@ -299,39 +299,93 @@
         }
 
         .allowance-card {
-            background: #F9FAFB;
+            background: white;
+            border: 1px solid #E5E7EB;
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
         .allowance-card:last-child {
             margin-bottom: 0;
         }
 
+        .allowance-card:hover {
+            background: #FAFAFA;
+            border-color: #D1D5DB;
+        }
+
+        .allowance-card.expanded {
+            background: #FAFBFF;
+            border-color: #C7D2FE;
+            box-shadow: 0 1px 3px rgba(99, 102, 241, 0.1);
+        }
+
         .allowance-card.incomplete {
-            background: #F9FAFB;
-            border-left: 1px solid #F97316;
-            border-radius: 8px 8px 8px 0;
+            background: white;
+            border-left: none;
+            border-radius: 0;
         }
 
         .allowance-header {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 14px;
             color: #221C46;
-            margin-bottom: 12px;
+            margin-bottom: 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .allowance-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .allowance-summary {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #9CA3AF;
+            font-weight: 400;
+        }
+
+        .allowance-chevron {
+            width: 16px;
+            height: 16px;
+            color: #9CA3AF;
+            transition: transform 0.3s;
+        }
+
+        .allowance-card.expanded .allowance-chevron {
+            transform: rotate(180deg);
+        }
+
+        .allowance-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .allowance-card.expanded .allowance-content {
+            max-height: 500px;
+        }
+
+        .allowance-rows {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #E5E7EB;
         }
 
         .allowance-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 0;
+            border-bottom: none;
         }
 
         .allowance-row:last-child {
@@ -340,7 +394,7 @@
 
         .allowance-label {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
+            font-weight: 400;
             font-size: 13px;
             color: #6B7280;
         }
@@ -1351,6 +1405,138 @@
             z-index: 1001;
         }
 
+        .budget-groups-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .budget-group-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .budget-group-card:hover {
+            background: #FAFAFA;
+            border-color: #D1D5DB;
+        }
+
+        .budget-group-card.expanded {
+            background: #FAFBFF;
+            border-color: #C7D2FE;
+            box-shadow: 0 1px 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .budget-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .budget-group-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .budget-group-name {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #221C46;
+        }
+
+        .budget-group-amount {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .budget-group-chevron {
+            width: 16px;
+            height: 16px;
+            color: #9CA3AF;
+            transition: transform 0.3s;
+        }
+
+        .budget-group-card.expanded .budget-group-chevron {
+            transform: rotate(180deg);
+        }
+
+        .budget-group-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .budget-group-card.expanded .budget-group-content {
+            max-height: 500px;
+        }
+
+        .budget-group-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .budget-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .budget-detail-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .budget-detail-input {
+            padding: 8px 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #221C46;
+            background: white;
+            min-width: 200px;
+        }
+
+        .budget-detail-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .budget-groups-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .budget-group-name {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: #9CA3AF;
+        }
+
+        .budget-group-summary {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+            font-weight: 600;
+        }
+
         .table-input-sm {
             width: 100%;
             padding: 8px 10px;
@@ -1784,86 +1970,116 @@
             </div>
 
             <div class="allowance-card">
-                <div class="allowance-header">🚴 Bike Allowance</div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Rate per km</span>
-                    <input type="text" class="allowance-input filled" id="bikeRate" value="0.37">
+                <div class="allowance-header">
+                    <div class="allowance-header-left">
+                        <span>🚴 Bike Allowance</span>
+                        <span class="allowance-summary">€0.37/km • Max 120km</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="allowance-chevron"></i>
                 </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Max distance per journey</span>
-                    <input type="number" class="allowance-input filled" id="bikeMaxDistance" value="120">
-                </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Manual distance adaptation</span>
-                    <select class="allowance-input filled" id="bikeManualAdaptation">
-                        <option value="Not allowed" selected>Not allowed</option>
-                        <option value="Allowed">Allowed</option>
-                    </select>
-                </div>
-                <div class="allowance-row" id="bikeAdminValidationRow" style="display: none;">
-                    <span class="allowance-label">Admin validation required</span>
-                    <select class="allowance-input filled" id="bikeAdminValidation">
-                        <option value="Auto-approved" selected>Auto-approved</option>
-                        <option value="Required">Required</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="allowance-card">
-                <div class="allowance-header">🚗 Car Allowance</div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Rate per km</span>
-                    <input type="text" class="allowance-input filled" id="carRate" value="0.45">
-                </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Max distance per journey</span>
-                    <input type="number" class="allowance-input filled" id="carMaxDistance" value="100">
-                </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Manual distance adaptation</span>
-                    <select class="allowance-input filled" id="carManualAdaptation">
-                        <option value="Not allowed" selected>Not allowed</option>
-                        <option value="Allowed">Allowed</option>
-                    </select>
-                </div>
-                <div class="allowance-row" id="carAdminValidationRow" style="display: none;">
-                    <span class="allowance-label">Admin validation required</span>
-                    <select class="allowance-input filled" id="carAdminValidation">
-                        <option value="Auto-approved" selected>Auto-approved</option>
-                        <option value="Required">Required</option>
-                    </select>
+                <div class="allowance-content">
+                    <div class="allowance-rows">
+                        <div class="allowance-row">
+                            <span class="allowance-label">Rate per km</span>
+                            <input type="text" class="allowance-input filled" id="bikeRate" value="0.37">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Max distance per journey</span>
+                            <input type="number" class="allowance-input filled" id="bikeMaxDistance" value="120">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Manual distance adaptation</span>
+                            <select class="allowance-input filled" id="bikeManualAdaptation">
+                                <option value="Not allowed" selected>Not allowed</option>
+                                <option value="Allowed">Allowed</option>
+                            </select>
+                        </div>
+                        <div class="allowance-row" id="bikeAdminValidationRow" style="display: none;">
+                            <span class="allowance-label">Admin validation required</span>
+                            <select class="allowance-input filled" id="bikeAdminValidation">
+                                <option value="Auto-approved" selected>Auto-approved</option>
+                                <option value="Required">Required</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="allowance-card">
-                <div class="allowance-header">🚶 Pedestrian Allowance</div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Rate per km</span>
-                    <input type="text" class="allowance-input filled" id="pedestrianRate" value="0.36">
+                <div class="allowance-header">
+                    <div class="allowance-header-left">
+                        <span>🚗 Car Allowance</span>
+                        <span class="allowance-summary">€0.45/km • Max 100km</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="allowance-chevron"></i>
                 </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Max distance per journey</span>
-                    <input type="number" class="allowance-input filled" id="pedestrianMaxDistance" value="15">
+                <div class="allowance-content">
+                    <div class="allowance-rows">
+                        <div class="allowance-row">
+                            <span class="allowance-label">Rate per km</span>
+                            <input type="text" class="allowance-input filled" id="carRate" value="0.45">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Max distance per journey</span>
+                            <input type="number" class="allowance-input filled" id="carMaxDistance" value="100">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Manual distance adaptation</span>
+                            <select class="allowance-input filled" id="carManualAdaptation">
+                                <option value="Not allowed" selected>Not allowed</option>
+                                <option value="Allowed">Allowed</option>
+                            </select>
+                        </div>
+                        <div class="allowance-row" id="carAdminValidationRow" style="display: none;">
+                            <span class="allowance-label">Admin validation required</span>
+                            <select class="allowance-input filled" id="carAdminValidation">
+                                <option value="Auto-approved" selected>Auto-approved</option>
+                                <option value="Required">Required</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="allowance-row">
-                    <span class="allowance-label">Manual distance adaptation</span>
-                    <select class="allowance-input filled" id="pedestrianManualAdaptation">
-                        <option value="Not allowed" selected>Not allowed</option>
-                        <option value="Allowed">Allowed</option>
-                    </select>
+            </div>
+
+            <div class="allowance-card">
+                <div class="allowance-header">
+                    <div class="allowance-header-left">
+                        <span>🚶 Pedestrian Allowance</span>
+                        <span class="allowance-summary">€0.36/km • Max 15km</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="allowance-chevron"></i>
                 </div>
-                <div class="allowance-row" id="pedestrianAdminValidationRow" style="display: none;">
-                    <span class="allowance-label">Admin validation required</span>
-                    <select class="allowance-input filled" id="pedestrianAdminValidation">
-                        <option value="Auto-approved" selected>Auto-approved</option>
-                        <option value="Required">Required</option>
-                    </select>
+                <div class="allowance-content">
+                    <div class="allowance-rows">
+                        <div class="allowance-row">
+                            <span class="allowance-label">Rate per km</span>
+                            <input type="text" class="allowance-input filled" id="pedestrianRate" value="0.36">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Max distance per journey</span>
+                            <input type="number" class="allowance-input filled" id="pedestrianMaxDistance" value="15">
+                        </div>
+                        <div class="allowance-row">
+                            <span class="allowance-label">Manual distance adaptation</span>
+                            <select class="allowance-input filled" id="pedestrianManualAdaptation">
+                                <option value="Not allowed" selected>Not allowed</option>
+                                <option value="Allowed">Allowed</option>
+                            </select>
+                        </div>
+                        <div class="allowance-row" id="pedestrianAdminValidationRow" style="display: none;">
+                            <span class="allowance-label">Admin validation required</span>
+                            <select class="allowance-input filled" id="pedestrianAdminValidation">
+                                <option value="Auto-approved" selected>Auto-approved</option>
+                                <option value="Required">Required</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="card card-with-footer">
+        <div class="card">
             <div class="section-header">
                 <div class="section-title">
                     Budget Groups
@@ -1874,7 +2090,64 @@
                 </a>
             </div>
 
-            <div class="groups-table-wrapper">
+            <div class="policy-agent-card" style="margin-bottom: 20px;">
+                <div style="flex: 1;">
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 700; font-size: 16px; color: #221C46; margin-bottom: 8px;">Important Note</div>
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 400; font-size: 13px; line-height: 20px; color: #6B7280;">Pluxee provides informational Total Cost of Ownership guidance only, not a legal TCO certification. Pluxee is not responsible for these budget amounts. This is a draft calculation to help you get started. You are responsible for validating and approving the final budget amounts for your organization.</div>
+                </div>
+            </div>
+
+            <!-- Budget Groups as Cards -->
+            <div class="budget-groups-cards">
+                <div class="budget-group-card" data-group="executives">
+                    <div class="budget-group-header">
+                        <div class="budget-group-left">
+                            <span class="budget-group-summary">€800 / Monthly</span>
+                            <span class="budget-group-name">Executives</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="budget-group-chevron"></i>
+                    </div>
+                    <div class="budget-group-content">
+                        <div class="budget-group-details">
+                            <div class="budget-detail-row">
+                                <span class="budget-detail-label">Period</span>
+                                <select class="budget-detail-input" id="executives-period">
+                                    <option value="Monthly" selected>Monthly</option>
+                                    <option value="Quarterly">Quarterly</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </div>
+                            <div class="budget-detail-row">
+                                <span class="budget-detail-label">Budget Amount</span>
+                                <div class="currency-input-wrapper">
+                                    <span class="currency-symbol">€</span>
+                                    <input type="number" class="budget-detail-input with-currency" id="executives-budget" value="800" min="0">
+                                </div>
+                            </div>
+                            <div class="budget-detail-row">
+                                <span class="budget-detail-label">Options</span>
+                                <div class="option-tags">
+                                    <span class="option-tag" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                        Hide Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                        Reset Budget
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                        Prorate Entry
+                                    </span>
+                                    <span class="option-tag active" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                        Prorate Exit
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Old Table (Hidden) -->
+            <div class="groups-table-wrapper" style="display: none;">
                 <table class="groups-table" id="groupsTable">
                     <thead>
                         <tr>
@@ -2031,14 +2304,6 @@
                 <i data-lucide="plus"></i>
                 Add budget group
             </button>
-
-            <div class="alert-warning" style="position: absolute; bottom: 0; left: 0; right: 0; background: #FFFBEB; border-top: 1px solid #FDE68A; border-radius: 0 0 12px 12px; padding: 20px 33px; margin: 0; display: flex; align-items: start; gap: 16px;">
-                <i data-lucide="info" style="width: 20px; height: 20px; color: #D97706; flex-shrink: 0;"></i>
-                <div style="flex: 1;">
-                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 600; font-size: 14px; color: #78350F; margin-bottom: 6px;">Important Note</div>
-                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 400; font-size: 13px; line-height: 20px; color: #92400E;">Pluxee provides informational Total Cost of Ownership guidance only, not a legal TCO certification. Pluxee is not responsible for these budget amounts. This is a draft calculation to help you get started. You are responsible for validating and approving the final budget amounts for your organization.</div>
-                </div>
-            </div>
         </div>
 
         <div class="card">
@@ -2048,18 +2313,10 @@
                 </div>
             </div>
 
-            <p class="policy-description-text">
-                Your Policy Agent automatically checks each expense against these rules. It approves, holds, or flags items based on Belgian law. Click any category below to see the details.
-            </p>
-
             <div class="policy-agent-card">
                 <div class="agent-content">
                     <div class="agent-header">
                         <span class="agent-title">Policy Agent</span>
-                        <span class="live-badge">
-                            <span class="live-dot"></span>
-                            LIVE
-                        </span>
                     </div>
                     <div class="agent-description">
                         Automatically checks 10 compliance rules across 4 categories — approving, holding, or flagging each expense in real time.
@@ -2408,7 +2665,69 @@
 
                     const groupId = groupName.toLowerCase().replace(/\s+/g, '-');
 
-                    // Create new row
+                    // Create new budget group card
+                    const newCard = document.createElement('div');
+                    newCard.className = 'budget-group-card';
+                    newCard.setAttribute('data-group', groupId);
+                    newCard.innerHTML = `
+                        <div class="budget-group-header">
+                            <div class="budget-group-left">
+                                <span class="budget-group-summary">€${budget} / ${period}</span>
+                                <span class="budget-group-name">${groupName}</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="budget-group-chevron"></i>
+                        </div>
+                        <div class="budget-group-content">
+                            <div class="budget-group-details">
+                                <div class="budget-detail-row">
+                                    <span class="budget-detail-label">Period</span>
+                                    <select class="budget-detail-input" id="${groupId}-period">
+                                        <option value="Monthly" ${period === 'Monthly' ? 'selected' : ''}>Monthly</option>
+                                        <option value="Quarterly" ${period === 'Quarterly' ? 'selected' : ''}>Quarterly</option>
+                                        <option value="Yearly" ${period === 'Yearly' ? 'selected' : ''}>Yearly</option>
+                                    </select>
+                                </div>
+                                <div class="budget-detail-row">
+                                    <span class="budget-detail-label">Budget Amount</span>
+                                    <div class="currency-input-wrapper">
+                                        <span class="currency-symbol">€</span>
+                                        <input type="number" class="budget-detail-input with-currency" id="${groupId}-budget" value="${budget}" min="0">
+                                    </div>
+                                </div>
+                                <div class="budget-detail-row">
+                                    <span class="budget-detail-label">Options</span>
+                                    <div class="option-tags">
+                                        <span class="option-tag ${hideBudget ? 'active' : ''}" data-option="hide-budget" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                            Hide Budget
+                                        </span>
+                                        <span class="option-tag ${resetBudget ? 'active' : ''}" data-option="reset" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                            Reset Budget
+                                        </span>
+                                        <span class="option-tag ${prorateEntry ? 'active' : ''}" data-option="prorate-entry" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                            Prorate Entry
+                                        </span>
+                                        <span class="option-tag ${prorateExit ? 'active' : ''}" data-option="prorate-exit" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                            Prorate Exit
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Append to budget groups cards container
+                    document.querySelector('.budget-groups-cards').appendChild(newCard);
+
+                    // Reinitialize lucide icons
+                    lucide.createIcons();
+
+                    // Reinitialize card functionality
+                    initBudgetGroupCards();
+
+                    // Close modal
+                    addGroupModal.classList.remove('active');
+
+                    // Old table code (keep for backward compatibility)
                     const newRow = document.createElement('tr');
                     newRow.setAttribute('data-group', groupId);
                     newRow.innerHTML = `
@@ -2457,6 +2776,58 @@
                     addGroupModal.classList.remove('active');
                 });
             }
+
+            // Allowance card collapsible functionality (accordion - only one open at a time)
+            const allowanceCards = document.querySelectorAll('.allowance-card');
+
+            allowanceCards.forEach(function(card) {
+                const header = card.querySelector('.allowance-header');
+                if (header) {
+                    header.addEventListener('click', function() {
+                        // Close all cards
+                        allowanceCards.forEach(function(otherCard) {
+                            otherCard.classList.remove('expanded');
+                        });
+
+                        // Open clicked card
+                        card.classList.add('expanded');
+                    });
+                }
+            });
+
+            // Budget group card collapsible functionality (accordion - only one open at a time)
+            function initBudgetGroupCards() {
+                const budgetGroupCards = document.querySelectorAll('.budget-group-card');
+
+                budgetGroupCards.forEach(function(card) {
+                    const header = card.querySelector('.budget-group-header');
+                    if (header) {
+                        // Remove old listeners by cloning
+                        const newHeader = header.cloneNode(true);
+                        header.parentNode.replaceChild(newHeader, header);
+
+                        newHeader.addEventListener('click', function() {
+                            // Close all cards
+                            document.querySelectorAll('.budget-group-card').forEach(function(otherCard) {
+                                otherCard.classList.remove('expanded');
+                            });
+
+                            // Open clicked card
+                            card.classList.add('expanded');
+                        });
+                    }
+
+                    // Attach click handlers to option tags
+                    card.querySelectorAll('.option-tag').forEach(function(tag) {
+                        tag.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent card collapse
+                            this.classList.toggle('active');
+                        });
+                    });
+                });
+            }
+
+            initBudgetGroupCards();
 
             // Policy selection functionality
             const policyOptions = document.querySelectorAll('.policy-option');
