@@ -2102,6 +2102,7 @@
                 <div class="budget-group-card" data-group="executives">
                     <div class="budget-group-header">
                         <div class="budget-group-left">
+                            <span class="article-badge">Group 1</span>
                             <span class="budget-group-summary">€800 / Monthly</span>
                             <span class="budget-group-name">Executives</span>
                         </div>
@@ -2674,6 +2675,10 @@
 
                     const groupId = groupName.toLowerCase().replace(/\s+/g, '-');
 
+                    // Get current group count for badge number
+                    const currentGroupCount = document.querySelectorAll('.budget-group-card').length;
+                    const groupNumber = currentGroupCount + 1;
+
                     // Create new budget group card
                     const newCard = document.createElement('div');
                     newCard.className = 'budget-group-card';
@@ -2681,6 +2686,7 @@
                     newCard.innerHTML = `
                         <div class="budget-group-header">
                             <div class="budget-group-left">
+                                <span class="article-badge">Group ${groupNumber}</span>
                                 <span class="budget-group-summary">€${budget} / ${period}</span>
                                 <span class="budget-group-name">${groupName}</span>
                             </div>
