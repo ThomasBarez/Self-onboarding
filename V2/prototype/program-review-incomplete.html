@@ -1631,8 +1631,6 @@
                 </div>
             </div>
 
-            <div class="section-subtitle" id="servicesCount">Enabled Services (14 active)</div>
-
             <div class="services-grid">
                 <label class="service-item">
                     <input type="checkbox" class="service-checkbox" data-service="b-parking" checked>
@@ -2254,24 +2252,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
 
-            const servicesCount = document.getElementById('servicesCount');
-            const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
             const continueBtn = document.getElementById('continueBtn');
-
-            // Service checkbox functionality
-            serviceCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    updateServicesCount();
-                });
-            });
-
-            function updateServicesCount() {
-                const enabledCount = document.querySelectorAll('.service-checkbox:checked').length;
-                servicesCount.textContent = 'Enabled Services (' + enabledCount + ' active)';
-            }
-
-            // Initial count
-            updateServicesCount();
 
             // Continue button - always enabled, simple navigation
             continueBtn.addEventListener('click', function() {
