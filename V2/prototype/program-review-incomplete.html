@@ -1720,47 +1720,51 @@
         /* Stepper navigation */
         .stepper-nav {
             display: flex;
-            justify-content: space-between;
+            gap: 12px;
             margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #E5E7EB;
         }
 
         .stepper-btn {
-            padding: 12px 24px;
-            border-radius: 8px;
+            flex: 1;
+            padding: 13px 25px;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
             cursor: pointer;
-            transition: all 0.2s;
             border: none;
+            text-align: center;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            transition: all 0.2s;
         }
 
         .stepper-btn-prev {
-            background: #F3F4F6;
-            color: #6B7280;
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
         }
 
-        .stepper-btn-prev:hover {
-            background: #E5E7EB;
-            color: #221C46;
+        .stepper-btn-prev:hover:not(:disabled) {
+            background: #F9FAFB;
         }
 
         .stepper-btn-next {
-            background: #6366F1;
-            color: white;
+            background: #2BFD7F;
+            color: #362F54;
+            border: 1px solid #2BFD7F;
         }
 
-        .stepper-btn-next:hover {
-            background: #5558E3;
+        .stepper-btn-next:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
         }
 
         .stepper-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
