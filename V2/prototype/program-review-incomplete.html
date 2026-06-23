@@ -2557,12 +2557,21 @@
 
             const continueBtn = document.getElementById('continueBtn');
 
-            // Option tag toggle functionality
-            document.querySelectorAll('.option-tag').forEach(function(tag) {
-                tag.addEventListener('click', function() {
-                    this.classList.toggle('active');
+            // Option tag toggle functionality (for all option tags)
+            function initOptionTags() {
+                document.querySelectorAll('.option-tag').forEach(function(tag) {
+                    // Remove old listeners by cloning
+                    const newTag = tag.cloneNode(true);
+                    tag.parentNode.replaceChild(newTag, tag);
+
+                    newTag.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent parent clicks
+                        this.classList.toggle('active');
+                    });
                 });
-            });
+            }
+
+            initOptionTags();
 
             // Continue button - always enabled, simple navigation
             continueBtn.addEventListener('click', function() {
@@ -2721,7 +2730,7 @@
                     // Reinitialize lucide icons
                     lucide.createIcons();
 
-                    // Reinitialize card functionality
+                    // Reinitialize card functionality and option tags
                     initBudgetGroupCards();
 
                     // Close modal
@@ -2816,15 +2825,10 @@
                             card.classList.add('expanded');
                         });
                     }
-
-                    // Attach click handlers to option tags
-                    card.querySelectorAll('.option-tag').forEach(function(tag) {
-                        tag.addEventListener('click', function(e) {
-                            e.stopPropagation(); // Prevent card collapse
-                            this.classList.toggle('active');
-                        });
-                    });
                 });
+
+                // Reinitialize option tags after card setup
+                initOptionTags();
             }
 
             initBudgetGroupCards();
