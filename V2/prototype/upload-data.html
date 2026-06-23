@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm FMB Eligibility - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 16px 32px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .header-btn {
+            border: none;
+            padding: 10px 20px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            background: #F3F4F6;
+            
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .logo {
+            display: flex;
+            text-decoration: none;
+            cursor: pointer;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 40%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+        }
+
+        .breadcrumb span {
+            color: #9CA3AF;
+        }
+
+        .breadcrumb .current {
+            color: #6B7280;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #111827;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .attestation-statement {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            margin-bottom: 32px;
+        }
+
+        .statement-header {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .statement-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .statement-text strong {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .statement-source {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #9CA3AF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .statement-source i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .decision-section {
+        }
+
+        .decision-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .decision-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .decision-option {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 16px 18px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .decision-option:hover {
+            border-color: #D1D5DB;
+            background: #F9FAFB;
+        }
+
+        .decision-option.selected {
+            border-color: #6366F1;
+            background: #EEF2FF;
+        }
+
+        .decision-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D1D5DB;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .decision-option.selected .decision-checkbox {
+            border-color: #6366F1;
+            background: #6366F1;
+        }
+
+        .decision-checkbox i,
+        .decision-checkbox svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+            display: none;
+        }
+
+        .decision-option.selected .decision-checkbox i,
+        .decision-option.selected .decision-checkbox svg {
+            display: block;
+        }
+
+        .decision-content {
+            flex: 1;
+        }
+
+        .decision-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 2px;
+        }
+
+        .decision-description {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: #6B7280;
+        }
+
+        .contradiction-message {
+            display: none;
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 24px;
+        }
+
+        .contradiction-message.active {
+            display: block;
+        }
+
+        .contradiction-header {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contradiction-icon {
+            width: 24px;
+            height: 24px;
+            color: #D97706;
+            flex-shrink: 0;
+        }
+
+        .contradiction-content {
+            flex: 1;
+        }
+
+        .contradiction-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #92400E;
+            margin-bottom: 8px;
+        }
+
+        .contradiction-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: #78350F;
+            margin-bottom: 12px;
+        }
+
+        .contradiction-details {
+            background: white;
+            border: 1px solid #FCD34D;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .contradiction-details-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #92400E;
+            margin-bottom: 8px;
+        }
+
+        .contradiction-details-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: #78350F;
+        }
+
+        .legal-disclaimer {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            margin-top: 24px;
+        }
+
+        .legal-disclaimer-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            line-height: 18px;
+            color: #9CA3AF;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 48px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+
+        .btn-primary:disabled {
+            cursor: not-allowed;
+            background: rgba(43, 253, 127, 0.5);
+            color: rgba(54, 47, 84, 0.5);
+            border-color: rgba(43, 253, 127, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#221C46"/>
+            </svg>
+            <span class="logo-text">Mobility</span>
+        </a>
+        <div class="progress">
+            <span class="progress-text">Step 2 of 6</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn">Questions?</button>
+            <button class="header-btn">Save and exit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Federal Mobility Budget Eligibility</span>
+        </div>
+
+        <h1>Does your company qualify for the Federal Mobility Budget?</h1>
+
+        <div class="card">
+            <div class="attestation-statement">
+                <div class="statement-header">Eligibility requirement</div>
+                <div class="statement-text">
+                    To qualify for the Federal Mobility Budget, your company must have had <strong>at least one company car continuously available for the past 3 years (36 months)</strong>.
+                </div>
+            </div>
+
+            <div class="decision-section">
+                <div class="decision-title">Confirm this is correct</div>
+                <div class="decision-options">
+                    <div class="decision-option" id="confirmOption">
+                        <div class="decision-checkbox">
+                            <i data-lucide="check"></i>
+                        </div>
+                        <div class="decision-content">
+                            <div class="decision-label">Yes, we've had at least one company car for the last 3 years</div>
+                            <div class="decision-description">Click to confirm this information is correct</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contradiction-message" id="contradictionMessage">
+                <div class="contradiction-header">
+                    <i data-lucide="alert-triangle" class="contradiction-icon"></i>
+                    <div class="contradiction-content">
+                        <div class="contradiction-title">We'll need to double-check eligibility</div>
+                        <div class="contradiction-text">
+                            No problem — since this information doesn't match what we have on file, our team will verify your eligibility and get back to you.
+                        </div>
+                    </div>
+                </div>
+                <div class="contradiction-details">
+                    <div class="contradiction-details-title">What happens next?</div>
+                    <div class="contradiction-details-text">
+                        Our Customer Success team will reach out within 1-2 business days to check your eligibility for the Federal Mobility Budget. They'll walk you through the next steps.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btn-group">
+            <a href="company-info-incomplete.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" id="continueBtn" disabled>Continue →</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+
+            const confirmOption = document.getElementById('confirmOption');
+            const continueBtn = document.getElementById('continueBtn');
+
+            let isConfirmed = false;
+
+            // Handle checkbox click
+            confirmOption.addEventListener('click', function() {
+                isConfirmed = !isConfirmed;
+
+                if (isConfirmed) {
+                    confirmOption.classList.add('selected');
+                    continueBtn.disabled = false;
+
+                    // Store attestation in sessionStorage
+                    const now = new Date();
+                    sessionStorage.setItem('fmbAttestation', JSON.stringify({
+                        confirmed: true,
+                        date: now.toISOString()
+                    }));
+                } else {
+                    confirmOption.classList.remove('selected');
+                    continueBtn.disabled = true;
+                }
+            });
+
+            // Continue button click
+            continueBtn.addEventListener('click', function() {
+                if (isConfirmed) {
+                    // In real implementation, this would save to backend before navigating
+                    window.location.href = '03-drop-docs.html';
+                }
+            });
+        });
+    </script>
+    <script>
+        // Ensure Lucide icons render after page load
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

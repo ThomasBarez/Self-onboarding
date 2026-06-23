@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Skipr - Your Setup is Ready</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #FAF8FF 0%, #F0EDFF 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(34, 28, 70, 0.1);
+        }
+
+        .greeting {
+            font-size: 36px;
+            font-weight: 700;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #6B7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .setup-list {
+            background: #F9FAFB;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .setup-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 20px;
+        }
+
+        .setup-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .setup-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkmark {
+            color: #2BFD7F;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: #2BFD7F;
+            color: #221C46;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .cta-button:hover {
+            background: #45FD8F;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(43, 253, 127, 0.3);
+        }
+
+        .tip-box {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .tip-icon {
+            color: #3B82F6;
+            flex-shrink: 0;
+        }
+
+        .tip-text {
+            font-size: 14px;
+            color: #1E40AF;
+            line-height: 1.5;
+        }
+
+        .divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 32px 0;
+        }
+
+        .upload-section {
+            text-align: center;
+            padding: 24px;
+            background: #FAFAFA;
+            border-radius: 12px;
+            border: 2px dashed #D1D5DB;
+        }
+
+        .upload-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .upload-subtitle {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .upload-button {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-button:hover {
+            background: #F9FAFB;
+        }
+
+        /* Onboarding Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: #F3F4F6;
+            color: #221C46;
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            padding: 24px 24px 0;
+        }
+
+        .progress-dot {
+            flex: 1;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .progress-dot.active {
+            background: #2BFD7F;
+        }
+
+        .slides-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 48px 32px 32px;
+            text-align: center;
+        }
+
+        .slide-illustration {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 32px;
+            background: linear-gradient(135deg, #F0EDFF 0%, #E0F7FF 100%);
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .slide-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #221C46;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .slide-description {
+            font-size: 16px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .slide-actions {
+            display: flex;
+            gap: 12px;
+            padding: 0 32px 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #221C46;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #F3F4F6;
+            color: #6B7280;
+        }
+
+        .btn-secondary:hover {
+            background: #E5E7EB;
+        }
+
+        .skip-btn {
+            text-align: center;
+            padding: 16px;
+        }
+
+        .skip-btn button {
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .skip-btn button:hover {
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="greeting">Hey Thomas 👋</h1>
+        <p class="subtitle">Your Skipr mobility program is configured and ready.</p>
+
+        <div class="setup-list">
+            <div class="setup-title">Here's what's set up:</div>
+
+            <div class="setup-item">
+                <i data-lucide="check-circle" class="checkmark"></i>
+                <span><strong>Budget range:</strong> €3,233–€17,244 (20-person team standard)</span>
+            </div>
+
+            <div class="setup-item">
+                <i data-lucide="check-circle" class="checkmark"></i>
+                <span><strong>4 employee tiers:</strong> Senior (€800/mo), Management (€500/mo), Employees (€300/mo), Interns (€150/mo)</span>
+            </div>
+
+            <div class="setup-item">
+                <i data-lucide="check-circle" class="checkmark"></i>
+                <span><strong>14 mobility services:</strong> train, bike, car rental, taxi, public transport, car sharing, and more</span>
+            </div>
+
+            <div class="setup-item">
+                <i data-lucide="check-circle" class="checkmark"></i>
+                <span><strong>Compliance:</strong> Belgian law + rules from 500+ companies</span>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <i data-lucide="lightbulb" class="tip-icon"></i>
+            <div class="tip-text">
+                <strong>Most teams your size launch as-is.</strong> If you adjust anything, it's usually budget amounts.
+            </div>
+        </div>
+
+        <button class="cta-button" id="showOnboardingBtn">Show Me What's Next</button>
+
+        <div class="divider"></div>
+
+        <div style="text-align: center; margin-bottom: 16px;">
+            <h3 style="font-size: 18px; font-weight: 600; color: #221C46; margin-bottom: 8px;">
+                Something changed since the last time we spoke?
+            </h3>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-title">📤 Have your own SOW/TCO documents?</div>
+            <div class="upload-subtitle">Upload to override defaults (optional)</div>
+            <button class="upload-button">
+                <i data-lucide="upload" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 8px;"></i>
+                Upload Documents
+            </button>
+        </div>
+    </div>
+
+    <!-- Onboarding Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="closeModal">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+
+            <div class="slides-container">
+                <div class="slides" id="slides">
+                    <!-- Slide 1: Overview -->
+                    <div class="slide">
+                        <h2 class="slide-title">Hey Thomas! Your setup is 85% ready 🎉</h2>
+                        <p class="slide-description">
+                            We've pre-configured your mobility program based on what 500+ companies with 20 employees actually use. Let's walk through what's set up!
+                        </p>
+                        <div class="slide-illustration" style="background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%); border-radius: 16px; padding: 24px; height: 220px; display: flex; align-items: center; justify-content: center;">
+                            <div style="background: white; border-radius: 12px; padding: 24px; text-align: left; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 85%;">
+                                <div style="color: #221C46; font-weight: 600; margin-bottom: 16px; font-size: 15px;">✅ Here's what's ready:</div>
+                                <div style="color: #374151; line-height: 2;">
+                                    💰 Budget: €3,233–€17,244<br>
+                                    👥 4 employee tiers configured<br>
+                                    🚗 14 mobility services enabled<br>
+                                    📋 11 compliance rules applied
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: What You'll Do -->
+                    <div class="slide">
+                        <h2 class="slide-title">Just review, tweak, and launch!</h2>
+                        <p class="slide-description">
+                            Most teams launch as-is. If you adjust anything, it's usually just budget amounts. Takes about 3 minutes total.
+                        </p>
+                        <div class="slide-illustration" style="background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%); border-radius: 16px; padding: 24px; height: 220px; display: flex; align-items: center; justify-content: center;">
+                            <div style="background: white; border-radius: 12px; padding: 20px; text-align: left; font-size: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 85%;">
+                                <div style="margin-bottom: 16px; padding: 12px; background: #F0FDF4; border-radius: 8px;">
+                                    <div style="color: #059669; font-weight: 600; margin-bottom: 4px;">1️⃣ Review your setup</div>
+                                    <div style="color: #6B7280; font-size: 11px;">Check budget groups & services</div>
+                                </div>
+                                <div style="margin-bottom: 16px; padding: 12px; background: #EFF6FF; border-radius: 8px;">
+                                    <div style="color: #3B82F6; font-weight: 600; margin-bottom: 4px;">2️⃣ Tweak if needed</div>
+                                    <div style="color: #6B7280; font-size: 11px;">Adjust what's unique to Skipr</div>
+                                </div>
+                                <div style="padding: 12px; background: #FEF3C7; border-radius: 8px;">
+                                    <div style="color: #D97706; font-weight: 600; margin-bottom: 4px;">3️⃣ Launch!</div>
+                                    <div style="color: #6B7280; font-size: 11px;">Your team can start booking</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Upload Question -->
+                    <div class="slide">
+                        <h2 class="slide-title">Do you have new documents to upload?</h2>
+                        <p class="slide-description">
+                            If something changed since we last spoke, upload your updated SOW or TCO files. Otherwise, skip this step!
+                        </p>
+                        <div class="slide-illustration" style="background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%); border-radius: 16px; padding: 24px; height: 220px; display: flex; align-items: center; justify-content: center;">
+                            <div style="background: white; border-radius: 12px; padding: 28px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 85%;">
+                                <div style="font-size: 56px; margin-bottom: 20px;">📤</div>
+                                <div style="color: #221C46; font-weight: 600; margin-bottom: 12px; font-size: 14px;">Upload New Documents?</div>
+                                <div style="color: #6B7280; font-size: 12px; line-height: 1.6; margin-bottom: 20px;">
+                                    Have updated files? Upload now.<br>
+                                    All good? Skip and continue.
+                                </div>
+                                <div style="display: flex; gap: 8px; justify-content: center;">
+                                    <div style="background: #2BFD7F; color: #221C46; padding: 10px 16px; border-radius: 6px; font-weight: 600; font-size: 12px;">
+                                        Upload Files
+                                    </div>
+                                    <div style="background: #F3F4F6; color: #6B7280; padding: 10px 16px; border-radius: 6px; font-weight: 600; font-size: 12px;">
+                                        Skip
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-actions">
+                <button class="btn btn-secondary" id="prevBtn" style="display: none;">Back</button>
+                <button class="btn btn-primary" id="nextBtn">Continue</button>
+            </div>
+
+            <div class="skip-btn">
+                <button id="skipBtn">Skip introduction</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Modal functionality
+        const modalOverlay = document.getElementById('modalOverlay');
+        const showOnboardingBtn = document.getElementById('showOnboardingBtn');
+        const closeModal = document.getElementById('closeModal');
+        const skipBtn = document.getElementById('skipBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const slides = document.getElementById('slides');
+        const progressBar = document.getElementById('progressBar');
+
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        showOnboardingBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+            updateSlide();
+        });
+
+        closeModal.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        skipBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            window.location.href = 'company-info-incomplete.html';
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            } else {
+                // Last slide - go to review page
+                window.location.href = 'company-info-incomplete.html';
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        });
+
+        function updateSlide() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update progress dots
+            const dots = progressBar.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index <= currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // Update buttons
+            prevBtn.style.display = currentSlide === 0 ? 'none' : 'block';
+            nextBtn.textContent = currentSlide === totalSlides - 1 ? 'Get Started' : 'Continue';
+        }
+
+        // Close modal on overlay click
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

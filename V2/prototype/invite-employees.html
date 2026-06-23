@@ -22,7 +22,7 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             background: white;
-            border-bottom: 1px solid #E5E5E5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             padding: 16px 32px;
             align-items: center;
             position: sticky;
@@ -88,13 +88,14 @@
         }
 
         .header-btn {
+            border: none;
             padding: 10px 20px;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
             color: #221C46;
             background: #F3F4F6;
-            border: 1px solid #E5E7EB;
+            
             border-radius: 100px;
             cursor: pointer;
             transition: all 0.2s;
@@ -106,7 +107,7 @@
         }
 
         .container {
-            max-width: 1024px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 48px 24px;
         }
@@ -133,7 +134,7 @@
         h1 {
             font-family: 'TT Travels', sans-serif;
             font-weight: 700;
-            font-size: 32px;
+            font-size: 24px;
             color: #221C46;
             margin-bottom: 8px;
         }
@@ -149,7 +150,7 @@
 
         .card {
             background: white;
-            border: 1px solid #E5E5E5;
+            
             border-radius: 12px;
             padding: 33px;
             margin-bottom: 24px;
@@ -874,36 +875,31 @@
         }
 
         .upload-zone {
-            border: 1px dashed #E5E7EB;
-            border-radius: 12px;
-            padding: 40px 24px;
+            border: 1px dashed #D8DAE5;
+            border-radius: 8px;
+            padding: 56px 32px;
             text-align: center;
-            background: #FAFBFC;
+            background: #F8F8FC;
             transition: all 0.2s;
             cursor: pointer;
             margin-bottom: 16px;
         }
 
         .upload-zone:hover {
-            border-color: #2BFD7F;
-            background: #F0FDF4;
+            background: #F5F5F5;
         }
 
         .upload-zone.dragover {
             border-color: #2BFD7F;
-            background: #ECFDF5;
-            border-style: solid;
+            background: #F0FDF4;
+            border-width: 2px;
         }
 
-        .upload-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 16px;
-            color: #6B7280;
-        }
-
-        .upload-zone.dragover .upload-icon {
-            color: #059669;
+        .upload-illustration {
+            width: 117px;
+            height: 63px;
+            margin: 0 auto 24px;
+            display: block;
         }
 
         .upload-title {
@@ -1320,7 +1316,7 @@
             <span class="logo-text">Mobility</span>
         </a>
         <div class="progress">
-            <span class="progress-text">Step 5 of 5</span>
+            <span class="progress-text">Step 5 of 6</span>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
@@ -1340,16 +1336,9 @@
 
         <h1>Add your employees</h1>
         <p class="page-description">
-            Review employees extracted from your file, edit as needed, and add any additional team members manually.
+            We've pulled your employee list from the file you uploaded. Take a look, make any changes you need, and add anyone who's missing.
         </p>
 
-        <div class="info-box">
-            <i data-lucide="info" class="info-icon"></i>
-            <div class="info-content">
-                <div class="info-title">Employees will receive invitation emails</div>
-                <div class="info-text">Each employee will get a personalized invitation to set up their account. Budgets are automatically assigned based on group membership, but you can <strong>customize individual budgets</strong> using the "Customize" button in the table below.</div>
-            </div>
-        </div>
 
         <div class="card">
             <div class="section-header">
@@ -1359,9 +1348,35 @@
             </div>
 
             <div class="upload-zone" id="uploadZone">
-                <i data-lucide="upload" class="upload-icon"></i>
-                <div class="upload-title">Drag and drop your CSV file here</div>
-                <div class="upload-subtitle">or click to browse your files</div>
+                <svg class="upload-illustration" width="117" height="63" viewBox="0 0 117 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" y="27.9241" width="31" height="31" rx="5.5" fill="white" stroke="#D8DAE5"/>
+                    <rect x="40.5" y="27.9241" width="31" height="31" rx="5.5" fill="white" stroke="#D8DAE5"/>
+                    <rect x="80.5" y="27.9241" width="31" height="31" rx="5.5" fill="#EDEFF5" stroke="#D8DAE5" stroke-dasharray="2 2"/>
+                    <g filter="url(#filter0_d_189_1148)">
+                        <rect x="64.9062" y="3.45984" width="44.3152" height="44.3152" rx="8.625" transform="rotate(3.71326 64.9062 3.45984)" fill="white"/>
+                        <rect x="65.3728" y="3.99117" width="43.3152" height="43.3152" rx="8.125" transform="rotate(3.71326 65.3728 3.99117)" stroke="#D8DAE5"/>
+                    </g>
+                    <g clip-path="url(#clip0_189_1148)">
+                        <path d="M78.6167 36.802C78.0874 36.7677 77.5934 36.5245 77.2434 36.1259C76.8934 35.7274 76.716 35.2061 76.7503 34.6768L77.7856 18.7103C77.8199 18.181 78.0631 17.687 78.4617 17.3369C78.8602 16.9869 79.3815 16.8096 79.9108 16.8439L87.8941 17.3615C88.21 17.3815 88.5189 17.4638 88.8029 17.6036C89.0868 17.7435 89.3404 17.9381 89.5488 18.1763L92.8971 21.989C93.1071 22.2266 93.2678 22.5034 93.3701 22.8034C93.4724 23.1035 93.5143 23.4209 93.4933 23.7372L92.7168 35.7121C92.6825 36.2414 92.4393 36.7354 92.0407 37.0854C91.6422 37.4354 91.1209 37.6128 90.5916 37.5785L78.6167 36.802Z" fill="#F8F8FC"/>
+                        <path d="M87.8941 17.3615L79.9108 16.8439C79.3815 16.8096 78.8602 16.9869 78.4617 17.3369C78.0631 17.687 77.8199 18.181 77.7856 18.7103L76.7503 34.6768C76.716 35.2061 76.8934 35.7274 77.2434 36.1259C77.5934 36.5245 78.0874 36.7677 78.6167 36.802L90.5916 37.5785C91.1209 37.6128 91.6422 37.4354 92.0407 37.0854C92.4393 36.7354 92.6825 36.2414 92.7168 35.7121L93.4933 23.7372M87.8941 17.3615C88.21 17.3815 88.5189 17.4638 88.8029 17.6036C89.0868 17.7435 89.3404 17.9381 89.5488 18.1763L92.8971 21.989C93.1071 22.2266 93.2678 22.5034 93.3701 22.8034C93.4724 23.1035 93.5143 23.4209 93.4933 23.7372M87.8941 17.3615L87.5706 22.3511C87.5534 22.6157 87.6421 22.8764 87.8171 23.0756C87.9921 23.2749 88.2391 23.3965 88.5037 23.4137L93.4933 23.7372" stroke="#D8DAE5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <filter id="filter0_d_189_1148" x="54.5762" y="0" width="62.0117" height="62.0118" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4"/>
+                            <feGaussianBlur stdDeviation="4"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.0627451 0 0 0 0 0.0941176 0 0 0 0 0.25098 0 0 0 0.08 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_189_1148"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_189_1148" result="shape"/>
+                        </filter>
+                        <clipPath id="clip0_189_1148">
+                            <rect width="24" height="24" fill="white" transform="translate(74.0527 14.4598) rotate(3.71)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+                <div class="upload-title">Drag and drop your employee list here</div>
+                <div class="upload-subtitle">Or click to find the file on your computer</div>
                 <div class="upload-actions">
                     <button class="btn-upload" id="browseBtn">Browse Files</button>
                     <button class="btn-template" id="downloadTemplateBtn">
@@ -1369,7 +1384,7 @@
                         Download Template
                     </button>
                 </div>
-                <div class="upload-help">Supported format: .csv (Maximum 1000 employees)</div>
+                <div class="upload-help">Upload a .csv file (up to 1000 employees)</div>
                 <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
             </div>
 
@@ -1412,7 +1427,7 @@
         </div>
 
         <div class="btn-group">
-            <a href="07b-group-review-incomplete.html" class="btn btn-secondary" id="backBtn">← Back</a>
+            <a href="program-review-incomplete.html" class="btn btn-secondary" id="backBtn">← Back</a>
             <button class="btn btn-primary" id="sendInvitesBtn">Send Invitations →</button>
         </div>
     </div>
@@ -1586,8 +1601,8 @@
             // Set correct back button based on referrer
             const backBtn = document.getElementById('backBtn');
             const referrer = document.referrer;
-            if (referrer.includes('07b-group-review-incomplete.html')) {
-                backBtn.href = '07b-group-review-incomplete.html';
+            if (referrer.includes('program-review-incomplete.html')) {
+                backBtn.href = 'program-review-incomplete.html';
             } else {
                 backBtn.href = '07-group-review.html';
             }

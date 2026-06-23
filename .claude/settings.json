@@ -29,12 +29,17 @@
       "Bash(open \"http://localhost:8000/02-activate-account.html\")",
       "Bash(cat > *)",
       "Bash(open \"http://localhost:8000/06-program-review.html\")",
-      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype\")"
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype\")",
+      "Bash(claude skill *)",
+      "mcp__plugin_figma_figma__get_figjam",
+      "Bash(mkdir -p \"V2/prototype-v2\")",
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/email-setup-ready.html\")"
     ],
     "additionalDirectories": [
       "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding",
       "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/__TRACKED_VAR__/.gstack/projects/V2/designs/client-portal-navigation-__CMDSUB_OUTPUT__",
-      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype"
+      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype",
+      "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2"
     ]
   }
 }

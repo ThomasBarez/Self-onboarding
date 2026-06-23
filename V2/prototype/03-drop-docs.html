@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Policy Documents - Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 16px 32px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .header-btn {
+            border: none;
+            padding: 10px 20px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            background: #F3F4F6;
+            
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .header-btn:hover {
+            background: #E5E7EB;
+        }
+
+        .logo {
+            display: flex;
+            text-decoration: none;
+            cursor: pointer;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #221C46;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+        }
+
+        .progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .progress-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #01D253;
+            width: 60%;
+            transition: width 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .breadcrumb span {
+            color: #6B7280;
+        }
+
+        .breadcrumb .current {
+            color: #221C46;
+            font-weight: 500;
+        }
+
+        .optional-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .optional-badge i {
+            width: 16px;
+            height: 16px;
+            color: #3B82F6;
+        }
+
+        .optional-badge-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            color: #3B82F6;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: white;
+            
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .upload-card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 33px;
+            margin-bottom: 24px;
+        }
+
+        .upload-card-header {
+            margin-bottom: 16px;
+        }
+
+        .upload-section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .upload-card-top {
+            background: #F8F8FC;
+            border: 1px dashed #D8DAE5;
+            padding: 56px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-card-top:hover {
+            background: #F5F5F5;
+        }
+
+        .upload-card-top.dragover {
+            background: #F0FDF4;
+            border: 2px dashed #2BFD7F;
+        }
+
+        .upload-illustration {
+            width: 117px;
+            height: 63px;
+            margin: 0 auto 20px;
+        }
+
+        .upload-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 22px;
+            text-align: center;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-card-bottom {
+            margin-top: 16px;
+        }
+
+        .uploaded-files {
+            /* Files shown in bottom section */
+        }
+
+        .uploaded-file {
+            background: white;
+            border: 1px solid #E6E8F0;
+            border-radius: 4px;
+            padding: 13px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+            box-shadow: 0px 4px 2px rgba(54, 28, 113, 0.05);
+        }
+
+        .file-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-badge {
+            width: 27px;
+            height: 26px;
+            background: #EEF8F4;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .file-badge-icon {
+            width: 12px;
+            height: 12px;
+            color: #429777;
+            flex-shrink: 0;
+        }
+
+        .file-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #262B3E;
+            flex: 1;
+        }
+
+        .file-remove {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+
+        .file-remove:hover {
+            opacity: 0.7;
+        }
+
+        .file-remove-icon {
+            width: 16px;
+            height: 16px;
+            color: #8F95B2;
+        }
+
+        .config-summary-card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .summary-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .summary-description {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .summary-section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .summary-label {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        .summary-value {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #362F54;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+
+        .btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+        }
+
+        .btn-primary:hover {
+            background: #45FD8F;
+            border-color: #45FD8F;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#221C46"/>
+            </svg>
+            <span class="logo-text">Mobility</span>
+        </a>
+        <div class="progress">
+            <span class="progress-text">Step 3 of 6</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn">Questions?</button>
+            <button class="header-btn">Save and exit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <span>Onboarding</span>
+            <span>›</span>
+            <span class="current">Upload Policy Documents</span>
+        </div>
+
+        <h1>Federal Mobility Budget is ready to review</h1>
+        <p class="page-description">
+            We know that the blank page is hard. I've configured it based on what 500+ companies with 20 employees actually do.
+        </p>
+
+        <div class="upload-card">
+            <div class="upload-card-header">
+                <div class="upload-section-title">Want to add additional documents?</div>
+            </div>
+
+            <div class="upload-card-top" id="uploadArea">
+                <svg class="upload-illustration" width="117" height="63" viewBox="0 0 117 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" y="27.9241" width="31" height="31" rx="5.5" fill="white" stroke="#D8DAE5"/>
+                    <rect x="40.5" y="27.9241" width="31" height="31" rx="5.5" fill="white" stroke="#D8DAE5"/>
+                    <rect x="80.5" y="27.9241" width="31" height="31" rx="5.5" fill="#EDEFF5" stroke="#D8DAE5" stroke-dasharray="2 2"/>
+                    <g filter="url(#filter0_d_189_1148)">
+                        <rect x="64.9062" y="3.45984" width="44.3152" height="44.3152" rx="8.625" transform="rotate(3.71326 64.9062 3.45984)" fill="white"/>
+                        <rect x="65.3728" y="3.99117" width="43.3152" height="43.3152" rx="8.125" transform="rotate(3.71326 65.3728 3.99117)" stroke="#D8DAE5"/>
+                    </g>
+                    <g clip-path="url(#clip0_189_1148)">
+                        <path d="M78.6167 36.802C78.0874 36.7677 77.5934 36.5245 77.2434 36.1259C76.8934 35.7274 76.716 35.2061 76.7503 34.6768L77.7856 18.7103C77.8199 18.181 78.0631 17.687 78.4617 17.3369C78.8602 16.9869 79.3815 16.8096 79.9108 16.8439L87.8941 17.3615C88.21 17.3815 88.5189 17.4638 88.8029 17.6036C89.0868 17.7435 89.3404 17.9381 89.5488 18.1763L92.8971 21.989C93.1071 22.2266 93.2678 22.5034 93.3701 22.8034C93.4724 23.1035 93.5143 23.4209 93.4933 23.7372L92.7168 35.7121C92.6825 36.2414 92.4393 36.7354 92.0407 37.0854C91.6422 37.4354 91.1209 37.6128 90.5916 37.5785L78.6167 36.802Z" fill="#F8F8FC"/>
+                        <path d="M87.8941 17.3615L79.9108 16.8439C79.3815 16.8096 78.8602 16.9869 78.4617 17.3369C78.0631 17.687 77.8199 18.181 77.7856 18.7103L76.7503 34.6768C76.716 35.2061 76.8934 35.7274 77.2434 36.1259C77.5934 36.5245 78.0874 36.7677 78.6167 36.802L90.5916 37.5785C91.1209 37.6128 91.6422 37.4354 92.0407 37.0854C92.4393 36.7354 92.6825 36.2414 92.7168 35.7121L93.4933 23.7372M87.8941 17.3615C88.21 17.3815 88.5189 17.4638 88.8029 17.6036C89.0868 17.7435 89.3404 17.9381 89.5488 18.1763L92.8971 21.989C93.1071 22.2266 93.2678 22.5034 93.3701 22.8034C93.4724 23.1035 93.5143 23.4209 93.4933 23.7372M87.8941 17.3615L87.5706 22.3511C87.5534 22.6157 87.6421 22.8764 87.8171 23.0756C87.9921 23.2749 88.2391 23.3965 88.5037 23.4137L93.4933 23.7372" stroke="#D8DAE5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <filter id="filter0_d_189_1148" x="54.5762" y="0" width="62.0117" height="62.0118" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4"/>
+                            <feGaussianBlur stdDeviation="4"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.0627451 0 0 0 0 0.0941176 0 0 0 0 0.25098 0 0 0 0.08 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_189_1148"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_189_1148" result="shape"/>
+                        </filter>
+                        <clipPath id="clip0_189_1148">
+                            <rect width="24" height="24" fill="white" transform="translate(74.0527 14.4598) rotate(3.71)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+                <p class="upload-text">Add PDFs, documents, or other text to reference in this project.</p>
+                <input type="file" class="file-input" id="fileInput" accept=".pdf,.docx,.txt,.doc" multiple>
+            </div>
+
+            <div class="upload-card-bottom" id="uploadedFilesContainer" style="display: none;">
+                <div id="uploadedFiles">
+                    <!-- Files will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <div class="config-summary-card">
+            <div class="summary-title">Current configuration summary</div>
+            <div class="summary-description">This is what's already set up for you, based on your company profile and sector benchmarks</div>
+
+            <div class="summary-section-title">Pre-configured program highlights</div>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">Mobility services</div>
+                    <div class="summary-value">14 services enabled</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Budget groups</div>
+                    <div class="summary-value">4 employee tiers</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Compliance rules</div>
+                    <div class="summary-value">11 rules configured</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Distance allowances</div>
+                    <div class="summary-value">Bike, pedestrian</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Budget range</div>
+                    <div class="summary-value">€3,233 – €17,244</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Program type</div>
+                    <div class="summary-value">Federal Mobility Budget</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="upload-data.html" class="btn btn-secondary">← Back</a>
+            <a href="program-review-incomplete.html" class="btn btn-primary">Continue →</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadedFiles = document.getElementById('uploadedFiles');
+            const uploadedFilesContainer = document.getElementById('uploadedFilesContainer');
+
+            let filesArray = [];
+
+            // Click to browse
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                handleFiles(files);
+            });
+
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+
+            function handleFiles(files) {
+                if (files.length === 0) return;
+
+                Array.from(files).forEach(file => {
+                    filesArray.push(file);
+                    addFileToList(file);
+                });
+
+                uploadedFilesContainer.style.display = 'block';
+
+                // Store flag that documents were uploaded
+                sessionStorage.setItem('policyDocsUploaded', 'true');
+            }
+
+            function addFileToList(file) {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'uploaded-file';
+                fileElement.innerHTML = `
+                    <div class="file-left">
+                        <div class="file-badge">
+                            <i data-lucide="paperclip" class="file-badge-icon"></i>
+                        </div>
+                        <span class="file-name">${file.name}</span>
+                    </div>
+                    <button class="file-remove" onclick="removeFile(this, '${file.name}')">
+                        <i data-lucide="trash-2" class="file-remove-icon"></i>
+                    </button>
+                `;
+
+                uploadedFiles.appendChild(fileElement);
+                lucide.createIcons();
+            }
+
+            window.removeFile = function(button, fileName) {
+                filesArray = filesArray.filter(f => f.name !== fileName);
+                button.closest('.uploaded-file').remove();
+
+                if (filesArray.length === 0) {
+                    uploadedFilesContainer.style.display = 'none';
+                    sessionStorage.removeItem('policyDocsUploaded');
+                }
+            };
+        });
+    </script>
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

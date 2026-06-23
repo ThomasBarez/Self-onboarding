@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program Review - Mobility</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
     <style>
         * {
             margin: 0;
@@ -22,7 +23,7 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             background: white;
-            border-bottom: 1px solid #E5E5E5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             padding: 16px 32px;
             align-items: center;
             position: sticky;
@@ -87,13 +88,14 @@
         }
 
         .header-btn {
+            border: none;
             padding: 10px 20px;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
             color: #221C46;
             background: #F3F4F6;
-            border: 1px solid #E5E7EB;
+            
             border-radius: 100px;
             cursor: pointer;
             transition: all 0.2s;
@@ -105,7 +107,7 @@
         }
 
         .container {
-            max-width: 1024px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 48px 24px;
         }
@@ -131,7 +133,7 @@
         h1 {
             font-family: 'TT Travels', sans-serif;
             font-weight: 700;
-            font-size: 32px;
+            font-size: 24px;
             color: #221C46;
             margin-bottom: 8px;
         }
@@ -186,7 +188,7 @@
 
         .card {
             background: white;
-            border: 1px solid #E5E5E5;
+            
             border-radius: 12px;
             padding: 33px;
             margin-bottom: 24px;
@@ -239,12 +241,11 @@
         .service-item {
             padding: 12px 16px;
             border-radius: 8px;
-            border: 1px solid #E5E7EB;
-            background: white;
+            background: #EEF2FF;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 13px;
-            color: #221C46;
+            color: #6366F1;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -254,14 +255,13 @@
         }
 
         .service-item:hover {
-            background: #F9FAFB;
-            border-color: #D1D5DB;
+            background: #E0E7FF;
         }
 
         .service-checkbox {
             width: 18px;
             height: 18px;
-            border: 1px solid #D1D5DB;
+            border: 1px solid #A5B4FC;
             border-radius: 4px;
             background: white;
             flex-shrink: 0;
@@ -275,20 +275,19 @@
         }
 
         .service-checkbox:checked {
-            background: #2BFD7F;
-            border-color: #2BFD7F;
+            background: #6366F1;
+            border-color: #6366F1;
         }
 
         .service-checkbox:checked::after {
             content: '✓';
-            color: #221C46;
+            color: white;
             font-size: 12px;
             font-weight: 700;
         }
 
         .service-item:has(.service-checkbox:checked) {
-            background: #ECFDF5;
-            border-color: #2BFD7F;
+            /* Keep same background and border - only checkbox changes */
         }
 
         .allowance-card {
@@ -1178,6 +1177,356 @@
             width: 12px;
             height: 12px;
         }
+
+        /* Budget Groups Table Styles */
+        .groups-table-wrapper {
+            margin-bottom: 16px;
+            overflow-x: auto;
+        }
+
+        .groups-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+        }
+
+        .groups-table thead th {
+            background: #F9FAFB;
+            padding: 12px;
+            text-align: left;
+            color: #6B7280;
+            font-weight: 700;
+            border-bottom: 1px solid #E5E7EB;
+            white-space: nowrap;
+        }
+
+        .groups-table tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #F3F4F6;
+            color: #221C46;
+        }
+
+        .groups-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .groups-table .group-name-cell {
+            font-weight: 700;
+        }
+
+        .table-checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .table-checkbox-wrapper[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            transform: translateX(50%);
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #463F5F;
+            color: white;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            white-space: normal;
+            width: 280px;
+            max-width: 90vw;
+            text-align: left;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .table-checkbox-wrapper[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 50%;
+            transform: translateX(50%);
+            margin-bottom: 2px;
+            border: 6px solid transparent;
+            border-top-color: #463F5F;
+            z-index: 1000;
+        }
+
+        .table-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .table-checkbox:checked {
+            background: #2BFD7F;
+            border-color: #2BFD7F;
+        }
+
+        .table-checkbox:checked::after {
+            content: '✓';
+            color: #221C46;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .table-input-sm {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #221C46;
+            background: white;
+        }
+
+        .table-input-sm:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .table-input-sm[data-was-missing="true"] {
+            border-bottom: 1px solid #F97316;
+        }
+
+        .table-input-sm[data-was-missing="true"].filled {
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .currency-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .currency-symbol {
+            position: absolute;
+            left: 10px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #6B7280;
+            pointer-events: none;
+        }
+
+        .table-input-sm.with-currency {
+            padding-left: 24px;
+        }
+
+        .table-select-sm {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #221C46;
+            background: white;
+            cursor: pointer;
+        }
+
+        .table-select-sm:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .add-btn {
+            background: white;
+            border: 1px dashed #D1D5DB;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #6B7280;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-btn:hover {
+            background: #F9FAFB;
+            border-color: #2BFD7F;
+            color: #221C46;
+        }
+
+        .add-btn i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .modal-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #221C46;
+            margin-bottom: 4px;
+        }
+
+        .modal-subtitle {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-field {
+            margin-bottom: 20px;
+        }
+
+        .modal-label {
+            display: block;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 8px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .modal-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-checkbox-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .modal-checkbox-item input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .modal-checkbox-label {
+            flex: 1;
+        }
+
+        .modal-checkbox-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 2px;
+        }
+
+        .modal-checkbox-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 1.4;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .modal-btn-cancel {
+            background: white;
+            color: #6B7280;
+            border: 1px solid #E5E7EB;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #F9FAFB;
+        }
+
+        .modal-btn-primary {
+            background: #2BFD7F;
+            color: #362F54;
+        }
+
+        .modal-btn-primary:hover {
+            background: #45FD8F;
+        }
     </style>
 </head>
 <body>
@@ -1250,7 +1599,7 @@
             <span class="logo-text">Mobility</span>
         </a>
         <div class="progress">
-            <span class="progress-text">Step 3 of 5</span>
+            <span class="progress-text">Step 4 of 6</span>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
@@ -1268,23 +1617,14 @@
             <span class="current">Program Review</span>
         </div>
 
-        <h1>Complete your mobility program</h1>
+        <h1>Review your mobility program</h1>
         <p class="page-description">
-            Review and adjust the services below. Car allowance information is missing - please complete it before continuing.
+            We know that the blank page is hard. I've configured it based on what 500+ companies with 20 employees actually do. Just review and adjust if needed.
         </p>
-
-        <div class="alert-info">
-            <i data-lucide="info" class="alert-icon"></i>
-            <div class="alert-content">
-                <div class="alert-title">Configure your mobility program</div>
-                <div class="alert-text">Review your mobility services and allowances. These settings will define the benefits available to your employees and ensure compliance with your company policies.</div>
-            </div>
-        </div>
 
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
-                    <span class="section-icon"><i data-lucide="settings"></i></span>
                     Program Configuration
                 </div>
             </div>
@@ -1374,7 +1714,6 @@
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
-                    <span class="section-icon"><i data-lucide="banknote"></i></span>
                     Distance-Based Allowances
                 </div>
             </div>
@@ -1396,7 +1735,7 @@
                         <option value="Allowed">Allowed</option>
                     </select>
                 </div>
-                <div class="allowance-row">
+                <div class="allowance-row" id="bikeAdminValidationRow" style="display: none;">
                     <span class="allowance-label">Admin validation required</span>
                     <select class="allowance-input filled" id="bikeAdminValidation">
                         <option value="Auto-approved" selected>Auto-approved</option>
@@ -1405,15 +1744,29 @@
                 </div>
             </div>
 
-            <div class="allowance-card incomplete">
+            <div class="allowance-card">
                 <div class="allowance-header">🚗 Car Allowance</div>
                 <div class="allowance-row">
                     <span class="allowance-label">Rate per km</span>
-                    <input type="text" class="allowance-input" id="carRate" placeholder="e.g., 0.45" data-required="true" data-was-missing="true">
+                    <input type="text" class="allowance-input filled" id="carRate" value="0.45">
                 </div>
                 <div class="allowance-row">
                     <span class="allowance-label">Max distance per journey</span>
-                    <input type="number" class="allowance-input" id="carMaxDistance" placeholder="e.g., 100" data-required="true" data-was-missing="true">
+                    <input type="number" class="allowance-input filled" id="carMaxDistance" value="100">
+                </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Manual distance adaptation</span>
+                    <select class="allowance-input filled" id="carManualAdaptation">
+                        <option value="Not allowed" selected>Not allowed</option>
+                        <option value="Allowed">Allowed</option>
+                    </select>
+                </div>
+                <div class="allowance-row" id="carAdminValidationRow" style="display: none;">
+                    <span class="allowance-label">Admin validation required</span>
+                    <select class="allowance-input filled" id="carAdminValidation">
+                        <option value="Auto-approved" selected>Auto-approved</option>
+                        <option value="Required">Required</option>
+                    </select>
                 </div>
             </div>
 
@@ -1427,90 +1780,249 @@
                     <span class="allowance-label">Max distance per journey</span>
                     <input type="number" class="allowance-input filled" id="pedestrianMaxDistance" value="15">
                 </div>
+                <div class="allowance-row">
+                    <span class="allowance-label">Manual distance adaptation</span>
+                    <select class="allowance-input filled" id="pedestrianManualAdaptation">
+                        <option value="Not allowed" selected>Not allowed</option>
+                        <option value="Allowed">Allowed</option>
+                    </select>
+                </div>
+                <div class="allowance-row" id="pedestrianAdminValidationRow" style="display: none;">
+                    <span class="allowance-label">Admin validation required</span>
+                    <select class="allowance-input filled" id="pedestrianAdminValidation">
+                        <option value="Auto-approved" selected>Auto-approved</option>
+                        <option value="Required">Required</option>
+                    </select>
+                </div>
             </div>
+        </div>
+
+
+        <div class="card">
+            <div class="section-header">
+                <div class="section-title">
+                    Budget Groups
+                </div>
+            </div>
+
+            <div class="alert-warning" style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: start; gap: 16px;">
+                <i data-lucide="info" style="width: 20px; height: 20px; color: #D97706; flex-shrink: 0;"></i>
+                <div style="flex: 1;">
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 600; font-size: 14px; color: #78350F; margin-bottom: 6px;">Important Note</div>
+                    <div style="font-family: 'TT Travels', sans-serif; font-weight: 400; font-size: 13px; line-height: 20px; color: #92400E;">These budget amounts are for guidance only — not a legal certification. We'll show a clear disclaimer before you finalize everything.</div>
+                </div>
+            </div>
+
+            <div class="groups-table-wrapper">
+                <table class="groups-table" id="groupsTable">
+                    <thead>
+                        <tr>
+                            <th>Group Name</th>
+                            <th>Period</th>
+                            <th>Budget Amount</th>
+                            <th style="text-align: center;">Hide Budget</th>
+                            <th style="text-align: center;">Reset Budget</th>
+                            <th style="text-align: center;">Prorate Entry</th>
+                            <th style="text-align: center;">Prorate Exit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupsTableBody">
+                        <!-- Executives -->
+                        <tr data-group="executives">
+                            <td class="group-name-cell">Executives</td>
+                            <td>
+                                <select class="table-select-sm" id="executives-period">
+                                    <option value="Monthly" selected>Monthly</option>
+                                    <option value="Quarterly">Quarterly</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="currency-input-wrapper">
+                                    <span class="currency-symbol">€</span>
+                                    <input type="number" class="table-input-sm with-currency" id="executives-budget" value="800" min="0">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                    <input type="checkbox" class="table-checkbox" id="executives-hide-budget">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                    <input type="checkbox" class="table-checkbox" id="executives-reset" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                    <input type="checkbox" class="table-checkbox" id="executives-prorate-entry" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                    <input type="checkbox" class="table-checkbox" id="executives-prorate-exit" checked>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Managers (hidden by default)
+                        <tr data-group="managers">
+                            <td class="group-name-cell">Managers</td>
+                            <td>
+                                <select class="table-select-sm" id="managers-period">
+                                    <option value="Monthly" selected>Monthly</option>
+                                    <option value="Quarterly">Quarterly</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="currency-input-wrapper">
+                                    <span class="currency-symbol">€</span>
+                                    <input type="number" class="table-input-sm with-currency" id="managers-budget" value="500" min="0">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                    <input type="checkbox" class="table-checkbox" id="managers-hide-budget">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                    <input type="checkbox" class="table-checkbox" id="managers-reset" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                    <input type="checkbox" class="table-checkbox" id="managers-prorate-entry" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                    <input type="checkbox" class="table-checkbox" id="managers-prorate-exit" checked>
+                                </div>
+                            </td>
+                        </tr>
+                        -->
+
+                        <!-- Employees (hidden by default)
+                        <tr data-group="employees">
+                            <td class="group-name-cell">Employees</td>
+                            <td>
+                                <select class="table-select-sm" id="employees-period">
+                                    <option value="Monthly" selected>Monthly</option>
+                                    <option value="Quarterly">Quarterly</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="currency-input-wrapper">
+                                    <span class="currency-symbol">€</span>
+                                    <input type="number" class="table-input-sm with-currency" id="employees-budget" value="300" min="0">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                    <input type="checkbox" class="table-checkbox" id="employees-hide-budget">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                    <input type="checkbox" class="table-checkbox" id="employees-reset">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                    <input type="checkbox" class="table-checkbox" id="employees-prorate-entry" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                    <input type="checkbox" class="table-checkbox" id="employees-prorate-exit" checked>
+                                </div>
+                            </td>
+                        </tr>
+                        -->
+
+                        <!-- Interns (hidden by default)
+                        <tr data-group="interns">
+                            <td class="group-name-cell">Interns</td>
+                            <td>
+                                <select class="table-select-sm" id="interns-period">
+                                    <option value="Monthly" selected>Monthly</option>
+                                    <option value="Quarterly">Quarterly</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="currency-input-wrapper">
+                                    <span class="currency-symbol">€</span>
+                                    <input type="number" class="table-input-sm with-currency" id="interns-budget" value="150" min="0">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                    <input type="checkbox" class="table-checkbox" id="interns-hide-budget">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                    <input type="checkbox" class="table-checkbox" id="interns-reset">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                    <input type="checkbox" class="table-checkbox" id="interns-prorate-entry" checked>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                    <input type="checkbox" class="table-checkbox" id="interns-prorate-exit" checked>
+                                </div>
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="add-btn" id="addGroupBtn">
+                <i data-lucide="plus"></i>
+                Add budget group
+            </button>
         </div>
 
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
-                    <span class="section-icon"><i data-lucide="clipboard-check"></i></span>
-                    Expense Approval Policy
+                    Compliance Rules
                 </div>
-                <div class="ab-toggle-wrapper">
-                    <span class="ab-toggle-label">A/B Test</span>
-                    <div class="ab-toggle" id="abToggle">
-                        <div class="ab-toggle-slider"></div>
+            </div>
+
+            <p class="policy-description-text">
+                Your Policy Agent automatically checks each expense against these rules. It approves, holds, or flags items based on Belgian law. Click any category below to see the details.
+            </p>
+
+            <div class="policy-agent-card">
+                <div class="agent-orb"></div>
+                <div class="agent-content">
+                    <div class="agent-header">
+                        <span class="agent-title">Policy Agent</span>
+                        <span class="live-badge">
+                            <span class="live-dot"></span>
+                            LIVE
+                        </span>
+                    </div>
+                    <div class="agent-description">
+                        Automatically checks 10 compliance rules across 4 categories — approving, holding, or flagging each expense in real time.
                     </div>
                 </div>
             </div>
 
-            <!-- Version A (Current) -->
-            <div class="policy-version-a" id="policyVersionA">
-                <div class="policy-options">
-                    <div class="policy-option" data-policy="light">
-                        <div class="policy-radio">
-                            <div class="policy-radio-inner"></div>
-                        </div>
-                        <div class="policy-content">
-                            <div class="policy-title">Light</div>
-                            <div class="policy-description">All expenses automatically approved by the system</div>
-                        </div>
-                    </div>
-
-                    <div class="policy-option selected" data-policy="standard">
-                        <div class="policy-radio">
-                            <div class="policy-radio-inner"></div>
-                        </div>
-                        <div class="policy-content">
-                            <div class="policy-title">Standard</div>
-                            <div class="policy-description">Receipt required, automatically approved by the system</div>
-                        </div>
-                    </div>
-
-                    <div class="policy-option" data-policy="maximum">
-                        <div class="policy-radio">
-                            <div class="policy-radio-inner"></div>
-                        </div>
-                        <div class="policy-content">
-                            <div class="policy-title">Maximum Control</div>
-                            <div class="policy-description">Admin validation required with mandatory receipt</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Version B (Compliance Rules) -->
-            <div class="policy-version-b" id="policyVersionB">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                    <h3 style="font-family: 'TT Travels', sans-serif; font-size: 18px; font-weight: 700; color: #221C46;">Compliance Rules</h3>
-                    <button class="edit-btn">Edit</button>
-                </div>
-
-                <p class="policy-description-text">
-                    Your Policy Agent enforces these rules automatically — validating, deferring, or escalating each expense. Click an article to review its provisions.
-                </p>
-
-                <div class="policy-agent-card">
-                    <div class="agent-orb"></div>
-                    <div class="agent-content">
-                        <div class="agent-header">
-                            <span class="agent-title">Policy Agent</span>
-                            <span class="live-badge">
-                                <span class="live-dot"></span>
-                                LIVE
-                            </span>
-                        </div>
-                        <div class="agent-description">
-                            Autonomously enforces 10 rules across 4 categories — validating, deferring, and escalating each expense in real time.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="compliance-articles">
+            <div class="compliance-articles">
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Article1</span>
+                                <span class="article-badge">Compliance 1</span>
                                 <span class="article-title">Required justifications</span>
                             </div>
                             <div class="article-right">
@@ -1576,7 +2088,7 @@
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Article2</span>
+                                <span class="article-badge">Compliance 2</span>
                                 <span class="article-title">Deadlines & time windows</span>
                             </div>
                             <div class="article-right">
@@ -1630,7 +2142,7 @@
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Article3</span>
+                                <span class="article-badge">Compliance 3</span>
                                 <span class="article-title">Caps & thresholds</span>
                             </div>
                             <div class="article-right">
@@ -1666,7 +2178,7 @@
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Article4</span>
+                                <span class="article-badge">Compliance 4</span>
                                 <span class="article-title">Bike accessories</span>
                             </div>
                             <div class="article-right">
@@ -1725,12 +2237,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <div class="btn-group">
-            <a href="05a-upload-data.html" class="btn btn-secondary">← Back</a>
-            <button class="btn btn-primary" id="continueBtn" disabled>Continue to Budget Groups →</button>
+            <a href="upload-data.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" id="continueBtn">Confirm & Continue →</button>
         </div>
     </div>
 
@@ -1740,7 +2251,6 @@
 
             const servicesCount = document.getElementById('servicesCount');
             const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
-            const requiredInputs = document.querySelectorAll('input[data-required="true"]');
             const continueBtn = document.getElementById('continueBtn');
 
             // Service checkbox functionality
@@ -1758,56 +2268,153 @@
             // Initial count
             updateServicesCount();
 
-            // Required fields validation
-            function checkAllFieldsFilled() {
-                let allFilled = true;
-                const missingFields = [];
+            // Continue button - always enabled, simple navigation
+            continueBtn.addEventListener('click', function() {
+                window.location.href = 'invite-employees.html';
+            });
 
-                requiredInputs.forEach(function(input) {
-                    const value = input.value.trim();
+            // Conditional Admin Validation fields
+            const bikeManualAdaptation = document.getElementById('bikeManualAdaptation');
+            const bikeAdminValidationRow = document.getElementById('bikeAdminValidationRow');
+            const carManualAdaptation = document.getElementById('carManualAdaptation');
+            const carAdminValidationRow = document.getElementById('carAdminValidationRow');
+            const pedestrianManualAdaptation = document.getElementById('pedestrianManualAdaptation');
+            const pedestrianAdminValidationRow = document.getElementById('pedestrianAdminValidationRow');
 
-                    if (value) {
-                        input.classList.add('filled');
-                    } else {
-                        allFilled = false;
-                        input.classList.remove('filled');
+            // Toggle admin validation visibility based on manual adaptation
+            function toggleAdminValidation(manualSelect, adminRow) {
+                if (manualSelect && adminRow) {
+                    const manualRow = manualSelect.closest('.allowance-row');
 
-                        // Get the field label from the allowance-row
-                        const row = input.closest('.allowance-row');
-                        if (row) {
-                            const label = row.querySelector('.allowance-label');
-                            if (label) {
-                                missingFields.push(label.textContent.trim());
+                    manualSelect.addEventListener('change', function() {
+                        if (this.value === 'Allowed') {
+                            adminRow.style.display = 'flex';
+                            // Show border on manual adaptation row
+                            if (manualRow) {
+                                manualRow.style.borderBottom = '1px solid rgba(0,0,0,0.05)';
+                            }
+                        } else {
+                            adminRow.style.display = 'none';
+                            // Hide border on manual adaptation row (it's now the last visible row)
+                            if (manualRow) {
+                                manualRow.style.borderBottom = 'none';
                             }
                         }
-                    }
-                });
-
-                continueBtn.disabled = !allFilled;
-
-                // Update tooltip with specific missing fields
-                if (allFilled) {
-                    continueBtn.removeAttribute('data-validation-message');
-                } else {
-                    const count = missingFields.length;
-                    const fieldWord = count === 1 ? 'field' : 'fields';
-                    const message = count + ' required ' + fieldWord + ' missing (' + missingFields.join(', ') + ')';
-                    continueBtn.setAttribute('data-validation-message', message);
+                    });
                 }
             }
 
-            requiredInputs.forEach(function(input) {
-                input.addEventListener('input', checkAllFieldsFilled);
-            });
+            toggleAdminValidation(bikeManualAdaptation, bikeAdminValidationRow);
+            toggleAdminValidation(carManualAdaptation, carAdminValidationRow);
+            toggleAdminValidation(pedestrianManualAdaptation, pedestrianAdminValidationRow);
 
-            // Initial check
-            checkAllFieldsFilled();
+            // Add groups button functionality - Open Modal
+            const addGroupBtn = document.getElementById('addGroupBtn');
+            const addGroupModal = document.getElementById('addGroupModal');
+            const modalCancelBtn = document.getElementById('modalCancelBtn');
+            const modalSaveBtn = document.getElementById('modalSaveBtn');
+            const groupsTableBody = document.getElementById('groupsTableBody');
 
-            continueBtn.addEventListener('click', function() {
-                if (!this.disabled) {
-                    window.location.href = '07b-group-review-incomplete.html';
-                }
-            });
+            // Open modal
+            if (addGroupBtn) {
+                addGroupBtn.addEventListener('click', function() {
+                    addGroupModal.classList.add('active');
+                    // Clear form
+                    document.getElementById('modalGroupName').value = '';
+                    document.getElementById('modalBudget').value = '';
+                    document.getElementById('modalPeriod').value = 'Monthly';
+                    document.getElementById('modalHideBudget').checked = false;
+                    document.getElementById('modalResetBudget').checked = true;
+                    document.getElementById('modalProrateEntry').checked = true;
+                    document.getElementById('modalProrateExit').checked = true;
+                });
+            }
+
+            // Close modal
+            if (modalCancelBtn) {
+                modalCancelBtn.addEventListener('click', function() {
+                    addGroupModal.classList.remove('active');
+                });
+            }
+
+            // Close modal when clicking overlay
+            if (addGroupModal) {
+                addGroupModal.addEventListener('click', function(e) {
+                    if (e.target === addGroupModal) {
+                        addGroupModal.classList.remove('active');
+                    }
+                });
+            }
+
+            // Save new group
+            if (modalSaveBtn) {
+                modalSaveBtn.addEventListener('click', function() {
+                    const groupName = document.getElementById('modalGroupName').value.trim();
+                    const period = document.getElementById('modalPeriod').value;
+                    const budget = document.getElementById('modalBudget').value;
+                    const hideBudget = document.getElementById('modalHideBudget').checked;
+                    const resetBudget = document.getElementById('modalResetBudget').checked;
+                    const prorateEntry = document.getElementById('modalProrateEntry').checked;
+                    const prorateExit = document.getElementById('modalProrateExit').checked;
+
+                    // Validate
+                    if (!groupName) {
+                        alert('Please enter a group name');
+                        return;
+                    }
+                    if (!budget || budget <= 0) {
+                        alert('Please enter a valid budget amount');
+                        return;
+                    }
+
+                    const groupId = groupName.toLowerCase().replace(/\s+/g, '-');
+
+                    // Create new row
+                    const newRow = document.createElement('tr');
+                    newRow.setAttribute('data-group', groupId);
+                    newRow.innerHTML = `
+                        <td class="group-name-cell">${groupName}</td>
+                        <td>
+                            <select class="table-select-sm" id="${groupId}-period">
+                                <option value="Monthly" ${period === 'Monthly' ? 'selected' : ''}>Monthly</option>
+                                <option value="Quarterly" ${period === 'Quarterly' ? 'selected' : ''}>Quarterly</option>
+                                <option value="Yearly" ${period === 'Yearly' ? 'selected' : ''}>Yearly</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="currency-input-wrapper">
+                                <span class="currency-symbol">€</span>
+                                <input type="number" class="table-input-sm with-currency" id="${groupId}-budget" value="${budget}" min="0">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-checkbox-wrapper" data-tooltip="Your employees will not see the available balance, only the amount spent.">
+                                <input type="checkbox" class="table-checkbox" id="${groupId}-hide-budget" ${hideBudget ? 'checked' : ''}>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-checkbox-wrapper" data-tooltip="Assuming the monthly budget is set at €100, and €30 is spent within the month, the budget will automatically reset to €100 the next month.">
+                                <input type="checkbox" class="table-checkbox" id="${groupId}-reset" ${resetBudget ? 'checked' : ''}>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on join date. Example: €100 monthly budget, employee joins Jan 15th = €51.61 for January (100 × 16/31 days).">
+                                <input type="checkbox" class="table-checkbox" id="${groupId}-prorate-entry" ${prorateEntry ? 'checked' : ''}>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-checkbox-wrapper" data-tooltip="When enabled, budget is prorated based on exit date. Example: €100 monthly budget, employee exits Mar 23rd = €75.19 for March (100 × 23/31 days used).">
+                                <input type="checkbox" class="table-checkbox" id="${groupId}-prorate-exit" ${prorateExit ? 'checked' : ''}>
+                            </div>
+                        </td>
+                    `;
+
+                    groupsTableBody.appendChild(newRow);
+
+                    // Close modal
+                    addGroupModal.classList.remove('active');
+                });
+            }
 
             // Policy selection functionality
             const policyOptions = document.querySelectorAll('.policy-option');
@@ -1847,28 +2454,6 @@
                 });
             }
 
-            // A/B Testing Toggle
-            const abToggle = document.getElementById('abToggle');
-            const policyVersionA = document.getElementById('policyVersionA');
-            const policyVersionB = document.getElementById('policyVersionB');
-
-            abToggle.addEventListener('click', function() {
-                abToggle.classList.toggle('active');
-
-                if (abToggle.classList.contains('active')) {
-                    // Show Version B (Compliance Rules)
-                    policyVersionA.classList.add('hidden');
-                    policyVersionB.classList.add('active');
-                } else {
-                    // Show Version A (Current)
-                    policyVersionA.classList.remove('hidden');
-                    policyVersionB.classList.remove('active');
-                }
-
-                // Re-initialize Lucide icons for the newly shown content
-                lucide.createIcons();
-            });
-
             // Article Expansion
             const articleItems = document.querySelectorAll('.article-item');
 
@@ -1899,5 +2484,76 @@
             });
         });
     </script>
+
+    <!-- Add Budget Group Modal -->
+    <div class="modal-overlay" id="addGroupModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Add Budget Group</div>
+                <div class="modal-subtitle">Configure a new budget group for your organization</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-field">
+                    <label class="modal-label">Group Name</label>
+                    <input type="text" class="modal-input" id="modalGroupName" placeholder="e.g., Managers, Contractors, Executives">
+                </div>
+
+                <div class="modal-field">
+                    <label class="modal-label">Period</label>
+                    <select class="modal-input" id="modalPeriod">
+                        <option value="Monthly" selected>Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+
+                <div class="modal-field">
+                    <label class="modal-label">Budget Amount (€)</label>
+                    <input type="number" class="modal-input" id="modalBudget" placeholder="e.g., 500" min="0">
+                </div>
+
+                <div class="modal-field">
+                    <label class="modal-label">Budget Settings</label>
+                    <div class="modal-checkbox-group">
+                        <div class="modal-checkbox-item">
+                            <input type="checkbox" id="modalHideBudget">
+                            <label class="modal-checkbox-label" for="modalHideBudget">
+                                <div class="modal-checkbox-title">Hide Budget</div>
+                                <div class="modal-checkbox-description">Employees will not see the available balance, only the amount spent.</div>
+                            </label>
+                        </div>
+
+                        <div class="modal-checkbox-item">
+                            <input type="checkbox" id="modalResetBudget" checked>
+                            <label class="modal-checkbox-label" for="modalResetBudget">
+                                <div class="modal-checkbox-title">Reset Budget</div>
+                                <div class="modal-checkbox-description">Budget automatically resets each period (e.g., €100 spent in January resets to €100 in February).</div>
+                            </label>
+                        </div>
+
+                        <div class="modal-checkbox-item">
+                            <input type="checkbox" id="modalProrateEntry" checked>
+                            <label class="modal-checkbox-label" for="modalProrateEntry">
+                                <div class="modal-checkbox-title">Prorate Entry</div>
+                                <div class="modal-checkbox-description">Budget is prorated based on join date (e.g., joining mid-month = 50% of monthly budget).</div>
+                            </label>
+                        </div>
+
+                        <div class="modal-checkbox-item">
+                            <input type="checkbox" id="modalProrateExit" checked>
+                            <label class="modal-checkbox-label" for="modalProrateExit">
+                                <div class="modal-checkbox-title">Prorate Exit</div>
+                                <div class="modal-checkbox-description">Budget is prorated based on exit date (e.g., leaving mid-month = only charged for days worked).</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" id="modalCancelBtn">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="modalSaveBtn">Add Group</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

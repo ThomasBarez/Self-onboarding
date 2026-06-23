@@ -1,1 +1,9 @@
-[2026-05-20T07:35:47.216Z] [error] Failed to load resource: the server responded with a status of 404 (File not found)
+[2026-05-21T18:43:48.685Z] [log] %c%s color: red; background: yellow; font-size: 24px; WARNING!
+[2026-05-21T18:43:48.685Z] [log] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
+Do not enter or paste code that you do not understand.
+[2026-05-21T18:43:49.619Z] [log] %c%s color: red; background: yellow; font-size: 24px; WAARSCHUWING!
+[2026-05-21T18:43:49.619Z] [log] %c%s font-size: 18px; Als je deze console gebruikt, kunnen aanvallers je identiteit nabootsen en je gegevens stelen via een aanval die Self-XSS wordt genoemd.
+Je moet geen code opgeven of plakken die je niet begrijpt.
+[2026-05-21T18:44:44.650Z] [log] %c%s color: red; background: yellow; font-size: 24px; WARNING!
+[2026-05-21T18:44:44.650Z] [log] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
+Do not enter or paste code that you do not understand.

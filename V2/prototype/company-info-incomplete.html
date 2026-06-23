@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
     <title>Company Information - Mobility</title>
     <style>
         * {
@@ -22,7 +23,7 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             background: white;
-            border-bottom: 1px solid #E5E5E5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             padding: 16px 32px;
             align-items: center;
             position: sticky;
@@ -93,13 +94,14 @@
         }
 
         .header-btn {
+            border: none;
             padding: 10px 20px;
             font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
             color: #221C46;
             background: #F3F4F6;
-            border: 1px solid #E5E7EB;
+            
             border-radius: 100px;
             cursor: pointer;
             transition: all 0.2s;
@@ -111,7 +113,7 @@
         }
 
         .container {
-            max-width: 1024px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 48px 24px;
         }
@@ -138,7 +140,7 @@
         h1 {
             font-family: 'TT Travels', sans-serif;
             font-weight: 700;
-            font-size: 32px;
+            font-size: 24px;
             color: #221C46;
             margin-bottom: 8px;
         }
@@ -154,7 +156,7 @@
 
         .card {
             background: white;
-            border: 1px solid #E5E5E5;
+            
             border-radius: 12px;
             padding: 33px;
             margin-bottom: 24px;
@@ -176,6 +178,14 @@
             font-weight: 700;
             font-size: 18px;
             color: #221C46;
+        }
+
+        .section-subtitle {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: #9CA3AF;
+            margin-left: 4px;
         }
 
         .section-icon {
@@ -260,15 +270,7 @@
         }
 
         .required-badge {
-            display: inline-block;
-            background: #FFEDD5;
-            color: #C2410C;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 11px;
-            white-space: nowrap;
+            display: none;
         }
 
         .btn-group {
@@ -700,7 +702,7 @@
             <span class="logo-text">Mobility</span>
         </a>
         <div class="progress">
-            <span class="progress-text">Step 1 of 5</span>
+            <span class="progress-text">Step 1 of 6</span>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
@@ -718,142 +720,76 @@
             <span class="current">Company Information</span>
         </div>
 
-        <h1>Hey Thomas 👋 We've got most of your info ready</h1>
+        <h1>Review your company information</h1>
         <p class="page-description">
-            Good news! We pulled most of your company details from your documents. Just fill in a few blanks and double-check everything looks right—you're almost done with this step.
+            Good news! We've pre-filled your company details for you. Just double-check everything looks right. If you spot a typo or need to make any changes, edit the fields below. This is a simple verification step with no legal commitment attached.
         </p>
 
         <div class="card">
             <div class="section-header">
                 <div class="section-title">
                     Company Details
+                    <span class="section-subtitle">(Pre-filled from provisioning)</span>
                 </div>
             </div>
 
             <div class="table-row">
                 <div class="table-label">
-                    Entity name
-                    <span class="required-badge">Required</span>
+                    Legal name
                 </div>
-                <input type="text" class="table-input" id="entityName" value="Selligent SA / Marigold Europe" data-required="true">
+                <input type="text" class="table-input" id="entityName" value="Selligent SA / Marigold Europe">
             </div>
 
             <div class="table-row">
                 <div class="table-label">
                     Parent entity
-                    <span class="required-badge">Required</span>
                 </div>
-                <input type="text" class="table-input" id="parentEntity" value="ZETA GLOBAL" data-required="true">
+                <input type="text" class="table-input" id="parentEntity" value="ZETA GLOBAL">
             </div>
 
             <div class="table-row">
                 <div class="table-label">
                     VAT number
-                    <span class="required-badge">Required</span>
                 </div>
-                <input type="text" class="table-input" id="vatNumber" value="BE12 2345 2435 2344 2343" data-required="true" disabled style="background: #F9FAFB; cursor: not-allowed; opacity: 0.6;">
+                <input type="text" class="table-input" id="vatNumber" value="BE12 2345 2435 2344 2343" disabled style="background: #F9FAFB; cursor: not-allowed; opacity: 0.6;">
             </div>
 
             <div class="table-row">
                 <div class="table-label">
-                    Address
-                    <span class="required-badge">Required</span>
+                    Registered address
                 </div>
-                <input type="text" class="table-input" id="address" value="Avenue de Finlande 8, 1420 Braine l'Alleud" data-required="true">
+                <input type="text" class="table-input" id="address" value="Avenue de Finlande 8, 1420 Braine l'Alleud">
             </div>
 
             <div class="table-row">
                 <div class="table-label">
                     Invoice recipient email
-                    <span class="required-badge">Required</span>
                 </div>
-                <input type="email" class="table-input" id="email" value="accounting@zetaglobal.com" data-required="true">
+                <input type="email" class="table-input" id="email" value="accounting@zetaglobal.com">
             </div>
 
             <div class="table-row">
                 <div class="table-label">
                     Number of employees
-                    <span class="required-badge">Required</span>
                 </div>
-                <input type="number" class="table-input" id="employees" value="20" data-required="true">
+                <input type="number" class="table-input" id="employees" value="20">
             </div>
         </div>
 
         <div class="btn-group">
             <a href="04-login.html" class="btn btn-secondary">← Back</a>
-            <button class="btn btn-primary" id="continueBtn" disabled>Continue to Program Review →</button>
+            <button class="btn btn-primary" id="continueBtn">Confirm & Continue →</button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
-            const requiredInputs = document.querySelectorAll('input[data-required="true"]');
             const continueBtn = document.getElementById('continueBtn');
 
-            function checkAllFieldsFilled() {
-                let allFilled = true;
-                const missingFields = [];
-
-                requiredInputs.forEach(function(input) {
-                    const value = input.value.trim();
-
-                    if (value) {
-                        input.classList.remove('error');
-                        input.classList.add('filled');
-                    } else {
-                        allFilled = false;
-                        input.classList.remove('filled');
-
-                        // Get the field label from the previous sibling
-                        const row = input.closest('.table-row');
-                        if (row) {
-                            const label = row.querySelector('.table-label');
-                            if (label) {
-                                // Get just the text, not the "Required" badge
-                                const labelText = label.childNodes[0].textContent.trim();
-                                missingFields.push(labelText);
-                            }
-                        }
-                    }
-                });
-
-                continueBtn.disabled = !allFilled;
-
-                // Update tooltip with specific missing fields
-                if (allFilled) {
-                    continueBtn.removeAttribute('data-validation-message');
-                } else {
-                    const count = missingFields.length;
-                    const fieldWord = count === 1 ? 'field' : 'fields';
-                    const message = count + ' required ' + fieldWord + ' missing (' + missingFields.join(', ') + ')';
-                    continueBtn.setAttribute('data-validation-message', message);
-                }
-            }
-
-            // Initial check for pre-filled values
-            requiredInputs.forEach(function(input) {
-                if (input.value.trim()) {
-                    input.classList.add('filled');
-                }
-            });
-
-            requiredInputs.forEach(function(input) {
-                input.addEventListener('input', checkAllFieldsFilled);
-                input.addEventListener('blur', function() {
-                    if (!this.value.trim()) {
-                        this.classList.add('error');
-                    }
-                });
-            });
-
-            // Initial check
-            checkAllFieldsFilled();
-
+            // Button always enabled - simple continue action
             continueBtn.addEventListener('click', function() {
-                if (!this.disabled) {
-                    window.location.href = '05a-upload-data.html';
-                }
+                window.location.href = 'upload-data.html';
             });
 
             // Help Drawer functionality

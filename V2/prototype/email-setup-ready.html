@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas, your Skipr mobility program is 85% configured</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .email-header {
+            background-color: #221C46;
+            padding: 40px 40px 0;
+        }
+
+        .logo {
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-x {
+            color: #2BFD7F;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+            vertical-align: bottom;
+        }
+
+        .email-content {
+            background-color: #221C46;
+            padding: 0 40px 60px;
+            color: white;
+        }
+
+        .greeting {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .highlight {
+            color: #2BFD7F;
+        }
+
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #E5E7EB;
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            margin: 0 0 32px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: white;
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .feature-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #2BFD7F;
+            color: #221C46;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 16px 0 32px;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #45FD8F;
+        }
+
+        .footer-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #D1D5DB;
+            margin-bottom: 8px;
+        }
+
+        .ps-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #9CA3AF;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .email-footer {
+            background-color: #1A1638;
+            padding: 32px 40px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 0 0 16px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-links li {
+            display: inline;
+            margin: 0 12px;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: #2BFD7F;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #6B7280;
+            line-height: 1.5;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header with Logo -->
+        <div class="email-header">
+            <div class="logo">
+                <span class="logo-text">plu<span class="logo-x">x</span>ee</span>
+            </div>
+
+            <!-- Hero Image -->
+            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&h=500&fit=crop&q=80"
+                 alt="People enjoying mobility"
+                 class="hero-image">
+        </div>
+
+        <!-- Main Content -->
+        <div class="email-content">
+            <h1 class="greeting">
+                Hi Thomas,<br>
+                <span class="highlight">your setup is</span><br>
+                85% ready.
+            </h1>
+
+            <p class="intro-text">
+                Your Skipr Federal Mobility Budget is ready to review.
+            </p>
+
+            <p class="intro-text">
+                I've configured it based on what <strong>500+ companies with 20 employees</strong> actually do:
+            </p>
+
+            <ul class="feature-list">
+                <li>Budget range: €3,233–€17,244 (standard for your team size)</li>
+                <li>4 employee tiers with recommended monthly budgets</li>
+                <li>14 mobility services (train, bike, car rental, taxi, etc.)</li>
+                <li>11 compliance rules (Belgian law + best practices)</li>
+            </ul>
+
+            <p class="intro-text">
+                <strong>Review and launch in 3 minutes.</strong>
+            </p>
+
+            <a href="http://localhost:5173/V2/prototype/company-info-incomplete.html" class="cta-button">
+                Review My Setup
+            </a>
+
+            <p class="footer-text">
+                Questions? Reply to this email — I'm Max, your implementation partner.
+            </p>
+
+            <p class="ps-text">
+                <strong>P.S.</strong> Most 20-person teams launch as-is. If you adjust anything, it's usually budget amounts or one service.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <ul class="footer-links">
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Support</a></li>
+                <li><a href="#">Unsubscribe</a></li>
+            </ul>
+
+            <p class="footer-note">
+                Pluxee Belgium | Avenue de Finlande 8, 1420 Braine-l'Alleud<br>
+                © 2024 Pluxee. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
