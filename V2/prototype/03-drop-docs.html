@@ -445,6 +445,22 @@
             }
         }
 
+        .thinking-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            animation: iconSpin 2s linear infinite;
+        }
+
+        @keyframes iconSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .btn-group {
             display: flex;
             gap: 12px;
@@ -715,7 +731,7 @@
                 originalValues[index] = value.textContent;
                 value.classList.add('thinking');
                 const message = thinkingMessages[index] || 'Computing';
-                value.innerHTML = message + '<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
+                value.innerHTML = '<svg class="thinking-icon" width="16" height="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#9CA3AF"/></svg>' + message + '<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
             });
 
             // Reveal values one by one with staggered timing
