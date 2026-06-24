@@ -603,7 +603,7 @@
                         forfaitInputs.classList.remove('active');
                         ineligibleMessage.classList.add('active');
                         budgetResult.classList.remove('active');
-                        continueBtn.disabled = false; // Can continue but without FMB
+                        continueBtn.disabled = true; // Cannot continue without meeting requirement
                     }
 
                     checkFormComplete();
@@ -627,7 +627,7 @@
 
             function checkFormComplete() {
                 if (!has36MonthCar) {
-                    continueBtn.disabled = false;
+                    continueBtn.disabled = true;
                     return;
                 }
 
