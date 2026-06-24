@@ -2336,7 +2336,7 @@
                         <span class="agent-title">Policy Agent</span>
                     </div>
                     <div class="agent-description">
-                        Automatically checks 10 compliance rules across 4 categories — approving, holding, or flagging each expense in real time.
+                        Automatically checks 12 compliance rules across 6 categories — approving, holding, or flagging each expense in real time.
                     </div>
                 </div>
             </div>
@@ -2345,11 +2345,152 @@
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Compliance 1</span>
+                                <span class="article-badge">Rule 1</span>
+                                <span class="article-title">Service out of policy</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">2 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Unauthorized service category</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Expense from a service not enabled in your mobility program requires approval.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="alert-circle"></i>
+                                            Manager approval required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Service tier mismatch</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Employee tier does not allow access to this premium service category.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="user"></i>
+                                            Tier validation
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Rule 2</span>
+                                <span class="article-title">Unknown provider</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">2 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Unrecognized merchant</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Provider not in our verified mobility services database requires manual review.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="search"></i>
+                                            Manual verification
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">New provider validation</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        First-time provider usage triggers validation of service category and eligibility.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="check-circle"></i>
+                                            One-time check
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Rule 3</span>
+                                <span class="article-title">Receipt don't match</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">2 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Amount mismatch detected</span>
+                                        <span class="rule-type escalate">Escalate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Uploaded receipt amount doesn't match claimed expense amount.
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="alert-triangle"></i>
+                                            Requires correction
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Receipt quality check</span>
+                                        <span class="rule-type defer">Defer</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Receipt is illegible or missing required information (date, merchant, amount).
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="file-text"></i>
+                                            Re-upload needed
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Rule 4</span>
                                 <span class="article-title">Required justifications</span>
                             </div>
                             <div class="article-right">
-                                <span class="article-count">3 rules</span>
+                                <span class="article-count">2 rules</span>
                                 <i data-lucide="chevron-down" class="article-chevron"></i>
                             </div>
                         </div>
@@ -2376,21 +2517,6 @@
                                 </div>
                                 <div class="rule-item">
                                     <div class="rule-header">
-                                        <span class="rule-name">Business purpose required</span>
-                                        <span class="rule-type defer">Defer</span>
-                                    </div>
-                                    <div class="rule-description">
-                                        All expenses must include a business justification before approval.
-                                    </div>
-                                    <div class="rule-meta">
-                                        <div class="rule-meta-item">
-                                            <i data-lucide="alert-circle"></i>
-                                            Manager review
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-header">
                                         <span class="rule-name">Odometer proof for car allowance</span>
                                         <span class="rule-type validate">Validate</span>
                                     </div>
@@ -2411,101 +2537,11 @@
                     <div class="article-item">
                         <div class="article-header">
                             <div class="article-left">
-                                <span class="article-badge">Compliance 2</span>
-                                <span class="article-title">Deadlines & time windows</span>
-                            </div>
-                            <div class="article-right">
-                                <span class="article-count">3 rules</span>
-                                <i data-lucide="chevron-down" class="article-chevron"></i>
-                            </div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-rules">
-                                <div class="rule-item">
-                                    <div class="rule-header">
-                                        <span class="rule-name">30-day submission window</span>
-                                        <span class="rule-type escalate">Escalate</span>
-                                    </div>
-                                    <div class="rule-description">
-                                        Expenses must be submitted within 30 days of the transaction date.
-                                    </div>
-                                    <div class="rule-meta">
-                                        <div class="rule-meta-item">
-                                            <i data-lucide="calendar"></i>
-                                            30-day limit
-                                        </div>
-                                        <div class="rule-meta-item">
-                                            <i data-lucide="user"></i>
-                                            Admin approval required if late
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-header">
-                                        <span class="rule-name">End-of-month cutoff</span>
-                                        <span class="rule-type defer">Defer</span>
-                                    </div>
-                                    <div class="rule-description">
-                                        Submissions after the 25th are processed in the following month's payroll.
-                                    </div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-header">
-                                        <span class="rule-name">Weekend approval delay</span>
-                                        <span class="rule-type defer">Defer</span>
-                                    </div>
-                                    <div class="rule-description">
-                                        Expenses submitted during weekends are queued for Monday processing.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-header">
-                            <div class="article-left">
-                                <span class="article-badge">Compliance 3</span>
-                                <span class="article-title">Caps & thresholds</span>
-                            </div>
-                            <div class="article-right">
-                                <span class="article-count">1 rule</span>
-                                <i data-lucide="chevron-down" class="article-chevron"></i>
-                            </div>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-rules">
-                                <div class="rule-item">
-                                    <div class="rule-header">
-                                        <span class="rule-name">€500 escalation threshold</span>
-                                        <span class="rule-type escalate">Escalate</span>
-                                    </div>
-                                    <div class="rule-description">
-                                        Any single expense over €500 requires C-level approval before reimbursement.
-                                    </div>
-                                    <div class="rule-meta">
-                                        <div class="rule-meta-item">
-                                            <i data-lucide="euro"></i>
-                                            €500 threshold
-                                        </div>
-                                        <div class="rule-meta-item">
-                                            <i data-lucide="shield"></i>
-                                            C-level approval
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-item">
-                        <div class="article-header">
-                            <div class="article-left">
-                                <span class="article-badge">Compliance 4</span>
+                                <span class="article-badge">Rule 5</span>
                                 <span class="article-title">Bike accessories</span>
                             </div>
                             <div class="article-right">
-                                <span class="article-count">3 rules</span>
+                                <span class="article-count">2 rules</span>
                                 <i data-lucide="chevron-down" class="article-chevron"></i>
                             </div>
                         </div>
@@ -2541,18 +2577,54 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-item">
+                        <div class="article-header">
+                            <div class="article-left">
+                                <span class="article-badge">Rule 6</span>
+                                <span class="article-title">Caps & thresholds</span>
+                            </div>
+                            <div class="article-right">
+                                <span class="article-count">2 rules</span>
+                                <i data-lucide="chevron-down" class="article-chevron"></i>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-rules">
                                 <div class="rule-item">
                                     <div class="rule-header">
-                                        <span class="rule-name">Clothing requires approval</span>
+                                        <span class="rule-name">Monthly budget limit</span>
                                         <span class="rule-type escalate">Escalate</span>
                                     </div>
                                     <div class="rule-description">
-                                        Cycling apparel (jerseys, shorts, shoes) requires manager pre-approval.
+                                        Employee exceeds their monthly mobility budget allocation for their tier.
                                     </div>
                                     <div class="rule-meta">
                                         <div class="rule-meta-item">
-                                            <i data-lucide="user"></i>
-                                            Manager approval
+                                            <i data-lucide="euro"></i>
+                                            Budget threshold
+                                        </div>
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="alert-circle"></i>
+                                            Approval required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rule-item">
+                                    <div class="rule-header">
+                                        <span class="rule-name">Service-specific cap</span>
+                                        <span class="rule-type validate">Validate</span>
+                                    </div>
+                                    <div class="rule-description">
+                                        Per-service spending limits apply (e.g., €50/month for bike parking, €100/month for public transport).
+                                    </div>
+                                    <div class="rule-meta">
+                                        <div class="rule-meta-item">
+                                            <i data-lucide="layers"></i>
+                                            Service limits
                                         </div>
                                     </div>
                                 </div>
