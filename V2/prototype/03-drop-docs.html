@@ -386,13 +386,30 @@
         }
 
         .summary-value.thinking {
-            background: none;
-            -webkit-background-clip: unset;
-            -webkit-text-fill-color: #9CA3AF;
-            background-clip: unset;
+            background: linear-gradient(90deg,
+                #9CA3AF 0%,
+                #6B7280 25%,
+                #4B5563 50%,
+                #6B7280 75%,
+                #9CA3AF 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 2s linear infinite;
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .thinking-dots {
