@@ -566,9 +566,9 @@
             let has36MonthCar = null;
             let fuelPaid = null;
 
-            // Check if we have pre-filled data from qualification call
+            // Base case: Data pre-filled from qualification call
             // In real app, this would come from backend
-            const hasPrefilledData = false; // Set to true if data from qual call
+            const hasPrefilledData = true; // Data from qualification call
 
             if (hasPrefilledData) {
                 // Pre-fill and pre-select if data exists
@@ -586,6 +586,7 @@
                 fuelPaid = true;
 
                 calculateBudget();
+                continueBtn.disabled = false;
             }
 
             // Handle 36-month question
