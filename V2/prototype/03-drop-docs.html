@@ -385,6 +385,52 @@
             width: fit-content;
         }
 
+        .summary-value.thinking {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: #9CA3AF;
+            background-clip: unset;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .thinking-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .thinking-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #9CA3AF;
+            animation: thinkingPulse 1.4s ease-in-out infinite;
+        }
+
+        .thinking-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .thinking-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .thinking-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes thinkingPulse {
+            0%, 60%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
         .btn-group {
             display: flex;
             gap: 12px;
@@ -633,6 +679,28 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+    </script>
+    <script>
+        // Thinking animation for summary values
+        document.addEventListener('DOMContentLoaded', function() {
+            const summaryValues = document.querySelectorAll('.summary-value');
+            const originalValues = [];
+
+            // Store original values and show thinking state
+            summaryValues.forEach((value, index) => {
+                originalValues[index] = value.textContent;
+                value.classList.add('thinking');
+                value.innerHTML = 'Computing<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
+            });
+
+            // Reveal values one by one with staggered timing
+            summaryValues.forEach((value, index) => {
+                setTimeout(() => {
+                    value.classList.remove('thinking');
+                    value.textContent = originalValues[index];
+                }, 800 + (index * 200)); // Stagger by 200ms each
+            });
+        });
     </script>
 </body>
 </html>
