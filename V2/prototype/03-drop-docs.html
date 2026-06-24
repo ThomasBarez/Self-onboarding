@@ -686,11 +686,22 @@
             const summaryValues = document.querySelectorAll('.summary-value');
             const originalValues = [];
 
+            // Custom thinking messages for each field
+            const thinkingMessages = [
+                'Analyzing services',      // Mobility services
+                'Detecting tiers',         // Employee tiers
+                'Checking compliance',     // Compliance rules
+                'Calculating distances',   // Distance allowances
+                'Computing budget',        // Budget range
+                'Identifying program'      // Program type
+            ];
+
             // Store original values and show thinking state
             summaryValues.forEach((value, index) => {
                 originalValues[index] = value.textContent;
                 value.classList.add('thinking');
-                value.innerHTML = 'Computing<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
+                const message = thinkingMessages[index] || 'Computing';
+                value.innerHTML = message + '<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
             });
 
             // Reveal values one by one with staggered timing
