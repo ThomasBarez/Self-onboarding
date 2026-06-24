@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm FMB Eligibility - Mobility</title>
+    <title>Federal Mobility Budget Eligibility - Mobility</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
@@ -45,7 +45,6 @@
             font-size: 14px;
             color: #221C46;
             background: #F3F4F6;
-            
             border-radius: 100px;
             cursor: pointer;
             transition: all 0.2s;
@@ -122,7 +121,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
             font-family: 'TT Travels', sans-serif;
             font-size: 13px;
         }
@@ -141,7 +140,7 @@
             font-weight: 600;
             font-size: 24px;
             color: #111827;
-            margin-bottom: 24px;
+            margin-bottom: 8px;
             line-height: 1.3;
         }
 
@@ -151,87 +150,59 @@
             font-size: 15px;
             line-height: 24px;
             color: #6B7280;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .card {
             background: white;
-            
             border-radius: 12px;
-            padding: 33px;
+            padding: 32px;
             margin-bottom: 24px;
         }
 
-        .attestation-statement {
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 0;
-            margin-bottom: 32px;
-        }
-
-        .statement-header {
+        .section-title {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 16px;
             color: #111827;
             margin-bottom: 16px;
         }
 
-        .statement-text {
+        .legal-requirement {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .legal-requirement-text {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 400;
             font-size: 14px;
             line-height: 22px;
             color: #111827;
-            margin-bottom: 16px;
         }
 
-        .statement-text strong {
-            font-weight: 500;
-            color: #111827;
-        }
-
-        .statement-source {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 12px;
-            color: #9CA3AF;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .statement-source i {
-            width: 14px;
-            height: 14px;
-        }
-
-        .decision-section {
-        }
-
-        .decision-title {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            color: #111827;
-            margin-bottom: 16px;
+        .legal-requirement-text strong {
+            font-weight: 600;
         }
 
         .decision-options {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
+            margin-bottom: 32px;
         }
 
         .decision-option {
             background: white;
-            border: 1px solid #E5E7EB;
-            border-radius: 6px;
-            padding: 16px 18px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
             cursor: pointer;
             transition: all 0.15s;
             display: flex;
-            align-items: start;
+            align-items: center;
             gap: 12px;
         }
 
@@ -245,13 +216,12 @@
             background: #EEF2FF;
         }
 
-        .decision-checkbox {
+        .decision-radio {
             width: 20px;
             height: 20px;
             border: 2px solid #D1D5DB;
-            border-radius: 4px;
+            border-radius: 50%;
             flex-shrink: 0;
-            margin-top: 1px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -259,26 +229,9 @@
             background: white;
         }
 
-        .decision-option.selected .decision-checkbox {
+        .decision-option.selected .decision-radio {
             border-color: #6366F1;
-            background: #6366F1;
-        }
-
-        .decision-checkbox i,
-        .decision-checkbox svg {
-            width: 14px;
-            height: 14px;
-            color: white;
-            display: none;
-        }
-
-        .decision-option.selected .decision-checkbox i,
-        .decision-option.selected .decision-checkbox svg {
-            display: block;
-        }
-
-        .decision-content {
-            flex: 1;
+            border-width: 6px;
         }
 
         .decision-label {
@@ -286,104 +239,156 @@
             font-weight: 500;
             font-size: 14px;
             color: #111827;
-            margin-bottom: 2px;
         }
 
-        .decision-description {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            line-height: 20px;
-            color: #6B7280;
-        }
-
-        .contradiction-message {
+        .forfait-inputs {
             display: none;
-            background: #FFFBEB;
-            border: 1px solid #FDE68A;
-            border-radius: 12px;
-            padding: 20px 24px;
             margin-top: 24px;
         }
 
-        .contradiction-message.active {
+        .forfait-inputs.active {
             display: block;
         }
 
-        .contradiction-header {
-            display: flex;
-            align-items: start;
-            gap: 16px;
-            margin-bottom: 16px;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .contradiction-icon {
-            width: 24px;
-            height: 24px;
-            color: #D97706;
-            flex-shrink: 0;
-        }
-
-        .contradiction-content {
-            flex: 1;
-        }
-
-        .contradiction-title {
+        .form-label {
             font-family: 'TT Travels', sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 14px;
-            color: #92400E;
+            color: #111827;
             margin-bottom: 8px;
+            display: block;
         }
 
-        .contradiction-text {
+        .form-help {
             font-family: 'TT Travels', sans-serif;
             font-size: 13px;
-            line-height: 20px;
-            color: #78350F;
-            margin-bottom: 12px;
+            color: #6B7280;
+            margin-top: 4px;
         }
 
-        .contradiction-details {
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #111827;
             background: white;
-            border: 1px solid #FCD34D;
+            border: 1px solid #E5E7EB;
             border-radius: 8px;
-            padding: 16px;
+            transition: all 0.15s;
         }
 
-        .contradiction-details-title {
+        .form-input:focus {
+            outline: none;
+            border-color: #6366F1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-input.prefilled {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
             font-family: 'TT Travels', sans-serif;
-            font-weight: 600;
-            font-size: 13px;
-            color: #92400E;
-            margin-bottom: 8px;
+            font-size: 14px;
+            color: #6B7280;
+            pointer-events: none;
         }
 
-        .contradiction-details-text {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            line-height: 20px;
-            color: #78350F;
+        .form-input.with-suffix {
+            padding-right: 50px;
         }
 
-        .legal-disclaimer {
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 0;
+        .budget-result {
+            display: none;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(90deg, rgba(51, 135, 248, 0.5) 0%, rgba(211, 82, 195, 0.5) 35.1%, rgba(249, 51, 99, 0.5) 68.75%, rgba(255, 117, 26, 0.5) 100%) border-box;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 24px;
             margin-top: 24px;
         }
 
-        .legal-disclaimer-text {
+        .budget-result.active {
+            display: block;
+        }
+
+        .budget-result-title {
             font-family: 'TT Travels', sans-serif;
-            font-size: 12px;
-            line-height: 18px;
-            color: #9CA3AF;
+            font-weight: 700;
+            font-size: 18px;
+            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .budget-result-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            line-height: 22px;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .budget-amount {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: fit-content;
+        }
+
+        .ineligible-message {
+            display: none;
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .ineligible-message.active {
+            display: block;
+        }
+
+        .ineligible-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #991B1B;
+            margin-bottom: 8px;
+        }
+
+        .ineligible-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            line-height: 22px;
+            color: #7F1D1D;
         }
 
         .btn-group {
             display: flex;
             gap: 12px;
-            margin-top: 48px;
+            margin-top: 32px;
+            justify-content: flex-start;
         }
 
         .btn {
@@ -460,49 +465,79 @@
             <span class="current">Federal Mobility Budget Eligibility</span>
         </div>
 
-        <h1>Does your company qualify for the Federal Mobility Budget?</h1>
+        <h1>Federal Mobility Budget Eligibility</h1>
+        <p class="page-description">To calculate your Federal Mobility Budget, we need some information about your company car policy.</p>
 
         <div class="card">
-            <div class="attestation-statement">
-                <div class="statement-header">Eligibility requirement</div>
-                <div class="statement-text">
-                    To qualify for the Federal Mobility Budget, your company must have had <strong>at least one company car continuously available for the past 3 years (36 months)</strong>.
+            <div class="section-title">Legal Requirement (36-month rule)</div>
+
+            <div class="legal-requirement">
+                <p class="legal-requirement-text">
+                    <strong>Belgian law requires:</strong> Your company must have had at least one company car continuously available for the past 36 months (3 years) to qualify for the Federal Mobility Budget.
+                </p>
+            </div>
+
+            <div class="decision-options">
+                <div class="decision-option" data-value="yes" id="yesOption">
+                    <div class="decision-radio"></div>
+                    <div class="decision-label">Yes, we've had at least one company car for 36 months</div>
+                </div>
+                <div class="decision-option" data-value="no" id="noOption">
+                    <div class="decision-radio"></div>
+                    <div class="decision-label">No, we don't meet this requirement</div>
                 </div>
             </div>
 
-            <div class="decision-section">
-                <div class="decision-title">Confirm this is correct</div>
-                <div class="decision-options">
-                    <div class="decision-option" id="confirmOption">
-                        <div class="decision-checkbox">
-                            <i data-lucide="check"></i>
+            <!-- Forfait Inputs (shown when YES is selected) -->
+            <div class="forfait-inputs" id="forfaitInputs">
+                <div class="section-title">Company Car Details</div>
+                <p class="page-description" style="margin-bottom: 24px;">These details help us calculate your employees' Federal Mobility Budget amounts.</p>
+
+                <div class="form-group">
+                    <label class="form-label">Catalogue value (€)</label>
+                    <input type="number" class="form-input" id="catalogueValue" placeholder="35000" min="0" step="100">
+                    <p class="form-help">The original list price of the vehicle when new</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Vehicle age (years)</label>
+                    <input type="number" class="form-input" id="vehicleAge" placeholder="3" min="0" max="20" step="0.5">
+                    <p class="form-help">Age of the vehicle in years</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Commute distance (km/year)</label>
+                    <input type="number" class="form-input" id="commuteKm" placeholder="15000" min="0" step="1000">
+                    <p class="form-help">Average annual commute distance for employees</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Fuel paid by company</label>
+                    <div class="decision-options">
+                        <div class="decision-option" data-value="yes" id="fuelYes">
+                            <div class="decision-radio"></div>
+                            <div class="decision-label">Yes, company pays for fuel</div>
                         </div>
-                        <div class="decision-content">
-                            <div class="decision-label">Yes, we've had at least one company car for the last 3 years</div>
-                            <div class="decision-description">Click to confirm this information is correct</div>
+                        <div class="decision-option" data-value="no" id="fuelNo">
+                            <div class="decision-radio"></div>
+                            <div class="decision-label">No, employee pays for fuel</div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Budget Result -->
+                <div class="budget-result" id="budgetResult">
+                    <div class="budget-result-title">Your Estimated Budget Range</div>
+                    <p class="budget-result-text">Based on your inputs, your Federal Mobility Budget range is:</p>
+                    <div class="budget-amount" id="budgetAmount">€3,233 - €17,244/year</div>
                 </div>
             </div>
 
-            <div class="contradiction-message" id="contradictionMessage">
-                <div class="contradiction-header">
-                    <i data-lucide="alert-triangle" class="contradiction-icon"></i>
-                    <div class="contradiction-content">
-                        <div class="contradiction-title">We'll need to double-check eligibility</div>
-                        <div class="contradiction-text">
-                            No problem — since this information doesn't match what we have on file, our team will verify your eligibility and get back to you.
-                        </div>
-                    </div>
-                </div>
-                <div class="contradiction-details">
-                    <div class="contradiction-details-title">What happens next?</div>
-                    <div class="contradiction-details-text">
-                        Our Customer Success team will reach out within 1-2 business days to check your eligibility for the Federal Mobility Budget. They'll walk you through the next steps.
-                    </div>
-                </div>
+            <!-- Ineligible Message -->
+            <div class="ineligible-message" id="ineligibleMessage">
+                <div class="ineligible-title">Not Eligible for Federal Mobility Budget</div>
+                <p class="ineligible-text">Unfortunately, your company doesn't meet the 36-month company car requirement. You can still set up other mobility benefits, but you won't be able to use the Federal Mobility Budget framework.</p>
             </div>
-
         </div>
 
         <div class="btn-group">
@@ -515,45 +550,125 @@
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
 
-            const confirmOption = document.getElementById('confirmOption');
+            const yesOption = document.getElementById('yesOption');
+            const noOption = document.getElementById('noOption');
+            const forfaitInputs = document.getElementById('forfaitInputs');
+            const ineligibleMessage = document.getElementById('ineligibleMessage');
+            const budgetResult = document.getElementById('budgetResult');
             const continueBtn = document.getElementById('continueBtn');
 
-            let isConfirmed = false;
+            const catalogueValue = document.getElementById('catalogueValue');
+            const vehicleAge = document.getElementById('vehicleAge');
+            const commuteKm = document.getElementById('commuteKm');
+            const fuelYes = document.getElementById('fuelYes');
+            const fuelNo = document.getElementById('fuelNo');
 
-            // Handle checkbox click
-            confirmOption.addEventListener('click', function() {
-                isConfirmed = !isConfirmed;
+            let has36MonthCar = null;
+            let fuelPaid = null;
 
-                if (isConfirmed) {
-                    confirmOption.classList.add('selected');
+            // Check if we have pre-filled data from qualification call
+            // In real app, this would come from backend
+            const hasPrefilledData = false; // Set to true if data from qual call
+
+            if (hasPrefilledData) {
+                // Pre-fill and pre-select if data exists
+                yesOption.classList.add('selected');
+                has36MonthCar = true;
+                forfaitInputs.classList.add('active');
+
+                catalogueValue.value = '35000';
+                catalogueValue.classList.add('prefilled');
+                vehicleAge.value = '3';
+                vehicleAge.classList.add('prefilled');
+                commuteKm.value = '15000';
+                commuteKm.classList.add('prefilled');
+                fuelYes.classList.add('selected');
+                fuelPaid = true;
+
+                calculateBudget();
+            }
+
+            // Handle 36-month question
+            [yesOption, noOption].forEach(option => {
+                option.addEventListener('click', function() {
+                    [yesOption, noOption].forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    has36MonthCar = this.dataset.value === 'yes';
+
+                    if (has36MonthCar) {
+                        forfaitInputs.classList.add('active');
+                        ineligibleMessage.classList.remove('active');
+                    } else {
+                        forfaitInputs.classList.remove('active');
+                        ineligibleMessage.classList.add('active');
+                        budgetResult.classList.remove('active');
+                        continueBtn.disabled = false; // Can continue but without FMB
+                    }
+
+                    checkFormComplete();
+                });
+            });
+
+            // Handle fuel question
+            [fuelYes, fuelNo].forEach(option => {
+                option.addEventListener('click', function() {
+                    [fuelYes, fuelNo].forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    fuelPaid = this.dataset.value === 'yes';
+                    checkFormComplete();
+                });
+            });
+
+            // Handle input changes
+            [catalogueValue, vehicleAge, commuteKm].forEach(input => {
+                input.addEventListener('input', checkFormComplete);
+            });
+
+            function checkFormComplete() {
+                if (!has36MonthCar) {
                     continueBtn.disabled = false;
+                    return;
+                }
 
-                    // Store attestation in sessionStorage
-                    const now = new Date();
-                    sessionStorage.setItem('fmbAttestation', JSON.stringify({
-                        confirmed: true,
-                        date: now.toISOString()
-                    }));
+                const allFieldsFilled = catalogueValue.value && vehicleAge.value && commuteKm.value && fuelPaid !== null;
+
+                if (allFieldsFilled) {
+                    calculateBudget();
+                    continueBtn.disabled = false;
                 } else {
-                    confirmOption.classList.remove('selected');
+                    budgetResult.classList.remove('active');
                     continueBtn.disabled = true;
                 }
-            });
+            }
 
-            // Continue button click
+            function calculateBudget() {
+                // Simplified calculation - in real app, use actual FMB formula
+                const baseAmount = parseFloat(catalogueValue.value) * 0.2;
+                const ageAdjustment = 1 - (parseFloat(vehicleAge.value) * 0.05);
+                const fuelBonus = fuelPaid ? 1.2 : 1.0;
+
+                const minBudget = Math.round((baseAmount * ageAdjustment * fuelBonus) * 0.6);
+                const maxBudget = Math.round((baseAmount * ageAdjustment * fuelBonus) * 1.4);
+
+                document.getElementById('budgetAmount').textContent = `€${minBudget.toLocaleString()} - €${maxBudget.toLocaleString()}/year`;
+                budgetResult.classList.add('active');
+            }
+
+            // Continue button
             continueBtn.addEventListener('click', function() {
-                if (isConfirmed) {
-                    // In real implementation, this would save to backend before navigating
-                    window.location.href = '03-drop-docs.html';
-                }
+                // Save data to sessionStorage
+                sessionStorage.setItem('fmbData', JSON.stringify({
+                    has36MonthCar,
+                    catalogueValue: catalogueValue.value,
+                    vehicleAge: vehicleAge.value,
+                    commuteKm: commuteKm.value,
+                    fuelPaid
+                }));
+
+                window.location.href = '03-drop-docs.html';
             });
         });
-    </script>
-    <script>
-        // Ensure Lucide icons render after page load
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
     </script>
 </body>
 </html>
