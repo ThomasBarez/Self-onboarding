@@ -282,6 +282,49 @@
             font-size: 14px;
         }
 
+        .living-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: livingPulse 2s ease-in-out infinite;
+            margin-bottom: 16px;
+        }
+
+        .living-badge::before {
+            content: '✨';
+            font-size: 12px;
+            animation: livingRotate 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes livingPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.85;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes livingRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .policy-section {
             margin-bottom: 36px;
         }
@@ -298,7 +341,7 @@
         }
 
         .policy-text {
-            font-size: 24px;
+            font-size: 15px;
             line-height: 26px;
             color: #374151;
             margin-bottom: 14px;
@@ -888,6 +931,7 @@
         <div class="policy-document-wrapper">
         <div class="policy-document-preview">
             <div class="policy-header">
+                <div class="living-badge">Living Document</div>
                 <div class="policy-document-title">Federal Mobility Budget Policy</div>
                 <div class="policy-date">Effective Date: June 23, 2026</div>
             </div>
