@@ -380,6 +380,23 @@
             font-size: 14px;
             color: #111827;
             width: fit-content;
+            transition: all 0.5s ease-out;
+            opacity: 1;
+        }
+
+        .summary-value.reveal {
+            animation: fadeInScale 0.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .summary-value.thinking {
@@ -720,8 +737,15 @@
             // Reveal values one by one with staggered timing
             summaryValues.forEach((value, index) => {
                 setTimeout(() => {
-                    value.classList.remove('thinking');
-                    value.textContent = originalValues[index];
+                    // Fade out thinking state
+                    value.style.opacity = '0';
+
+                    setTimeout(() => {
+                        value.classList.remove('thinking');
+                        value.textContent = originalValues[index];
+                        value.classList.add('reveal');
+                        value.style.opacity = '1';
+                    }, 300); // Wait for fade out
                 }, 1500 + (index * 400)); // Stagger by 400ms each, start at 1.5s
             });
         });
