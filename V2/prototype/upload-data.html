@@ -147,7 +147,7 @@
         .page-description {
             font-family: 'TT Travels', sans-serif;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 15px;
             line-height: 24px;
             color: #6B7280;
             margin-bottom: 32px;
@@ -163,7 +163,7 @@
         .section-title {
             font-family: 'TT Travels', sans-serif;
             font-weight: 600;
-            font-size: 24px;
+            font-size: 16px;
             color: #111827;
             margin-bottom: 16px;
         }
@@ -191,14 +191,13 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 32px;
+            margin-top: 4px;
         }
 
         .decision-option {
-            background: white;
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 16px;
+            background: transparent;
+            border: none;
+            padding: 0;
             cursor: pointer;
             transition: all 0.15s;
             display: flex;
@@ -206,19 +205,17 @@
             gap: 12px;
         }
 
-        .decision-option:hover {
-            border-color: #D1D5DB;
-            background: #F9FAFB;
+        .decision-option:hover .decision-radio {
+            border-color: #9CA3AF;
         }
 
-        .decision-option.selected {
-            border-color: #6366F1;
-            background: #EEF2FF;
+        .decision-option.selected .decision-label {
+            color: #221C46;
         }
 
         .decision-radio {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border: 2px solid #D1D5DB;
             border-radius: 50%;
             flex-shrink: 0;
@@ -231,14 +228,116 @@
 
         .decision-option.selected .decision-radio {
             border-color: #6366F1;
-            border-width: 6px;
+            background: #6366F1;
+            border-width: 2px;
         }
 
         .decision-label {
             font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            color: #6B7280;
+            transition: color 0.15s;
+        }
+
+        .decision-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .decision-option.selected .decision-radio::after {
+            opacity: 1;
+        }
+
+        .fuel-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .fuel-option {
+            background: #EEF2FF;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .fuel-option:hover {
+            background: #E0E7FF;
+        }
+
+        .fuel-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #A5B4FC;
+            border-radius: 4px;
+            background: white;
+            flex-shrink: 0;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .fuel-checkbox:checked {
+            background: #6366F1;
+            border-color: #6366F1;
+        }
+
+        .fuel-checkbox:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .fuel-label {
+            font-family: 'TT Travels', sans-serif;
             font-weight: 500;
             font-size: 14px;
-            color: #111827;
+            color: #6366F1;
+        }
+
+        .requirement-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #A5B4FC;
+            border-radius: 4px;
+            background: white;
+            flex-shrink: 0;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            margin-top: 2px;
+        }
+
+        .requirement-checkbox:checked {
+            background: #6366F1;
+            border-color: #6366F1;
+        }
+
+        .requirement-checkbox:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .forfait-inputs {
@@ -251,7 +350,11 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         .form-label {
@@ -259,7 +362,7 @@
             font-weight: 500;
             font-size: 14px;
             color: #111827;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: block;
         }
 
@@ -267,7 +370,7 @@
             font-family: 'TT Travels', sans-serif;
             font-size: 13px;
             color: #6B7280;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .form-input {
@@ -372,7 +475,7 @@
         .ineligible-title {
             font-family: 'TT Travels', sans-serif;
             font-weight: 600;
-            font-size: 24px;
+            font-size: 16px;
             color: #991B1B;
             margin-bottom: 8px;
         }
@@ -469,29 +572,10 @@
         <p class="page-description">To calculate your Federal Mobility Budget, we need some information about your company car policy.</p>
 
         <div class="card">
-            <div class="section-title">Legal Requirement (36-month rule)</div>
+            <div class="section-title">Company Car Details</div>
+            <p class="page-description" style="margin-bottom: 24px;">These details help us calculate your employees' Federal Mobility Budget amounts.</p>
 
-            <div class="legal-requirement">
-                <p class="legal-requirement-text">
-                    <strong>Belgian law requires:</strong> Your company must have had at least one company car continuously available for the past 36 months (3 years) to qualify for the Federal Mobility Budget.
-                </p>
-            </div>
-
-            <div class="decision-options">
-                <div class="decision-option" data-value="yes" id="yesOption">
-                    <div class="decision-radio"></div>
-                    <div class="decision-label">Yes, we've had at least one company car for 36 months</div>
-                </div>
-                <div class="decision-option" data-value="no" id="noOption">
-                    <div class="decision-radio"></div>
-                    <div class="decision-label">No, we don't meet this requirement</div>
-                </div>
-            </div>
-
-            <!-- Forfait Inputs (shown when YES is selected) -->
-            <div class="forfait-inputs" id="forfaitInputs">
-                <div class="section-title">Company Car Details</div>
-                <p class="page-description" style="margin-bottom: 24px;">These details help us calculate your employees' Federal Mobility Budget amounts.</p>
+            <div class="forfait-inputs active" id="forfaitInputs">
 
                 <div class="form-group">
                     <label class="form-label">Catalogue value (€)</label>
@@ -525,18 +609,15 @@
                     </div>
                 </div>
 
-                <!-- Budget Result -->
-                <div class="budget-result" id="budgetResult">
-                    <div class="budget-result-title">Your Estimated Budget Range</div>
-                    <p class="budget-result-text">Based on your inputs, your Federal Mobility Budget range is:</p>
-                    <div class="budget-amount" id="budgetAmount">€3,233 - €17,244/year</div>
+                <!-- 36-month requirement checkbox at bottom -->
+                <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+                    <label class="checkbox-label" style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="requirement36Checkbox" class="requirement-checkbox" checked>
+                        <span style="font-family: 'TT Travels', sans-serif; font-size: 14px; color: #221C46; line-height: 1.5;">
+                            Yes, we've had at least one company car for 36 months
+                        </span>
+                    </label>
                 </div>
-            </div>
-
-            <!-- Ineligible Message -->
-            <div class="ineligible-message" id="ineligibleMessage">
-                <div class="ineligible-title">Not Eligible for Federal Mobility Budget</div>
-                <p class="ineligible-text">Unfortunately, your company doesn't meet the 36-month company car requirement. You can still set up other mobility benefits, but you won't be able to use the Federal Mobility Budget framework.</p>
             </div>
         </div>
 
@@ -550,10 +631,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
 
-            const yesOption = document.getElementById('yesOption');
-            const noOption = document.getElementById('noOption');
-            const forfaitInputs = document.getElementById('forfaitInputs');
-            const ineligibleMessage = document.getElementById('ineligibleMessage');
+            const requirement36Checkbox = document.getElementById('requirement36Checkbox');
             const budgetResult = document.getElementById('budgetResult');
             const continueBtn = document.getElementById('continueBtn');
 
@@ -563,7 +641,7 @@
             const fuelYes = document.getElementById('fuelYes');
             const fuelNo = document.getElementById('fuelNo');
 
-            let has36MonthCar = null;
+            let has36MonthCar = true; // Start as true since checkbox is pre-checked
             let fuelPaid = null;
 
             // Base case: Data pre-filled from qualification call
@@ -571,11 +649,7 @@
             const hasPrefilledData = true; // Data from qualification call
 
             if (hasPrefilledData) {
-                // Pre-fill and pre-select if data exists
-                yesOption.classList.add('selected');
-                has36MonthCar = true;
-                forfaitInputs.classList.add('active');
-
+                // Pre-fill data
                 catalogueValue.value = '35000';
                 catalogueValue.classList.add('prefilled');
                 vehicleAge.value = '3';
@@ -585,29 +659,14 @@
                 fuelYes.classList.add('selected');
                 fuelPaid = true;
 
+                // Enable continue button since all data is pre-filled
                 continueBtn.disabled = false;
             }
 
-            // Handle 36-month question
-            [yesOption, noOption].forEach(option => {
-                option.addEventListener('click', function() {
-                    [yesOption, noOption].forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-
-                    has36MonthCar = this.dataset.value === 'yes';
-
-                    if (has36MonthCar) {
-                        forfaitInputs.classList.add('active');
-                        ineligibleMessage.classList.remove('active');
-                    } else {
-                        forfaitInputs.classList.remove('active');
-                        ineligibleMessage.classList.add('active');
-                        budgetResult.classList.remove('active');
-                        continueBtn.disabled = true; // Cannot continue without meeting requirement
-                    }
-
-                    checkFormComplete();
-                });
+            // Handle 36-month checkbox
+            requirement36Checkbox.addEventListener('change', function() {
+                has36MonthCar = this.checked;
+                checkFormComplete();
             });
 
             // Handle fuel question
@@ -626,33 +685,13 @@
             });
 
             function checkFormComplete() {
-                if (!has36MonthCar) {
-                    continueBtn.disabled = true;
-                    return;
-                }
-
                 const allFieldsFilled = catalogueValue.value && vehicleAge.value && commuteKm.value && fuelPaid !== null;
 
-                if (allFieldsFilled) {
-                    calculateBudget();
+                if (allFieldsFilled && has36MonthCar) {
                     continueBtn.disabled = false;
                 } else {
-                    budgetResult.classList.remove('active');
                     continueBtn.disabled = true;
                 }
-            }
-
-            function calculateBudget() {
-                // Simplified calculation - in real app, use actual FMB formula
-                const baseAmount = parseFloat(catalogueValue.value) * 0.2;
-                const ageAdjustment = 1 - (parseFloat(vehicleAge.value) * 0.05);
-                const fuelBonus = fuelPaid ? 1.2 : 1.0;
-
-                const minBudget = Math.round((baseAmount * ageAdjustment * fuelBonus) * 0.6);
-                const maxBudget = Math.round((baseAmount * ageAdjustment * fuelBonus) * 1.4);
-
-                document.getElementById('budgetAmount').textContent = `€${minBudget.toLocaleString()} - €${maxBudget.toLocaleString()}/year`;
-                budgetResult.classList.add('active');
             }
 
             // Continue button

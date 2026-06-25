@@ -172,7 +172,7 @@
         .page-description {
             font-family: 'TT Travels', sans-serif;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 15px;
             line-height: 24px;
             color: #6B7280;
             margin-bottom: 32px;
@@ -324,7 +324,6 @@
 
         .config-summary-card {
             background: white;
-            border: 1px solid #E5E5E5;
             border-radius: 12px;
             padding: 32px;
             margin-bottom: 24px;
@@ -400,7 +399,7 @@
         }
 
         .summary-value.thinking {
-            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
+            background: linear-gradient(90deg, #D1D5DB 0%, #9CA3AF 50%, #D1D5DB 100%);
             background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -408,7 +407,58 @@
             animation: shimmer 2s linear infinite;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .thinking-spinner {
+            width: 10px;
+            height: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .thinking-spinner svg {
+            width: 100%;
+            height: 100%;
+            animation:
+                spinnerRotate 2s linear infinite,
+                spinnerScale 2.023318s linear infinite;
+        }
+
+        @property --rotate-transform {
+            syntax: '<angle>';
+            initial-value: 0rad;
+            inherits: false;
+        }
+
+        @keyframes spinnerRotate {
+            0% {
+                animation-timing-function: ease-in-out;
+                --rotate-transform: -1.571rad;
+                transform: rotate(var(--rotate-transform, -1.571rad));
+            }
+            100% {
+                --rotate-transform: 1.571rad;
+                transform: rotate(var(--rotate-transform, 1.571rad));
+            }
+        }
+
+        @keyframes spinnerScale {
+            0% {
+                animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1);
+                scale: 1 1;
+            }
+            44.481% {
+                scale: 1.2 1.2;
+            }
+            55.519% {
+                animation-timing-function: cubic-bezier(0.8, 0, 0.5, 1);
+                scale: 1.2 1.2;
+            }
+            100% {
+                scale: 1 1;
+            }
         }
 
         @keyframes shimmer {
@@ -420,43 +470,6 @@
             }
         }
 
-        .thinking-dots {
-            display: inline-flex;
-            gap: 4px;
-        }
-
-        .thinking-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: thinkingPulse 1.4s ease-in-out infinite;
-        }
-
-        .thinking-dot:nth-child(1) {
-            animation-delay: 0s;
-            background: #3387F8;
-        }
-
-        .thinking-dot:nth-child(2) {
-            animation-delay: 0.2s;
-            background: #D352C3;
-        }
-
-        .thinking-dot:nth-child(3) {
-            animation-delay: 0.4s;
-            background: #F93363;
-        }
-
-        @keyframes thinkingPulse {
-            0%, 60%, 100% {
-                opacity: 0.3;
-                transform: scale(0.8);
-            }
-            30% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
 
         .btn-group {
             display: flex;
@@ -731,12 +744,12 @@
                 originalValues[index] = value.textContent;
                 value.classList.add('thinking');
                 const message = thinkingMessages[index] || 'Computing';
-                value.innerHTML = message + '<span class="thinking-dots"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span></span>';
+                value.innerHTML = '<span class="thinking-spinner"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.23221 5L10 3.23219L10 0L6.7678 -1.41284e-07L4.99999 1.76781L3.23218 -2.95831e-07L3.81478e-07 -4.37114e-07L2.40195e-07 3.23219L1.76778 5L8.56479e-08 6.76781L-5.56354e-08 10L3.23218 10L4.99999 8.23222L6.7678 10L10 10L10 6.76782L8.23221 5Z" fill="#9CA3AF"/></svg></span>' + message;
             });
 
-            // Reveal values one by one with staggered timing
-            summaryValues.forEach((value, index) => {
-                setTimeout(() => {
+            // Reveal all values at the same time
+            setTimeout(() => {
+                summaryValues.forEach((value, index) => {
                     // Fade out thinking state
                     value.style.opacity = '0';
 
@@ -746,8 +759,8 @@
                         value.classList.add('reveal');
                         value.style.opacity = '1';
                     }, 300); // Wait for fade out
-                }, 1500 + (index * 400)); // Stagger by 400ms each, start at 1.5s
-            });
+                });
+            }, 4500); // Show all values together after 4.5s (tripled from 1.5s)
         });
     </script>
 </body>

@@ -974,17 +974,22 @@
         }
 
         .policy-agent-card {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(90deg, rgba(51, 135, 248, 0.5) 0%, rgba(211, 82, 195, 0.5) 35.1%, rgba(249, 51, 99, 0.5) 68.75%, rgba(255, 117, 26, 0.5) 100%) border-box;
-            border: 1px solid transparent;
+            background: #EEF2FF;
+            border: 1px solid #BFDBFE;
             border-radius: 12px;
-            padding: 24px;
+            padding: 20px 24px;
             margin-bottom: 20px;
             display: flex;
-            align-items: start;
             gap: 16px;
+            align-items: start;
         }
 
+        .policy-agent-card .agent-icon {
+            width: 24px;
+            height: 24px;
+            color: #3B82F6;
+            flex-shrink: 0;
+        }
 
         .agent-content {
             flex: 1;
@@ -999,12 +1004,9 @@
 
         .agent-title {
             font-family: 'TT Travels', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E3A8A;
         }
 
         .live-badge {
@@ -1041,9 +1043,9 @@
 
         .agent-description {
             font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 22px;
+            font-size: 13px;
+            color: #1E40AF;
+            line-height: 20px;
         }
 
         .compliance-articles {
@@ -2331,12 +2333,13 @@
             </div>
 
             <div class="policy-agent-card">
+                <i data-lucide="info" class="agent-icon"></i>
                 <div class="agent-content">
                     <div class="agent-header">
-                        <span class="agent-title">Policy Agent</span>
+                        <span class="agent-title">Automated compliance validation saves you hours of manual review</span>
                     </div>
                     <div class="agent-description">
-                        Automatically checks 12 compliance rules across 5 categories — approving, holding, or flagging each expense in real time.
+                        Our AI checks 10 compliance rules across 4 categories in real time, automatically approving valid expenses, holding questionable ones for review, and flagging policy violations — so you don't have to.
                     </div>
                 </div>
             </div>
