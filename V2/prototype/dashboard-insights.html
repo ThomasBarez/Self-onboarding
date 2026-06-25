@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+    <title>Insights - Skipr</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FAF8FF;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 228px;
+            background: #221C46;
+            border-right: 1px solid #362F54;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 48px 8px 0 8px;
+            position: relative;
+        }
+
+        .sidebar-top {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px 0 12px;
+        }
+
+        .logo-wrapper {
+            width: 40px;
+            height: 40px;
+            background: #2BFD7F;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .logo-icon path {
+            fill: #221C46;
+        }
+
+        .collapse-btn {
+            width: 24px;
+            height: 24px;
+            background: #362F54;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .collapse-btn i {
+            width: 8px;
+            height: 8px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-label {
+            font-weight: 500;
+            font-size: 10px;
+            color: white;
+            text-transform: uppercase;
+            padding: 0 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 30px;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-item.active {
+            background: #362F54;
+        }
+
+        .menu-item-icon {
+            width: 20px;
+            height: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            flex-shrink: 0;
+        }
+
+        .menu-item-text {
+            font-size: 14px;
+            color: white;
+            line-height: 20px;
+        }
+
+        .menu-item.active .menu-item-text {
+            font-weight: 500;
+        }
+
+        .menu-item:not(.active) .menu-item-text {
+            font-weight: 400;
+        }
+
+        .badge {
+            background: #F9DADA;
+            color: #A73636;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 0 6px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            margin-left: auto;
+            line-height: 16px;
+        }
+
+        .sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-bottom: 16px;
+        }
+
+        .divider-line {
+            height: 32px;
+            width: 100%;
+        }
+
+        .org-footer {
+            border-top: 1px solid #362F54;
+            padding: 16px;
+            background: #221C46;
+        }
+
+        .org-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .org-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .org-avatar {
+            width: 32px;
+            height: 32px;
+            background: #F0F0FF;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 400;
+            color: #1F094F;
+            flex-shrink: 0;
+        }
+
+        .org-text h4 {
+            font-size: 10px;
+            font-weight: 500;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            line-height: 16px;
+        }
+
+        .org-text p {
+            font-size: 14px;
+            font-weight: 400;
+            color: white;
+            line-height: 20px;
+        }
+
+        .org-chevron {
+            width: 16px;
+            height: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header */
+        .top-header {
+            height: 64px;
+            border-bottom: 1px solid #E6E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            background: white;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0FF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-center;
+            padding: 4px;
+        }
+
+        .breadcrumb-icon i {
+            width: 14px;
+            height: 14px;
+            color: #3E1599;
+        }
+
+        .breadcrumb-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #262B3E;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .menu-icon {
+            width: 17px;
+            height: 16px;
+            color: #262B3E;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            background: #F0F0FF;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 400;
+            color: #3E1599;
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 32px 48px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .create-btn {
+            display: inline-flex;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+            border-radius: 0;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .create-btn:hover {
+            background: #1EE06A;
+            border-color: #1EE06A;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+            gap: 22px;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #262B3E;
+        }
+
+        .add-first-btn {
+            display: inline-flex;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            background: #2BFD7F;
+            color: #362F54;
+            border: 3px solid #2BFD7F;
+            border-radius: 0;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .add-first-btn:hover {
+            background: #1EE06A;
+            border-color: #1EE06A;
+        }
+
+        .add-first-btn i {
+            width: 16px;
+            height: 16px;
+            color: #362F54;
+        }
+
+        /* Templates Section */
+        .templates-section {
+            background: #F8F8FC;
+            border-radius: 4px;
+            padding: 24px 10px 10px 10px;
+            margin-top: auto;
+        }
+
+        .templates-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            margin-bottom: 16px;
+        }
+
+        .templates-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #262B3E;
+        }
+
+        .templates-grid {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .template-card {
+            background: white;
+            border: 1px solid #D8DAE5;
+            border-radius: 8px;
+            padding: 23px 18px;
+            width: 296px;
+            flex-shrink: 0;
+            box-shadow: 4px 0 12.5px rgba(16, 24, 64, 0.08);
+        }
+
+        .template-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .template-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .template-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .template-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #262B3E;
+            line-height: 24px;
+        }
+
+        .template-description {
+            font-size: 12px;
+            font-weight: 400;
+            color: #505571;
+            line-height: 16px;
+        }
+
+        .template-chart {
+            height: 120px;
+            background: #F8F8FC;
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 51px 39px;
+        }
+
+        .chart-bars {
+            display: flex;
+            gap: 7px;
+            align-items: flex-end;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: #EDE8FB;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .chart-bar.active {
+            background: #8F59EF;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .template-btn {
+            display: inline-flex;
+            padding: 8px 16px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            background: white;
+            color: #221C46;
+            border: 3px solid #E5E7EB;
+            border-radius: 0;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .template-btn:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        .template-btn.use {
+            min-width: 125px;
+        }
+
+        /* Walkthrough Overlay */
+        .walkthrough-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .walkthrough-overlay.active {
+            display: block;
+        }
+
+        /* Walkthrough Tooltip */
+        .walkthrough-tooltip {
+            position: absolute;
+            background: #262B3E;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0px 4px 4px rgba(16, 24, 64, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 320px;
+            z-index: 1001;
+        }
+
+        .tooltip-arrow {
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 20px;
+            height: 20px;
+            background: #262B3E;
+        }
+
+        .tooltip-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            cursor: pointer;
+            color: white;
+        }
+
+        .tooltip-close:hover {
+            opacity: 1;
+        }
+
+        .tooltip-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tooltip-title {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            line-height: 16px;
+        }
+
+        .tooltip-description {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: white;
+            line-height: 16px;
+        }
+
+        .tooltip-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tooltip-progress {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #F0F0FF;
+            opacity: 0.6;
+            line-height: 16px;
+        }
+
+        .tooltip-next-btn {
+            display: inline-flex;
+            padding: 8px 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            background: white;
+            color: #505571;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tooltip-next-btn:hover {
+            background: #F9FAFB;
+        }
+
+        /* Highlight effect for target element */
+        .walkthrough-highlight {
+            position: relative;
+            z-index: 1002;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo-section">
+                    <div class="logo-wrapper">
+                        <svg class="logo-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.6666 5.18551L9.48106 0H0V9.4811L5.18558 14.6667L0 19.8522V29.3333H9.48106L14.6666 24.1478L19.8522 29.3333H29.3333V19.8522L24.1478 14.6667L29.3333 9.4811V0H19.8522L14.6666 5.18551Z" fill="#221C46"></path>
+                        </svg>
+                    </div>
+                    <div class="collapse-btn">
+                        <i data-lucide="chevron-left"></i>
+                    </div>
+                </div>
+
+                <div class="sidebar-menu">
+                    <div class="menu-items" style="gap: 8px;">
+                        <div class="menu-item">
+                            <i data-lucide="search" class="menu-item-icon"></i>
+                            <span class="menu-item-text">Search</span>
+                        </div>
+                        <div class="menu-item">
+                            <i data-lucide="sparkles" class="menu-item-icon"></i>
+                            <span class="menu-item-text">Ask intelligence</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">Workspace</div>
+                        <div class="menu-items">
+                            <div class="menu-item active">
+                                <i data-lucide="inbox" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Validations</span>
+                                <span class="badge">12</span>
+                            </div>
+                            <div class="menu-item">
+                                <i data-lucide="bar-chart-3" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Insights</span>
+                            </div>
+                            <div class="menu-item">
+                                <i data-lucide="file-text" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Rules and policies</span>
+                            </div>
+                            <div class="menu-item">
+                                <i data-lucide="users" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Employés</span>
+                            </div>
+                            <div class="menu-item">
+                                <i data-lucide="shield" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Roles</span>
+                            </div>
+                            <div class="menu-item">
+                                <i data-lucide="calculator" class="menu-item-icon"></i>
+                                <span class="menu-item-text">Payroll</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="divider-line"></div>
+                <div class="menu-items">
+                    <div class="menu-item" id="invite-user-btn">
+                        <i data-lucide="user-plus" class="menu-item-icon"></i>
+                        <span class="menu-item-text">Invite user</span>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="settings" class="menu-item-icon"></i>
+                        <span class="menu-item-text">Settings</span>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="compass" class="menu-item-icon"></i>
+                        <span class="menu-item-text">My administrator area</span>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="help-circle" class="menu-item-icon"></i>
+                        <span class="menu-item-text">Help center</span>
+                    </div>
+                </div>
+
+                <div class="org-footer">
+                    <div class="org-info">
+                        <div class="org-content">
+                            <div class="org-avatar">DF</div>
+                            <div class="org-text">
+                                <h4>Organisation</h4>
+                                <p>Skipr Belguim</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-down" class="org-chevron"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Header -->
+            <div class="top-header">
+                <div class="breadcrumb">
+                    <div class="breadcrumb-item">
+                        <div class="breadcrumb-icon">
+                            <i data-lucide="bar-chart-3"></i>
+                        </div>
+                        <span class="breadcrumb-text">Insights</span>
+                    </div>
+                </div>
+
+                <div class="user-section">
+                    <i data-lucide="menu" class="menu-icon"></i>
+                    <div class="avatar">DS</div>
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="page-title-row">
+                    <h1>Insights</h1>
+                    <button class="create-btn">Create report</button>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <p class="empty-state-text">Add a chart or use a template to get started</p>
+                    <button class="add-first-btn">
+                        <i data-lucide="plus"></i>
+                        Add your first report
+                    </button>
+                </div>
+
+                <!-- Templates Section -->
+                <div class="templates-section">
+                    <div class="templates-header">
+                        <h2 class="templates-title">Start from template</h2>
+                    </div>
+
+                    <div class="templates-grid">
+                        <!-- Template Card 1 -->
+                        <div class="template-card">
+                            <div class="template-content">
+                                <div class="template-info">
+                                    <div class="template-text">
+                                        <h3 class="template-name">Spend per payment type</h3>
+                                        <p class="template-description">I analyzed all approved expenses over the past 30 days.</p>
+                                    </div>
+                                    <div class="template-chart">
+                                        <div class="chart-bars">
+                                            <div class="chart-bar" style="height: 31px;"></div>
+                                            <div class="chart-bar" style="height: 47px;"></div>
+                                            <div class="chart-bar active" style="height: 29px;"></div>
+                                            <div class="chart-bar" style="height: 32px;"></div>
+                                            <div class="chart-bar active" style="height: 28px;"></div>
+                                            <div class="chart-bar" style="height: 22px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="template-btn">Preview</button>
+                                    <button class="template-btn use">Use this template</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template Card 2 -->
+                        <div class="template-card">
+                            <div class="template-content">
+                                <div class="template-info">
+                                    <div class="template-text">
+                                        <h3 class="template-name">Total spending per month</h3>
+                                        <p class="template-description">I analyzed all approved expenses over the past 30 days.</p>
+                                    </div>
+                                    <div class="template-chart" style="padding: 20px 8px;">
+                                        <!-- Line chart placeholder -->
+                                        <svg width="100%" height="100" viewBox="0 0 258 100" style="overflow: visible;">
+                                            <polyline points="0,76 28,60 48,60 70,60 91,74 112,74 131,55 154,64 170,64 195,74 215,39 237,19"
+                                                      fill="none" stroke="#8F59EF" stroke-width="2"/>
+                                            <circle cx="0" cy="76" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="28" cy="60" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="48" cy="60" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="70" cy="60" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="91" cy="74" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="112" cy="74" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="131" cy="55" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="154" cy="64" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="170" cy="64" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="195" cy="74" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="215" cy="39" r="2.5" fill="#8F59EF"/>
+                                            <circle cx="237" cy="19" r="2.5" fill="#8F59EF"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="template-btn">Preview</button>
+                                    <button class="template-btn use">Use this template</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template Card 3 -->
+                        <div class="template-card">
+                            <div class="template-content">
+                                <div class="template-info">
+                                    <div class="template-text">
+                                        <h3 class="template-name">Spending by employee</h3>
+                                        <p class="template-description">I analyzed all approved expenses over the past 30 days.</p>
+                                    </div>
+                                    <div class="template-chart" style="padding: 20px 27px; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; justify-content: flex-start;">
+                                        <!-- List items -->
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">1.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">12,345.92€</span>
+                                        </div>
+                                        <div style="height: 0.5px; background: #E6E8F0; width: 100%;"></div>
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">2.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">9,523.51€</span>
+                                        </div>
+                                        <div style="height: 0.5px; background: #E6E8F0; width: 100%;"></div>
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">3.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">6,876.65€</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="template-btn">Preview</button>
+                                    <button class="template-btn use">Use this template</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template Card 4 -->
+                        <div class="template-card">
+                            <div class="template-content">
+                                <div class="template-info">
+                                    <div class="template-text">
+                                        <h3 class="template-name">Spending by employee</h3>
+                                        <p class="template-description">I analyzed all approved expenses over the past 30 days.</p>
+                                    </div>
+                                    <div class="template-chart" style="padding: 20px 27px; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; justify-content: flex-start;">
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">1.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">12,345.92€</span>
+                                        </div>
+                                        <div style="height: 0.5px; background: #E6E8F0; width: 100%;"></div>
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">2.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">9,523.51€</span>
+                                        </div>
+                                        <div style="height: 0.5px; background: #E6E8F0; width: 100%;"></div>
+                                        <div style="display: flex; align-items: center; gap: 7px; width: 100%; font-size: 7px;">
+                                            <span style="color: #696F8C;">3.</span>
+                                            <div style="width: 15px; height: 15px; background: #F0F0FF; border-radius: 50%; border: 1px solid white;"></div>
+                                            <span style="flex: 1; color: #171924; font-weight: 500;">John Doe</span>
+                                            <span style="color: #696F8C; font-weight: 500;">6,876.65€</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-actions">
+                                    <button class="template-btn">Preview</button>
+                                    <button class="template-btn use">Use this template</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Walkthrough Overlay -->
+    <div class="walkthrough-overlay" id="walkthrough-overlay"></div>
+
+    <!-- Walkthrough Tooltip -->
+    <div class="walkthrough-tooltip" id="walkthrough-tooltip" style="display: none;">
+        <div class="tooltip-arrow"></div>
+        <i data-lucide="x" class="tooltip-close" id="tooltip-close"></i>
+
+        <div class="tooltip-content">
+            <div class="tooltip-title" id="tooltip-title">Invite your first user</div>
+            <div class="tooltip-description" id="tooltip-description">
+                Click here to invite team members to your workspace. They'll receive an email with instructions to join.
+            </div>
+        </div>
+
+        <div class="tooltip-footer">
+            <div class="tooltip-progress" id="tooltip-progress">1 of 3</div>
+            <button class="tooltip-next-btn" id="tooltip-next-btn">Next</button>
+        </div>
+    </div>
+
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        // Walkthrough system
+        const walkthroughSteps = [
+            {
+                target: 'invite-user-btn',
+                title: 'Invite your first user',
+                description: 'Click here to invite team members to your workspace. They\'ll receive an email with instructions to join.',
+                position: 'right'
+            },
+            {
+                target: 'invite-user-btn',
+                title: 'Manage your team',
+                description: 'Once invited, you can manage user permissions and roles from the Settings page.',
+                position: 'right'
+            },
+            {
+                target: 'invite-user-btn',
+                title: 'Track progress',
+                description: 'Monitor team member activity and collaboration in the Insights dashboard.',
+                position: 'right'
+            }
+        ];
+
+        let currentStep = 0;
+
+        function showWalkthrough() {
+            const overlay = document.getElementById('walkthrough-overlay');
+            const tooltip = document.getElementById('walkthrough-tooltip');
+
+            overlay.classList.add('active');
+            tooltip.style.display = 'flex';
+
+            updateTooltipPosition();
+        }
+
+        function updateTooltipPosition() {
+            const step = walkthroughSteps[currentStep];
+            const targetElement = document.getElementById(step.target);
+            const tooltip = document.getElementById('walkthrough-tooltip');
+
+            if (!targetElement) return;
+
+            // Add highlight to target
+            document.querySelectorAll('.walkthrough-highlight').forEach(el => {
+                el.classList.remove('walkthrough-highlight');
+            });
+            targetElement.classList.add('walkthrough-highlight');
+
+            // Update tooltip content
+            document.getElementById('tooltip-title').textContent = step.title;
+            document.getElementById('tooltip-description').textContent = step.description;
+            document.getElementById('tooltip-progress').textContent = `${currentStep + 1} of ${walkthroughSteps.length}`;
+
+            // Position tooltip
+            const rect = targetElement.getBoundingClientRect();
+
+            if (step.position === 'right') {
+                tooltip.style.left = `${rect.right + 20}px`;
+                tooltip.style.top = `${rect.top + (rect.height / 2) - 60}px`;
+            }
+
+            // Update button text
+            const nextBtn = document.getElementById('tooltip-next-btn');
+            nextBtn.textContent = currentStep === walkthroughSteps.length - 1 ? 'Done' : 'Next';
+        }
+
+        function nextStep() {
+            if (currentStep < walkthroughSteps.length - 1) {
+                currentStep++;
+                updateTooltipPosition();
+            } else {
+                closeWalkthrough();
+            }
+        }
+
+        function closeWalkthrough() {
+            const overlay = document.getElementById('walkthrough-overlay');
+            const tooltip = document.getElementById('walkthrough-tooltip');
+
+            overlay.classList.remove('active');
+            tooltip.style.display = 'none';
+            currentStep = 0;
+
+            document.querySelectorAll('.walkthrough-highlight').forEach(el => {
+                el.classList.remove('walkthrough-highlight');
+            });
+        }
+
+        // Event listeners
+        document.getElementById('tooltip-next-btn').addEventListener('click', nextStep);
+        document.getElementById('tooltip-close').addEventListener('click', closeWalkthrough);
+        document.getElementById('walkthrough-overlay').addEventListener('click', closeWalkthrough);
+
+        // Auto-start walkthrough on page load
+        setTimeout(() => {
+            showWalkthrough();
+            lucide.createIcons(); // Re-create icons for tooltip close button
+        }, 500);
+    </script>
+</body>
+</html>
