@@ -20,6 +20,152 @@
             flex-direction: column;
         }
 
+        /* Offer Banner */
+        .offer-banner {
+            background: #F5F3FF;
+            padding: 32px 0;
+            border-bottom: 1px solid #E9E6F5;
+        }
+
+        .offer-banner-container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .offer-banner-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #6B7280;
+            margin-bottom: 12px;
+        }
+
+        .offer-banner-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .offer-banner-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .offer-banner-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            line-height: 56px;
+            color: #221C46;
+            letter-spacing: -1.5px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            position: relative;
+            height: 60px;
+        }
+
+        .header .container {
+            position: relative;
+            height: 100%;
+        }
+
+        .logo--section {
+            display: block;
+            height: 60px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .logo--section img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .languages {
+            position: absolute;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-toggle img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 8px 0;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            list-style: none;
+        }
+
+        .dropdown.show .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 8px 16px;
+            color: #221C46;
+            text-decoration: none;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+        }
+
+        .dropdown-menu li a:hover {
+            background: #F3F4F6;
+        }
+
+        .hidden-xs {
+            display: block;
+        }
+
+        .visible-xs {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hidden-xs {
+                display: none;
+            }
+            .visible-xs {
+                display: block;
+            }
+        }
+
+        .pull-right {
+            float: right;
+        }
 
         /* Main Content */
         .main-content {
@@ -35,10 +181,10 @@
         .page-title {
             font-family: 'TT Travels', sans-serif;
             font-weight: 800;
-            font-size: 48px;
-            line-height: 56px;
+            font-size: 32px;
+            line-height: 40px;
             color: #221C46;
-            letter-spacing: -1.5px;
+            letter-spacing: -1.6px;
             margin-bottom: 48px;
         }
 
@@ -288,6 +434,43 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div>
+                <!-- logo -->
+                <div class="logo--section">
+                    <img src="top left header.png" alt="Pluxee">
+                </div>
+                <!-- language switcher -->
+                <div class="btn-group languages pull-right">
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img height="16" src="https://www.figma.com/api/mcp/asset/19ea1af3-a543-444d-a3e2-48ca16111042" alt="Language">
+                            Fr
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="?lang=fr">Français</a></li>
+                            <li><a href="?lang=nl">Nederlands</a></li>
+                            <li><a href="?lang=en">English</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offer Banner -->
+    <div class="offer-banner">
+        <div class="offer-banner-container">
+            <div class="offer-banner-label">Votre offre personnalisée</div>
+            <div class="offer-banner-title">
+                <img class="offer-banner-icon" src="https://www.figma.com/api/mcp/asset/ecb15c44-604a-451a-8491-0df228809873" alt="Pluxee Mobility">
+                <h1 class="offer-banner-text">Pluxee Mobility</h1>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
         <!-- Page Title -->
@@ -391,6 +574,20 @@
             if (!this.disabled) {
                 alert('Thank you! Your acceptance has been recorded. You will be redirected to your client area.');
             }
+        });
+
+        // Language dropdown toggle
+        document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.closest('.dropdown');
+            dropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown.show').forEach(dropdown => {
+                dropdown.classList.remove('show');
+            });
         });
     </script>
 </body>
