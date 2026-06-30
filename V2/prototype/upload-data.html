@@ -168,23 +168,52 @@
             margin-bottom: 16px;
         }
 
-        .legal-requirement {
-            background: #F9FAFB;
-            border: 1px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
+        .form-group {
+            margin-bottom: 28px;
         }
 
-        .legal-requirement-text {
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-help {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
             font-family: 'TT Travels', sans-serif;
             font-size: 14px;
-            line-height: 22px;
             color: #111827;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            transition: all 0.15s;
         }
 
-        .legal-requirement-text strong {
-            font-weight: 600;
+        .form-input:focus {
+            outline: none;
+            border-color: #6366F1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-input:disabled {
+            background: #F9FAFB;
+            color: #9CA3AF;
+            cursor: not-allowed;
         }
 
         .decision-options {
@@ -254,63 +283,6 @@
             opacity: 1;
         }
 
-        .fuel-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .fuel-option {
-            background: #EEF2FF;
-            border: 1px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .fuel-option:hover {
-            background: #E0E7FF;
-        }
-
-        .fuel-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #A5B4FC;
-            border-radius: 4px;
-            background: white;
-            flex-shrink: 0;
-            cursor: pointer;
-            appearance: none;
-            -webkit-appearance: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .fuel-checkbox:checked {
-            background: #6366F1;
-            border-color: #6366F1;
-        }
-
-        .fuel-checkbox:checked::after {
-            content: '✓';
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .fuel-label {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            color: #6366F1;
-        }
-
         .requirement-checkbox {
             width: 20px;
             height: 20px;
@@ -338,153 +310,6 @@
             color: white;
             font-size: 12px;
             font-weight: 700;
-        }
-
-        .forfait-inputs {
-            display: none;
-            margin-top: 24px;
-        }
-
-        .forfait-inputs.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 28px;
-        }
-
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .form-label {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            color: #111827;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .form-help {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 13px;
-            color: #6B7280;
-            margin-top: 6px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            color: #111827;
-            background: white;
-            border: 1px solid #E5E7EB;
-            border-radius: 8px;
-            transition: all 0.15s;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #6366F1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-input.prefilled {
-            background: #F9FAFB;
-            border-color: #D1D5DB;
-        }
-
-        .input-group {
-            position: relative;
-        }
-
-        .input-suffix {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            color: #6B7280;
-            pointer-events: none;
-        }
-
-        .form-input.with-suffix {
-            padding-right: 50px;
-        }
-
-        .budget-result {
-            display: none;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(90deg, rgba(51, 135, 248, 0.5) 0%, rgba(211, 82, 195, 0.5) 35.1%, rgba(249, 51, 99, 0.5) 68.75%, rgba(255, 117, 26, 0.5) 100%) border-box;
-            border: 1px solid transparent;
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 24px;
-        }
-
-        .budget-result.active {
-            display: block;
-        }
-
-        .budget-result-title {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .budget-result-text {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            line-height: 22px;
-            color: #6B7280;
-            margin-bottom: 16px;
-        }
-
-        .budget-amount {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 700;
-            font-size: 32px;
-            background: linear-gradient(90deg, #3387F8 0%, #D352C3 35.1%, #F93363 68.75%, #FF751A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            width: fit-content;
-        }
-
-        .ineligible-message {
-            display: none;
-            background: #FEF2F2;
-            border: 1px solid #FECACA;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 24px;
-        }
-
-        .ineligible-message.active {
-            display: block;
-        }
-
-        .ineligible-title {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            color: #991B1B;
-            margin-bottom: 8px;
-        }
-
-        .ineligible-text {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            line-height: 22px;
-            color: #7F1D1D;
         }
 
         .btn-group {
@@ -539,6 +364,69 @@
             color: rgba(54, 47, 84, 0.5);
             border-color: rgba(43, 253, 127, 0.5);
         }
+
+        /* LLM Resolver styles */
+        .resolve-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 13px 25px;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            background: #6366F1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .resolve-btn:hover:not(:disabled) {
+            background: #5558E3;
+        }
+
+        .resolve-btn:disabled {
+            background: #E5E7EB;
+            color: #9CA3AF;
+            cursor: not-allowed;
+        }
+
+        .resolve-box {
+            display: none;
+            margin-top: 24px;
+            border: 1.5px dashed #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+            background: #FAFBFF;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #EEF2FF;
+            border-top-color: #6366F1;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -569,24 +457,44 @@
         </div>
 
         <h1>Federal Mobility Budget Eligibility</h1>
-        <p class="page-description">To calculate your Federal Mobility Budget, we need some information about your company car policy.</p>
+        <p class="page-description">Just tell us the car model, and we'll automatically find the catalogue value and CO2 emissions. No need to look up technical specs.</p>
 
         <div class="card">
             <div class="section-title">Company Car Details</div>
-            <p class="page-description" style="margin-bottom: 24px;">These details help us calculate your employees' Federal Mobility Budget amounts.</p>
+            <p class="page-description" style="margin-bottom: 24px;">The more specific you are (model, trim, year), the more accurate the estimate.</p>
 
-            <div class="forfait-inputs active" id="forfaitInputs">
+            <div class="form-group">
+                <label class="form-label">Car model (make, version, year)</label>
+                <input type="text" class="form-input" id="carModel" placeholder="e.g., BMW 320d Touring 2022" autocomplete="off">
+                <p class="form-help">More precision (trim level, year) = better estimate</p>
+                <button class="resolve-btn" id="resolveBtn" disabled>Find vehicle characteristics</button>
+            </div>
 
-                <div class="form-group">
-                    <label class="form-label">Car model</label>
-                    <input type="text" class="form-input" id="carModel" placeholder="e.g., Tesla Model 3, BMW 3 Series">
-                    <p class="form-help">The make and model of the company car</p>
-                </div>
+            <!-- Loading state -->
+            <div class="resolve-box" id="loadingBox" style="display: none;">
+                <span class="resolve-chip">
+                    <span class="spinner"></span> Looking up vehicle...
+                </span>
+            </div>
 
+            <!-- Resolved characteristics as regular form fields -->
+            <div id="resolvedFields" style="display: none;">
                 <div class="form-group">
                     <label class="form-label">Catalogue value (€)</label>
                     <input type="number" class="form-input" id="catalogueValue" placeholder="35000" min="0" step="100">
-                    <p class="form-help">The original list price of the vehicle when new</p>
+                    <p class="form-help">The original list price of the vehicle when new (incl. VAT)</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">CO2 emissions (g/km)</label>
+                    <input type="number" class="form-input" id="co2Value" placeholder="128" min="0" step="1">
+                    <p class="form-help">WLTP certified CO2 emissions</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Fuel type</label>
+                    <input type="text" class="form-input" id="fuelType" placeholder="e.g., Diesel, Petrol, Electric">
+                    <p class="form-help">Type of fuel or energy source</p>
                 </div>
 
                 <div class="form-group">
@@ -634,49 +542,91 @@
     </div>
 
     <script>
+        // ========== SIMULATED CAR DATABASE (to be replaced by LLM resolver) ==========
+        const CARS = [
+            {keywords: ['bmw 320', '320d', 'series 3', 'serie 3', '3 touring'], catalogue: 52000, co2: 128, fuel: 'Diesel', source: 'BMW Belgium Configurator', confidence: 'high'},
+            {keywords: ['audi a4', 'a4 avant', '35 tdi'], catalogue: 48000, co2: 125, fuel: 'Diesel', source: 'Audi Belgium Configurator', confidence: 'high'},
+            {keywords: ['passat', 'vw passat', 'volkswagen passat'], catalogue: 45000, co2: 130, fuel: 'Diesel', source: 'VW Belgium Configurator', confidence: 'high'},
+            {keywords: ['tesla', 'model 3', 'model y'], catalogue: 46000, co2: 0, fuel: 'Electric', source: 'Tesla.com Belgium', confidence: 'high'},
+            {keywords: ['ix1', 'bmw ix', 'i4'], catalogue: 53000, co2: 0, fuel: 'Electric', source: 'BMW Belgium Configurator', confidence: 'high'},
+            {keywords: ['mercedes c', 'c220', 'c220d', 'class c', 'classe c'], catalogue: 55000, co2: 132, fuel: 'Diesel', source: 'Mercedes-Benz Belgium', confidence: 'high'},
+            {keywords: ['peugeot 308', '308'], catalogue: 35000, co2: 120, fuel: 'Petrol', source: 'Peugeot Belgium Configurator', confidence: 'high'},
+            {keywords: ['megane', 'mégane', 'e-tech', 'renault megane'], catalogue: 38000, co2: 0, fuel: 'Electric', source: 'Renault Belgium', confidence: 'high'},
+            {keywords: ['volvo xc40', 'xc40', 'xc60'], catalogue: 49000, co2: 155, fuel: 'Petrol', source: 'Volvo Belgium Configurator', confidence: 'high'},
+        ];
+
+        function resolveModel(query) {
+            const q = query.toLowerCase();
+            for (const car of CARS) {
+                if (car.keywords.some(kw => q.includes(kw))) {
+                    return {...car};
+                }
+            }
+            // Fallback: generic estimate with low confidence
+            return {
+                catalogue: 40000,
+                co2: 130,
+                fuel: 'Diesel',
+                source: 'Generic estimate (model not identified)',
+                confidence: 'low'
+            };
+        }
+
+        // ========== STATE ==========
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
 
-            const requirement36Checkbox = document.getElementById('requirement36Checkbox');
-            const budgetResult = document.getElementById('budgetResult');
-            const continueBtn = document.getElementById('continueBtn');
-
             const carModel = document.getElementById('carModel');
+            const resolveBtn = document.getElementById('resolveBtn');
+            const loadingBox = document.getElementById('loadingBox');
+            const resolvedFields = document.getElementById('resolvedFields');
             const catalogueValue = document.getElementById('catalogueValue');
+            const co2Value = document.getElementById('co2Value');
+            const fuelType = document.getElementById('fuelType');
             const vehicleAge = document.getElementById('vehicleAge');
             const commuteKm = document.getElementById('commuteKm');
             const fuelYes = document.getElementById('fuelYes');
             const fuelNo = document.getElementById('fuelNo');
+            const requirement36Checkbox = document.getElementById('requirement36Checkbox');
+            const continueBtn = document.getElementById('continueBtn');
 
-            let has36MonthCar = true; // Start as true since checkbox is pre-checked
+            let has36MonthCar = true;
             let fuelPaid = null;
+            let resolvedData = null;
 
-            // Base case: Data pre-filled from qualification call
-            // In real app, this would come from backend
-            const hasPrefilledData = true; // Data from qualification call
-
-            if (hasPrefilledData) {
-                // Pre-fill data
-                carModel.value = 'Tesla Model 3';
-                carModel.classList.add('prefilled');
-                catalogueValue.value = '35000';
-                catalogueValue.classList.add('prefilled');
-                vehicleAge.value = '3';
-                vehicleAge.classList.add('prefilled');
-                commuteKm.value = '15000';
-                commuteKm.classList.add('prefilled');
-                fuelYes.classList.add('selected');
-                fuelPaid = true;
-
-                // Enable continue button since all data is pre-filled
-                continueBtn.disabled = false;
-            }
-
-            // Handle 36-month checkbox
-            requirement36Checkbox.addEventListener('change', function() {
-                has36MonthCar = this.checked;
-                checkFormComplete();
+            // Enable resolve button when model has at least 3 characters
+            carModel.addEventListener('input', () => {
+                resolveBtn.disabled = carModel.value.trim().length < 3;
             });
+
+            // Resolve button click
+            resolveBtn.onclick = () => {
+                loadingBox.style.display = 'block';
+                resolvedFields.style.display = 'none';
+                continueBtn.disabled = true;
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    const result = resolveModel(carModel.value);
+                    resolvedData = result;
+
+                    catalogueValue.value = result.catalogue;
+                    co2Value.value = result.co2;
+                    fuelType.value = result.fuel;
+
+                    // Hide loading, show resolved fields
+                    loadingBox.style.display = 'none';
+                    resolvedFields.style.display = 'block';
+
+                    // Pre-fill additional fields
+                    vehicleAge.value = '3';
+                    commuteKm.value = '15000';
+                    fuelYes.classList.add('selected');
+                    fuelPaid = true;
+
+                    checkFormComplete();
+                }, 900);
+            };
 
             // Handle fuel question
             [fuelYes, fuelNo].forEach(option => {
@@ -688,13 +638,26 @@
                 });
             });
 
+            // Handle 36-month checkbox
+            requirement36Checkbox.addEventListener('change', function() {
+                has36MonthCar = this.checked;
+                checkFormComplete();
+            });
+
             // Handle input changes
-            [carModel, catalogueValue, vehicleAge, commuteKm].forEach(input => {
+            [catalogueValue, co2Value, fuelType, vehicleAge, commuteKm].forEach(input => {
                 input.addEventListener('input', checkFormComplete);
             });
 
             function checkFormComplete() {
-                const allFieldsFilled = carModel.value && catalogueValue.value && vehicleAge.value && commuteKm.value && fuelPaid !== null;
+                const allFieldsFilled =
+                    carModel.value &&
+                    catalogueValue.value &&
+                    co2Value.value &&
+                    fuelType.value &&
+                    vehicleAge.value &&
+                    commuteKm.value &&
+                    fuelPaid !== null;
 
                 if (allFieldsFilled && has36MonthCar) {
                     continueBtn.disabled = false;
@@ -708,11 +671,15 @@
                 // Save data to sessionStorage
                 sessionStorage.setItem('fmbData', JSON.stringify({
                     carModel: carModel.value,
-                    has36MonthCar,
                     catalogueValue: catalogueValue.value,
+                    co2: co2Value.value,
+                    fuel: fuelType.value,
                     vehicleAge: vehicleAge.value,
                     commuteKm: commuteKm.value,
-                    fuelPaid
+                    fuelPaid,
+                    has36MonthCar,
+                    source: resolvedData?.source,
+                    confidence: resolvedData?.confidence
                 }));
 
                 window.location.href = '03-drop-docs.html';
