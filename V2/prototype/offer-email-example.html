@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Example - Skipr Federal Mobility Budget</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #faf8ff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 492px;
+            width: 100%;
+            background: #231c4a;
+            overflow: hidden;
+        }
+
+        /* Email Header with Image */
+        .email-header-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Email Body */
+        .email-body {
+            background: #231c4a;
+            padding: 32px 26px;
+        }
+
+        .email-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 32px;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+
+        .email-title .highlight {
+            color: #00f044;
+        }
+
+        .email-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: white;
+            line-height: 20px;
+            margin-bottom: 32px;
+        }
+
+        .features-list {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .feature-item {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: white;
+            line-height: 25px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .feature-item .check {
+            color: #00f044;
+            flex-shrink: 0;
+        }
+
+        .feature-item .small-text {
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 16px;
+            background: #2bfd7f;
+            border: 3px solid #2bfd7f;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #362f54;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: 44px;
+        }
+
+        .cta-button:hover {
+            background: #25e070;
+            border-color: #25e070;
+        }
+
+        /* Email Footer with Image */
+        .email-footer-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Pluxee logo and hero image -->
+        <img src="header-mail.png" alt="Pluxee Mobility" class="email-header-image">
+
+        <!-- Email Body -->
+        <div class="email-body">
+            <h1 class="email-title">
+                Hi Thomas, your Skipr <span class="highlight">Federal Mobility Budget</span> is ready to review.
+            </h1>
+
+            <div class="email-text">
+                I've configured it based on what 500+ companies with 20 employees actually do:
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="check">✅</span>
+                    <span>Budget range: €3,233 <span class="small-text">(standard for your team size)</span></span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✅</span>
+                    <span>4 employee tiers with recommended monthly budgets</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✅</span>
+                    <span>14 mobility services <span class="small-text">(train, bike, car rental, taxi, etc.)</span></span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✅</span>
+                    <span>8 compliance rules <span class="small-text">(best practices)</span></span>
+                </div>
+            </div>
+
+            <div class="email-text">
+                Review and launch in 3 minutes.
+            </div>
+
+            <a href="offer-contract.html" class="cta-button">
+                Review My Setup
+            </a>
+        </div>
+
+        <!-- Footer Image (contact info and copyright) -->
+        <img src="https://www.figma.com/api/mcp/asset/ce962a23-c2bf-4f8b-8e78-527fc3adc2e9" alt="Footer" class="email-footer-image">
+    </div>
+</body>
+</html>

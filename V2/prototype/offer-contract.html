@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Validation - Pluxee Mobility</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 60px 20px 100px;
+            max-width: 920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+
+        /* Page Title */
+        .page-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            line-height: 56px;
+            color: #221C46;
+            letter-spacing: -1.5px;
+            margin-bottom: 48px;
+        }
+
+
+
+        /* Setup Fee Box */
+        .setup-fee-box {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .setup-fee-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .setup-fee-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .setup-fee-label {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 15px;
+            color: #221C46;
+        }
+
+        .setup-fee-detail {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .setup-fee-value {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #221C46;
+        }
+
+        .setup-total {
+            border-top: 2px solid #221C46;
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+
+        .setup-total .setup-fee-label {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .setup-total .setup-fee-value {
+            font-weight: 800;
+            font-size: 24px;
+            color: #00EB5E;
+        }
+
+        /* Continue Button */
+        .continue-section {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-family: 'TT Travels', sans-serif;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #2bfd7f;
+            color: #362f54;
+            border: 3px solid #2bfd7f;
+        }
+
+        .btn-primary:hover {
+            background: #25e070;
+            border-color: #25e070;
+        }
+
+        .btn-primary:disabled {
+            background: #E5E7EB;
+            color: #9CA3AF;
+            border-color: #E5E7EB;
+            cursor: not-allowed;
+        }
+
+        /* Info Box - Policy Agent Card Style */
+        .info-box {
+            background: #EEF2FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            color: #3B82F6;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E3A8A;
+            margin-bottom: 8px;
+        }
+
+        .info-text {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 13px;
+            color: #1E40AF;
+            line-height: 20px;
+            margin-bottom: 12px;
+        }
+
+        .info-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-text a {
+            color: #1B51DC;
+            text-decoration: underline;
+        }
+
+        /* Agreement Checkbox */
+        .agreement-section {
+            margin: 32px 0;
+            padding: 20px;
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+        }
+
+        .checkbox-agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-agreement input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            cursor: pointer;
+        }
+
+        .checkbox-label a {
+            color: #1B51DC;
+            text-decoration: underline;
+        }
+
+        .validity-notice {
+            text-align: left;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #D1CFD7;
+            padding: 13px 32px 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+            padding-right: 16px;
+            border-right: 2px solid #908C99;
+            text-decoration: none;
+        }
+
+        .footer-link:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .footer-copyright {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+        }
+
+        .disclaimer {
+            font-family: 'TT Travels', sans-serif;
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 24px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Title -->
+        <h1 class="page-title">Offer information</h1>
+
+        <!-- Setup Fee Section -->
+        <div class="setup-fee-box">
+            <h3 class="setup-fee-title">Opening a client account</h3>
+
+            <div class="setup-fee-row">
+                <div>
+                    <div class="setup-fee-label">Monthly subscription per active user</div>
+                    <div class="setup-fee-detail">€4.00 per active user × 20 users</div>
+                </div>
+                <div class="setup-fee-value">€ 80.00</div>
+            </div>
+
+            <div class="setup-fee-row">
+                <div>
+                    <div class="setup-fee-label">Account opening fee with Pluxee</div>
+                    <div class="setup-fee-detail">One-time fee payable on first order</div>
+                </div>
+                <div class="setup-fee-value">€ 200.00</div>
+            </div>
+
+            <div class="setup-fee-row setup-total">
+                <div class="setup-fee-label">Total for first order</div>
+                <div class="setup-fee-value">€ 280.00</div>
+            </div>
+        </div>
+
+        <!-- Agreement Checkbox -->
+        <div class="agreement-section">
+            <label class="checkbox-agreement">
+                <input type="checkbox" id="terms-checkbox">
+                <span class="checkbox-label">
+                    I have read and approve <a href="#">the general terms and conditions</a> of sale relating to Pluxee services.
+                </span>
+            </label>
+        </div>
+
+        <!-- Continue Button -->
+        <div class="continue-section">
+            <button class="btn btn-primary" id="accept-button" disabled>
+                I accept the offer *
+            </button>
+            <p class="validity-notice">This offer is valid until 01/10/2026</p>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <i data-lucide="info" class="info-icon"></i>
+            <div class="info-content">
+                <h3 class="info-title">What are you committing to by opening your account with us?</h3>
+                <p class="info-text">
+                    Opening your account simply allows you to continue the order process. Only the opening fees will need to be paid (if applicable to you) at this stage.
+                </p>
+                <p class="info-text">
+                    The different costs mentioned here are indicative and estimate the maximum amount of our offer. They may not correspond to your exact situation (number of active users, etc.). The final and correct amount will be recalculated before your payment when you place your order. This step will be done later from your Client Area. You will also be able to modify the number of users if necessary. You can therefore open your account now without any concerns and continue the ordering process.
+                </p>
+                <p class="info-text">
+                    Have questions? <a href="#">Request to be contacted by our team.</a>
+                </p>
+                <p class="info-text">
+                    Not interested in this offer? <a href="#">Tell us why</a>
+                </p>
+            </div>
+        </div>
+
+        <p class="disclaimer">
+            * These costs are indicated excluding VAT.
+        </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" class="footer-link">About us</a>
+            <a href="#" class="footer-link">Privacy policy</a>
+            <a href="#" class="footer-link">Cookie policy</a>
+            <a href="#" class="footer-link">Login Pluxee for Partners</a>
+        </div>
+        <div class="footer-copyright">
+            © All rights reserved
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Checkbox and accept button
+        const checkbox = document.getElementById('terms-checkbox');
+        const acceptButton = document.getElementById('accept-button');
+
+        checkbox.addEventListener('change', function() {
+            acceptButton.disabled = !this.checked;
+        });
+
+        acceptButton.addEventListener('click', function() {
+            if (!this.disabled) {
+                alert('Thank you! Your acceptance has been recorded. You will be redirected to your client area.');
+            }
+        });
+    </script>
+</body>
+</html>
