@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Information - Pluxee Mobility</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #85FD96;
+            position: relative;
+            height: 80px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: stretch;
+            height: 80px;
+            background: #221C46;
+            width: fit-content;
+        }
+
+        .logo-x {
+            width: 60px;
+            height: 80px;
+            background: #221C46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-x img {
+            width: 30px;
+            height: 40px;
+        }
+
+        .logo-text {
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            padding-right: 80px;
+        }
+
+        .logo-text img {
+            width: 95px;
+            height: 27px;
+        }
+
+        .header-angle {
+            width: 80px;
+            height: 80px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-angle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lang-switcher {
+            position: absolute;
+            right: 32px;
+            top: 28px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            cursor: pointer;
+            height: 26px;
+        }
+
+        .lang-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .chevron-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding-top: 81px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: #FAF8FF;
+            width: 100%;
+            position: relative;
+            padding: 112px 0 40px 0;
+            margin-bottom: -32px;
+        }
+
+        .hero-container {
+            max-width: 1160px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-background {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 34.48%;
+            height: 100%;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .offer-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 32px;
+            color: #463F5F;
+            letter-spacing: -1px;
+            margin-bottom: 0;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        .product-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .product-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 900;
+            font-size: 60px;
+            line-height: 72px;
+            color: #221C46;
+            letter-spacing: -3px;
+        }
+
+        /* Form Section */
+        .form-container {
+            max-width: 640px;
+            padding-bottom: 100px;
+            width: 100%;
+        }
+
+        .form-card {
+            background: white;
+            box-shadow: 1px 1px 0px rgba(34, 28, 70, 0.2);
+            padding: 24px;
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+            height: 24px;
+        }
+
+        .step {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #1B51DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 24px;
+            letter-spacing: -0.8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active {
+            background: #1B51DC;
+            color: white;
+        }
+
+        .step.inactive {
+            background: white;
+            color: #1B51DC;
+        }
+
+        .step-line {
+            position: absolute;
+            height: 1px;
+            background: #1B51DC;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step-line.line-1 {
+            left: 24px;
+            width: 260px;
+        }
+
+        .step-line.line-2 {
+            left: 308px;
+            width: 260px;
+        }
+
+        /* Form Content */
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 40px;
+            color: #221C46;
+            letter-spacing: -1.6px;
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .field-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            color: #221C46;
+            letter-spacing: -0.7px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #D1CFD7;
+            padding: 0 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+            background: white;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #1B51DC;
+        }
+
+        .checkbox-field {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .checkbox-field input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1B51DC;
+            cursor: pointer;
+        }
+
+        .checkbox-field label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            cursor: pointer;
+        }
+
+        .section-subtitle {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 28px;
+            color: #221C46;
+            margin-bottom: 16px;
+        }
+
+        .continue-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .continue-button {
+            padding: 19px 27px;
+            background: #00EB5E;
+            border: 3px solid #221C46;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            letter-spacing: -0.8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .continue-button:hover {
+            background: #00D554;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            background: #E5E7EB;
+            padding: 12px 16px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 14px;
+            color: #221C46;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag-remove {
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tag-remove:hover {
+            color: #221C46;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #D1CFD7;
+            padding: 13px 32px 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+            padding-right: 16px;
+            border-right: 2px solid #908C99;
+            text-decoration: none;
+        }
+
+        .footer-link:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .footer-copyright {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 42px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: #221C46;
+            border-radius: 28px;
+            box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.2), 0px 1px 4px 2px rgba(0,0,0,0.14), 0px 1px 4px 1px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-button:hover {
+            background: #362F54;
+        }
+
+        .chat-icon {
+            width: 26px;
+            height: 26px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-x">
+                <img src="https://www.figma.com/api/mcp/asset/829c86bb-014f-4751-b6da-212e07134fc0" alt="Pluxee X">
+            </div>
+            <div class="logo-text">
+                <img src="https://www.figma.com/api/mcp/asset/5066738f-1086-4b51-b866-834a23fa1f3a" alt="Pluxee">
+            </div>
+            <div class="header-angle">
+                <img src="https://www.figma.com/api/mcp/asset/cc54c326-9ba9-4576-8735-fe6f0bf05e71" alt="">
+            </div>
+        </div>
+
+        <div class="lang-switcher">
+            <img class="lang-icon" src="https://www.figma.com/api/mcp/asset/19ea1af3-a543-444d-a3e2-48ca16111042" alt="Language">
+            <span>En</span>
+            <img class="chevron-icon" src="https://www.figma.com/api/mcp/asset/e86d83cf-c4f6-4b50-80c9-5caf3f4fb23b" alt="">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-container">
+                <div class="hero-background">
+                    <img src="https://www.figma.com/api/mcp/asset/5ee1b70e-d76e-4433-bf52-cae20137b4ff" alt="">
+                </div>
+                <p class="offer-label">Your personalized offer</p>
+                <div class="product-header">
+                    <img class="product-icon" src="https://www.figma.com/api/mcp/asset/ecb15c44-604a-451a-8491-0df228809873" alt="Pluxee Mobility">
+                    <h1 class="product-title">Pluxee Mobility</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <div class="form-card">
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="step active">1</div>
+                    <div class="step-line line-1"></div>
+                    <div class="step active">2</div>
+                    <div class="step-line line-2"></div>
+                    <div class="step inactive">3</div>
+                </div>
+
+                <!-- Form Content -->
+                <div class="form-content">
+                    <!-- Company Information -->
+                    <section>
+                        <h2 class="section-title">Informations générales sur l'entreprise</h2>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="field-label">Nom officiel</label>
+                                <input type="text" class="form-input" value="Etablissements Fr. Colruyt - Etabli..." readonly>
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">Nom commercial (optionnel)</label>
+                                <input type="text" class="form-input" value="COLRUYT">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-top: 24px;">
+                            <div class="form-field">
+                                <label class="field-label">Forme légale</label>
+                                <select class="form-select">
+                                    <option selected>SA Société anonyme</option>
+                                    <option>SPRL Société privée à responsabilité limitée</option>
+                                    <option>ASBL Association sans but lucratif</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">Langue</label>
+                                <select class="form-select">
+                                    <option selected>Nederlands</option>
+                                    <option>Français</option>
+                                    <option>English</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-top: 24px;">
+                            <div class="form-field">
+                                <label class="field-label">Nombre d'employés (vous y compris)</label>
+                                <select class="form-select">
+                                    <option>1-10</option>
+                                    <option>11-50</option>
+                                    <option>51-100</option>
+                                    <option>101-500</option>
+                                    <option selected>500+</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">Secrétariat social (optionnel)</label>
+                                <select class="form-select">
+                                    <option selected>Choisissez</option>
+                                    <option>Securex</option>
+                                    <option>Partena</option>
+                                    <option>SD Worx</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field full-width" style="margin-top: 24px;">
+                            <label class="field-label">Commissions paritaires</label>
+                            <div class="tag-list">
+                                <div class="tag">
+                                    119 Commission paritaire du commerce alimentaire
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="tag">
+                                    202 Commission paritaire pour les employés du commerce de détail alimentaire
+                                    <span class="tag-remove">×</span>
+                                </div>
+                            </div>
+                            <input type="text" class="form-input" placeholder="🔍">
+                        </div>
+                    </section>
+
+                    <!-- Addresses -->
+                    <section>
+                        <h2 class="section-title">Adresses</h2>
+
+                        <h3 class="section-subtitle">Adresse du siège social</h3>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="field-label">Rue</label>
+                                <input type="text" class="form-input" value="Edingensesteenweg">
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">Numéro (chiffres uniquement)</label>
+                                <input type="text" class="form-input" value="196">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-top: 24px;">
+                            <div class="form-field">
+                                <label class="field-label">Code postal</label>
+                                <input type="text" class="form-input" value="1500">
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">Ville</label>
+                                <input type="text" class="form-input" value="Halle">
+                            </div>
+                        </div>
+
+                        <div class="form-field" style="margin-top: 24px;">
+                            <label class="field-label">Boîte postale (optionnel)</label>
+                            <input type="text" class="form-input" placeholder="">
+                        </div>
+
+                        <div class="checkbox-field">
+                            <input type="checkbox" id="delivery-same" checked>
+                            <label for="delivery-same">L'adresse de livraison est identique</label>
+                        </div>
+
+                        <div class="checkbox-field">
+                            <input type="checkbox" id="billing-same" checked>
+                            <label for="billing-same">L'adresse de facturation est identique</label>
+                        </div>
+                    </section>
+
+                    <!-- Contact Person -->
+                    <section>
+                        <h2 class="section-title">Données de la personne de contact</h2>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="field-label">Nom de famille</label>
+                                <input type="text" class="form-input" value="Test">
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label">E-mail</label>
+                                <input type="email" class="form-input" value="Test@skipr.co">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Continue Button -->
+                    <div class="continue-button-container">
+                        <button class="continue-button">Continuer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" class="footer-link">Qui sommes-nous ?</a>
+            <a href="#" class="footer-link">Politique de vie privée</a>
+            <a href="#" class="footer-link">Politique de gestion des cookies</a>
+            <a href="#" class="footer-link">Login Pluxee for Partners</a>
+        </div>
+        <div class="footer-copyright">
+            © Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <img class="chat-icon" src="https://www.figma.com/api/mcp/asset/df8491aa-69ce-4083-8edb-f4cb9e4c02f0" alt="Chat">
+    </div>
+
+    <script>
+        // Remove tag functionality
+        document.querySelectorAll('.tag-remove').forEach(remove => {
+            remove.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+    </script>
+</body>
+</html>

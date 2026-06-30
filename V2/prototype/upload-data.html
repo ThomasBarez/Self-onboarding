@@ -578,6 +578,12 @@
             <div class="forfait-inputs active" id="forfaitInputs">
 
                 <div class="form-group">
+                    <label class="form-label">Car model</label>
+                    <input type="text" class="form-input" id="carModel" placeholder="e.g., Tesla Model 3, BMW 3 Series">
+                    <p class="form-help">The make and model of the company car</p>
+                </div>
+
+                <div class="form-group">
                     <label class="form-label">Catalogue value (€)</label>
                     <input type="number" class="form-input" id="catalogueValue" placeholder="35000" min="0" step="100">
                     <p class="form-help">The original list price of the vehicle when new</p>
@@ -635,6 +641,7 @@
             const budgetResult = document.getElementById('budgetResult');
             const continueBtn = document.getElementById('continueBtn');
 
+            const carModel = document.getElementById('carModel');
             const catalogueValue = document.getElementById('catalogueValue');
             const vehicleAge = document.getElementById('vehicleAge');
             const commuteKm = document.getElementById('commuteKm');
@@ -650,6 +657,8 @@
 
             if (hasPrefilledData) {
                 // Pre-fill data
+                carModel.value = 'Tesla Model 3';
+                carModel.classList.add('prefilled');
                 catalogueValue.value = '35000';
                 catalogueValue.classList.add('prefilled');
                 vehicleAge.value = '3';
@@ -680,12 +689,12 @@
             });
 
             // Handle input changes
-            [catalogueValue, vehicleAge, commuteKm].forEach(input => {
+            [carModel, catalogueValue, vehicleAge, commuteKm].forEach(input => {
                 input.addEventListener('input', checkFormComplete);
             });
 
             function checkFormComplete() {
-                const allFieldsFilled = catalogueValue.value && vehicleAge.value && commuteKm.value && fuelPaid !== null;
+                const allFieldsFilled = carModel.value && catalogueValue.value && vehicleAge.value && commuteKm.value && fuelPaid !== null;
 
                 if (allFieldsFilled && has36MonthCar) {
                     continueBtn.disabled = false;
@@ -698,6 +707,7 @@
             continueBtn.addEventListener('click', function() {
                 // Save data to sessionStorage
                 sessionStorage.setItem('fmbData', JSON.stringify({
+                    carModel: carModel.value,
                     has36MonthCar,
                     catalogueValue: catalogueValue.value,
                     vehicleAge: vehicleAge.value,

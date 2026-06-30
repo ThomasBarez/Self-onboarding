@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offrez de nouveaux avantages extralégaux - Pluxee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #85FD96;
+            position: relative;
+            height: 80px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: stretch;
+            height: 80px;
+            background: #221C46;
+            width: fit-content;
+        }
+
+        .logo-x {
+            width: 60px;
+            height: 80px;
+            background: #221C46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-x img {
+            width: 30px;
+            height: 40px;
+        }
+
+        .logo-text {
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            padding-right: 80px;
+        }
+
+        .logo-text img {
+            width: 95px;
+            height: 27px;
+        }
+
+        .header-angle {
+            width: 80px;
+            height: 80px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-angle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lang-switcher {
+            position: absolute;
+            right: 32px;
+            top: 28px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            cursor: pointer;
+            height: 26px;
+        }
+
+        .lang-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .chevron-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 109px 0 80px 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .heading-section {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h1 {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 900;
+            font-size: 42px;
+            line-height: 56.7px;
+            color: #221C46;
+            letter-spacing: -2.1px;
+            margin-bottom: 24px;
+        }
+
+        .subheading {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 32px;
+            color: #463F5F;
+            letter-spacing: -1px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            box-shadow: 1px 1px 0px rgba(34, 28, 70, 0.2);
+            width: 284px;
+            height: 313px;
+            padding: 32px 16px 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .product-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 24px;
+        }
+
+        .product-icon img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 25px;
+            color: #221C46;
+            letter-spacing: -1.6px;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #463F5F;
+            letter-spacing: -0.8px;
+            margin-bottom: 32px;
+            min-height: 48px;
+        }
+
+        .product-actions {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .btn-offer {
+            display: block;
+            width: 100%;
+            padding: 9px 27px;
+            background: #00EB5E;
+            border: 3px solid #221C46;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            letter-spacing: -0.8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 24px;
+        }
+
+        .btn-offer:hover {
+            background: #00D554;
+        }
+
+        .link-more {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #1B51DC;
+            letter-spacing: -0.8px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link-more:hover {
+            color: #1440B8;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #D1CFD7;
+            padding: 13px 32px 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+            padding-right: 16px;
+            border-right: 2px solid #908C99;
+            text-decoration: none;
+        }
+
+        .footer-link:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .footer-copyright {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 42px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: #221C46;
+            border-radius: 28px;
+            box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.2), 0px 1px 4px 2px rgba(0,0,0,0.14), 0px 1px 4px 1px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-button:hover {
+            background: #362F54;
+        }
+
+        .chat-icon {
+            width: 26px;
+            height: 26px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-x">
+                <img src="https://www.figma.com/api/mcp/asset/829c86bb-014f-4751-b6da-212e07134fc0" alt="Pluxee X">
+            </div>
+            <div class="logo-text">
+                <img src="https://www.figma.com/api/mcp/asset/5066738f-1086-4b51-b866-834a23fa1f3a" alt="Pluxee">
+            </div>
+            <div class="header-angle">
+                <img src="https://www.figma.com/api/mcp/asset/cc54c326-9ba9-4576-8735-fe6f0bf05e71" alt="">
+            </div>
+        </div>
+
+        <div class="lang-switcher">
+            <img class="lang-icon" src="https://www.figma.com/api/mcp/asset/19ea1af3-a543-444d-a3e2-48ca16111042" alt="Language">
+            <span>Fr</span>
+            <img class="chevron-icon" src="https://www.figma.com/api/mcp/asset/e86d83cf-c4f6-4b50-80c9-5caf3f4fb23b" alt="">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="heading-section">
+                <h1>
+                    Offrez de nouveaux avantages extralégaux<br>
+                    à vos collaborateurs !
+                </h1>
+                <p class="subheading">
+                    Pour quel produit souhaitez-vous recevoir une offre de prix ?
+                </p>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <!-- Pluxee Lunch -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/0aea57a8-d2fe-478c-816d-3a524d51a45d" alt="Pluxee Lunch">
+                </div>
+                <h3 class="product-title">Pluxee Lunch</h3>
+                <p class="product-description">Le chèque repas de Pluxee</p>
+                <div class="product-actions">
+                    <button class="btn-offer">Recevoir une offre</button>
+                    <a href="#" class="link-more">Plus d'informations</a>
+                </div>
+            </div>
+
+            <!-- Pluxee Mobility -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/ecb15c44-604a-451a-8491-0df228809873" alt="Pluxee Mobility">
+                </div>
+                <h3 class="product-title">Pluxee Mobility</h3>
+                <p class="product-description">Fédéral Mobility Budget</p>
+                <div class="product-actions">
+                    <button class="btn-offer" onclick="window.location.href='offer-form.html'">Recevoir une offre</button>
+                    <a href="#" class="link-more">Plus d'informations</a>
+                </div>
+            </div>
+
+            <!-- Pluxee Eco -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/9cb1b613-475c-43ec-8a2a-54c83b3bfb84" alt="Pluxee Eco">
+                </div>
+                <h3 class="product-title">Pluxee Eco</h3>
+                <p class="product-description">L'éco-chèque de Pluxee</p>
+                <div class="product-actions">
+                    <button class="btn-offer">Recevoir une offre</button>
+                    <a href="#" class="link-more">Plus d'informations</a>
+                </div>
+            </div>
+
+            <!-- Pluxee Cadeau -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/79aed873-ff90-49fb-b8fb-e8d53997c1e9" alt="Pluxee Cadeau">
+                </div>
+                <h3 class="product-title">Pluxee Cadeau</h3>
+                <p class="product-description">Le chèque cadeau de Pluxee</p>
+                <div class="product-actions">
+                    <button class="btn-offer">Recevoir une offre</button>
+                    <a href="#" class="link-more">Plus d'informations</a>
+                </div>
+            </div>
+
+            <!-- Pluxee Sport & Culture -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/0b3c8ecd-24c5-4914-bdad-ca1baaae9661" alt="Pluxee Sport & Culture">
+                </div>
+                <h3 class="product-title">Pluxee Sport & Culture</h3>
+                <p class="product-description">Le chèque sport et culture de Pluxee</p>
+                <div class="product-actions">
+                    <button class="btn-offer">Recevoir une offre</button>
+                    <a href="#" class="link-more">Plus d'informations</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" class="footer-link">Qui sommes-nous ?</a>
+            <a href="#" class="footer-link">Politique de vie privée</a>
+            <a href="#" class="footer-link">Politique de gestion des cookies</a>
+            <a href="#" class="footer-link">Login Pluxee for Partners</a>
+        </div>
+        <div class="footer-copyright">
+            © Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <svg class="chat-icon" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 13c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10c-1.5 0-3-.5-4-1L3 23l1-6c-.5-1-1-2.5-1-4z" fill="white"/>
+        </svg>
+    </div>
+</body>
+</html>

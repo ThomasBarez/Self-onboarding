@@ -33,7 +33,8 @@
       "Bash(claude skill *)",
       "mcp__plugin_figma_figma__get_figjam",
       "Bash(mkdir -p \"V2/prototype-v2\")",
-      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/email-setup-ready.html\")"
+      "Bash(open \"/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding/V2/prototype/email-setup-ready.html\")",
+      "mcp__plugin_figma_figma__whoami"
     ],
     "additionalDirectories": [
       "/Users/thomasbarez/Desktop/Obsidian /Skipr/Onboarding",

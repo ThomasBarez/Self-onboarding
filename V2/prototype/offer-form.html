@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your personalized offer - Pluxee Mobility</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT Travels', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - same as lead-generation.html */
+        .header {
+            background: white;
+            border-bottom: 1px solid #85FD96;
+            position: relative;
+            height: 80px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: stretch;
+            height: 80px;
+            background: #221C46;
+            width: fit-content;
+        }
+
+        .logo-x {
+            width: 60px;
+            height: 80px;
+            background: #221C46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-x img {
+            width: 30px;
+            height: 40px;
+        }
+
+        .logo-text {
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            padding-right: 80px;
+        }
+
+        .logo-text img {
+            width: 95px;
+            height: 27px;
+        }
+
+        .header-angle {
+            width: 80px;
+            height: 80px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-angle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lang-switcher {
+            position: absolute;
+            right: 32px;
+            top: 28px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #221C46;
+            cursor: pointer;
+            height: 26px;
+        }
+
+        .lang-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .chevron-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding-top: 81px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: #FAF8FF;
+            width: 100%;
+            position: relative;
+            padding: 112px 0 40px 0;
+            margin-bottom: -32px;
+        }
+
+        .hero-container {
+            max-width: 1160px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-background {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 34.48%;
+            height: 100%;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .offer-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 32px;
+            color: #463F5F;
+            letter-spacing: -1px;
+            margin-bottom: 0;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        .product-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .product-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 900;
+            font-size: 60px;
+            line-height: 72px;
+            color: #221C46;
+            letter-spacing: -3px;
+        }
+
+        /* Form Section */
+        .form-container {
+            max-width: 640px;
+            padding-bottom: 100px;
+        }
+
+        .form-card {
+            background: white;
+            box-shadow: 1px 1px 0px rgba(34, 28, 70, 0.2);
+            padding: 24px;
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+            height: 24px;
+        }
+
+        .step {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #1B51DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 24px;
+            letter-spacing: -0.8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active {
+            background: #1B51DC;
+            color: white;
+        }
+
+        .step.inactive {
+            background: white;
+            color: #1B51DC;
+        }
+
+        .step-line {
+            position: absolute;
+            height: 1px;
+            background: #1B51DC;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step-line.line-1 {
+            left: 24px;
+            width: 260px;
+        }
+
+        .step-line.line-2 {
+            left: 308px;
+            width: 260px;
+        }
+
+        /* Form Content */
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 40px;
+            color: #221C46;
+            letter-spacing: -1.6px;
+        }
+
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 15px 24px 15px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .field-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20.3px;
+            color: #221C46;
+            letter-spacing: -0.7px;
+        }
+
+        .field-label a {
+            color: #1B51DC;
+            text-decoration: underline;
+        }
+
+        .field-helper {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 20.3px;
+            color: #908C99;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #D1CFD7;
+            padding: 0 12px;
+            font-family: 'TT Travels', sans-serif;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1B51DC;
+        }
+
+        .search-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 19px 27px;
+            background: #00EB5E;
+            border: 3px solid #221C46;
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            letter-spacing: -0.8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-button:hover {
+            background: #00D554;
+        }
+
+        .search-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #F3F3FC;
+            border: 1px solid #878DFA;
+            padding: 17px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-title {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            letter-spacing: -0.8px;
+        }
+
+        .info-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #221C46;
+            letter-spacing: -0.8px;
+        }
+
+        .info-text a {
+            color: #1B51DC;
+            text-decoration: underline;
+        }
+
+        .info-footer {
+            padding-top: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #D1CFD7;
+            padding: 13px 32px 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+            padding-right: 16px;
+            border-right: 2px solid #908C99;
+            text-decoration: none;
+        }
+
+        .footer-link:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .footer-copyright {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16.2px;
+            color: #221C46;
+            letter-spacing: -0.6px;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 42px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: #221C46;
+            border-radius: 28px;
+            box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.2), 0px 1px 4px 2px rgba(0,0,0,0.14), 0px 1px 4px 1px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-button:hover {
+            background: #362F54;
+        }
+
+        .chat-icon {
+            width: 26px;
+            height: 26px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-x">
+                <img src="https://www.figma.com/api/mcp/asset/829c86bb-014f-4751-b6da-212e07134fc0" alt="Pluxee X">
+            </div>
+            <div class="logo-text">
+                <img src="https://www.figma.com/api/mcp/asset/5066738f-1086-4b51-b866-834a23fa1f3a" alt="Pluxee">
+            </div>
+            <div class="header-angle">
+                <img src="https://www.figma.com/api/mcp/asset/cc54c326-9ba9-4576-8735-fe6f0bf05e71" alt="">
+            </div>
+        </div>
+
+        <div class="lang-switcher">
+            <img class="lang-icon" src="https://www.figma.com/api/mcp/asset/19ea1af3-a543-444d-a3e2-48ca16111042" alt="Language">
+            <span>En</span>
+            <img class="chevron-icon" src="https://www.figma.com/api/mcp/asset/e86d83cf-c4f6-4b50-80c9-5caf3f4fb23b" alt="">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-container">
+                <div class="hero-background">
+                    <img src="https://www.figma.com/api/mcp/asset/5ee1b70e-d76e-4433-bf52-cae20137b4ff" alt="">
+                </div>
+                <p class="offer-label">Your personalized offer</p>
+                <div class="product-header">
+                    <img class="product-icon" src="https://www.figma.com/api/mcp/asset/ecb15c44-604a-451a-8491-0df228809873" alt="Pluxee Mobility">
+                    <h1 class="product-title">Pluxee Mobility</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <div class="form-card">
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <div class="step active">1</div>
+                    <div class="step-line line-1"></div>
+                    <div class="step inactive">2</div>
+                    <div class="step-line line-2"></div>
+                    <div class="step inactive">3</div>
+                </div>
+
+                <!-- Form Content -->
+                <div class="form-content">
+                    <div class="form-section">
+                        <h2 class="section-title">Company identification</h2>
+
+                        <div class="form-fields">
+                            <div class="form-field">
+                                <label class="field-label">
+                                    VAT number or company number (<a href="#">CBE</a>)
+                                </label>
+                                <p class="field-helper">With or without point, with or without space</p>
+                                <input type="text" class="form-input" placeholder="">
+                            </div>
+
+                            <div class="search-button-container">
+                                <button class="search-button">
+                                    <img class="search-icon" src="https://www.figma.com/api/mcp/asset/25f01d52-88db-47fe-ae7b-961530d3313a" alt="">
+                                    Search my company details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div class="info-box">
+                        <img class="info-icon" src="https://www.figma.com/api/mcp/asset/003d0909-dbc2-4b01-b594-28333eb86ad4" alt="Info">
+                        <div class="info-content">
+                            <h3 class="info-title">Why do we need your company / VAT number?</h3>
+                            <p class="info-text">
+                                This number enables us to retrieve your company data from the<br>
+                                Crossroads Bank of Enterprises and thus calculate the best possible<br>
+                                quotation for you. We guarantee the protection of all your data in<br>
+                                accordance with our privacy policy.
+                            </p>
+                            <div class="info-footer">
+                                <p class="info-text">
+                                    Don't know your number? Look it up directly <a href="#">on the CBE website</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" class="footer-link">Qui sommes-nous ?</a>
+            <a href="#" class="footer-link">Politique de vie privée</a>
+            <a href="#" class="footer-link">Politique de gestion des cookies</a>
+            <a href="#" class="footer-link">Login Pluxee for Partners</a>
+        </div>
+        <div class="footer-copyright">
+            © Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <img class="chat-icon" src="https://www.figma.com/api/mcp/asset/df8491aa-69ce-4083-8edb-f4cb9e4c02f0" alt="Chat">
+    </div>
+</body>
+</html>

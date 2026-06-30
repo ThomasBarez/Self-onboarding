@@ -1,9 +1,69 @@
-[2026-05-21T18:43:48.685Z] [log] %c%s color: red; background: yellow; font-size: 24px; WARNING!
-[2026-05-21T18:43:48.685Z] [log] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
-Do not enter or paste code that you do not understand.
-[2026-05-21T18:43:49.619Z] [log] %c%s color: red; background: yellow; font-size: 24px; WAARSCHUWING!
-[2026-05-21T18:43:49.619Z] [log] %c%s font-size: 18px; Als je deze console gebruikt, kunnen aanvallers je identiteit nabootsen en je gegevens stelen via een aanval die Self-XSS wordt genoemd.
-Je moet geen code opgeven of plakken die je niet begrijpt.
-[2026-05-21T18:44:44.650Z] [log] %c%s color: red; background: yellow; font-size: 24px; WARNING!
-[2026-05-21T18:44:44.650Z] [log] %c%s font-size: 18px; Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.
-Do not enter or paste code that you do not understand.
+[2026-06-25T09:09:25.830Z] [log] Data access config initialized for app: SKIPR
+[2026-06-25T09:09:25.928Z] [warning] Replay is disabled because neither `replaysSessionSampleRate` nor `replaysOnErrorSampleRate` are set.
+[2026-06-25T09:09:26.018Z] [error] Failed to load resource: the server responded with a status of 401 ()
+[2026-06-25T09:09:26.018Z] [info] 🔄 Refreshing auth token...
+[2026-06-25T09:09:26.020Z] [warning] 🔓 Token refresh failed, logging user out.
+[2026-06-25T09:09:26.275Z] [warning] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-loading-text" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-request-error-text" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-back-button" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-dialog" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-disclosure" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-disclosure-section" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-attribution" already defined.
+[2026-06-25T09:09:26.298Z] [warning] Element with name "gmp-internal-element-support-verification" already defined.
+[2026-06-25T09:09:26.298Z] [error] You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
+[2026-06-25T09:09:26.298Z] [warning] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[2026-06-25T09:09:26.301Z] [warning] Element with name "gmp-pin" already defined.
+[2026-06-25T09:09:26.303Z] [warning] Element with name "gmp-internal-camera-control" already defined.
+[2026-06-25T09:09:26.308Z] [warning] Element with name "gmp-internal-rating" already defined.
+[2026-06-25T09:09:26.308Z] [warning] Element with name "gmp-place-all-content" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-link-button" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-menu" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-place-opening-hours" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-place-review" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-tabbed-layout" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-lightbox" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-collage" already defined.
+[2026-06-25T09:09:26.309Z] [warning] Element with name "gmp-internal-popular-times-histogram" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-selection-button" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-place-popular-times" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-place-rating-summary" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-place-content-config" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-place-standard-content" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-place-transit-line" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-place-transit-type" already defined.
+[2026-06-25T09:09:26.310Z] [warning] Element with name "gmp-internal-place-transit" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-internal-place-basic-info" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-details-location-request" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-details-place-request" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-internal-circular-loader" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-details-compact" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-details" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-internal-use-2d-map-place-details-compact" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-media" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-address" already defined.
+[2026-06-25T09:09:26.311Z] [warning] Element with name "gmp-place-rating" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-type" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-price" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-accessible-entrance-icon" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-open-now-status" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-attribution" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-website" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-phone-number" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-opening-hours" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-summary" already defined.
+[2026-06-25T09:09:26.312Z] [warning] Element with name "gmp-place-type-specific-highlights" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-place-review-summary" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-place-reviews" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-place-plus-code" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-place-feature-list" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-internal-use-place-details-compact" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-internal-place-carousel" already defined.
+[2026-06-25T09:09:26.313Z] [warning] Element with name "gmp-internal-place-search-list-item" already defined.
+[2026-06-25T09:09:26.314Z] [warning] Element with name "gmp-place-nearby-search-request" already defined.
+[2026-06-25T09:09:26.314Z] [warning] Element with name "gmp-place-text-search-request" already defined.
+[2026-06-25T09:09:26.314Z] [warning] Element with name "gmp-place-search" already defined.
+[2026-06-25T09:09:26.314Z] [warning] Element with name "gmp-map" already defined.
+[2026-06-25T09:09:26.315Z] [warning] Element with name "gmp-place-autocomplete" already defined.
+[2026-06-25T09:09:26.315Z] [warning] Element with name "gmp-basic-place-autocomplete" already defined.
