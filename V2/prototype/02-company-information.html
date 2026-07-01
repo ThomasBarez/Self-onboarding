@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contract Validation - Pluxee Mobility</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Company Information - Pluxee Mobility</title>
     <style>
         * {
             margin: 0;
@@ -18,49 +18,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* Offer Banner */
-        .offer-banner {
-            background: #F5F3FF;
-            padding: 32px 0;
-            border-bottom: 1px solid #E9E6F5;
-        }
-
-        .offer-banner-container {
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .offer-banner-label {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
-            color: #6B7280;
-            margin-bottom: 12px;
-        }
-
-        .offer-banner-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .offer-banner-icon {
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-        }
-
-        .offer-banner-text {
-            font-family: 'TT Travels', sans-serif;
-            font-weight: 800;
-            font-size: 48px;
-            line-height: 56px;
-            color: #221C46;
-            letter-spacing: -1.5px;
         }
 
         /* Header Styles */
@@ -146,25 +103,51 @@
             background: #F3F4F6;
         }
 
-        .hidden-xs {
-            display: block;
-        }
-
-        .visible-xs {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .hidden-xs {
-                display: none;
-            }
-            .visible-xs {
-                display: block;
-            }
-        }
-
         .pull-right {
             float: right;
+        }
+
+        /* Offer Banner */
+        .offer-banner {
+            background: #F5F3FF;
+            padding: 32px 0;
+            border-bottom: 1px solid #E9E6F5;
+        }
+
+        .offer-banner-container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .offer-banner-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #6B7280;
+            margin-bottom: 12px;
+        }
+
+        .offer-banner-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .offer-banner-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .offer-banner-text {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            line-height: 56px;
+            color: #221C46;
+            letter-spacing: -1.5px;
         }
 
         /* Main Content */
@@ -175,7 +158,6 @@
             margin: 0 auto;
             width: 100%;
         }
-
 
         /* Step Indicator */
         .step-indicator {
@@ -223,10 +205,8 @@
             margin-bottom: 48px;
         }
 
-
-
-        /* Setup Fee Box */
-        .setup-fee-box {
+        /* Form Styles */
+        .form-section {
             background: #F9FAFB;
             border: 1px solid #E5E7EB;
             border-radius: 8px;
@@ -234,66 +214,91 @@
             margin-bottom: 32px;
         }
 
-        .setup-fee-title {
+        .form-section-title {
             font-family: 'TT Travels', sans-serif;
             font-weight: 600;
             font-size: 16px;
             color: #221C46;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
-        .setup-fee-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .setup-fee-label {
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            font-family: 'TT Travels', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: #221C46;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-label .required {
+            color: #DC2626;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
             font-family: 'TT Travels', sans-serif;
             font-size: 15px;
-            color: #221C46;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            background: white;
+            transition: all 0.2s;
         }
 
-        .setup-fee-detail {
+        .form-input:focus {
+            outline: none;
+            border-color: #2BFD7F;
+        }
+
+        .form-input:disabled {
+            background: #F3F4F6;
+            color: #6B7280;
+            cursor: not-allowed;
+        }
+
+        .form-input.error {
+            border-color: #DC2626;
+        }
+
+        .form-hint {
             font-family: 'TT Travels', sans-serif;
+            font-weight: 400;
             font-size: 13px;
             color: #6B7280;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
-        .setup-fee-value {
+        .error-message {
+            display: none;
             font-family: 'TT Travels', sans-serif;
-            font-weight: 600;
-            font-size: 18px;
-            color: #221C46;
+            font-weight: 500;
+            font-size: 13px;
+            color: #DC2626;
+            margin-top: 6px;
         }
 
-        .setup-total {
-            border-top: 2px solid #221C46;
-            padding-top: 16px;
-            margin-top: 16px;
+        .error-message.visible {
+            display: block;
         }
 
-        .setup-total .setup-fee-label {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .setup-total .setup-fee-value {
-            font-weight: 800;
-            font-size: 24px;
-            color: #00EB5E;
-        }
-
-        /* Continue Button */
-        .continue-section {
-            text-align: left;
-            margin-bottom: 32px;
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
         }
 
         .btn {
-            padding: 12px 16px;
+            padding: 12px 24px;
             font-size: 14px;
             font-weight: 500;
             border-radius: 0;
@@ -305,6 +310,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
         .btn-primary {
@@ -325,7 +332,22 @@
             cursor: not-allowed;
         }
 
-        /* Info Box - Policy Agent Card Style */
+        .btn-secondary {
+            background: white;
+            color: #221C46;
+            border: 3px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            border-color: #221C46;
+        }
+
+        .btn i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Info Box */
         .info-box {
             background: #EEF2FF;
             border: 1px solid #BFDBFE;
@@ -373,51 +395,6 @@
             text-decoration: underline;
         }
 
-        /* Agreement Checkbox */
-        .agreement-section {
-            margin: 32px 0;
-            padding: 20px;
-            background: #F9FAFB;
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-        }
-
-        .checkbox-agreement {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .checkbox-agreement input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            margin-top: 2px;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .checkbox-label {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 16px;
-            line-height: 24px;
-            color: #221C46;
-            cursor: pointer;
-        }
-
-        .checkbox-label a {
-            color: #1B51DC;
-            text-decoration: underline;
-        }
-
-        .validity-notice {
-            text-align: left;
-            font-family: 'TT Travels', sans-serif;
-            font-size: 14px;
-            color: #6B7280;
-            margin-top: 16px;
-        }
-
         /* Footer */
         .footer {
             border-top: 1px solid #D1CFD7;
@@ -458,14 +435,6 @@
             color: #221C46;
             letter-spacing: -0.6px;
         }
-
-        .disclaimer {
-            font-family: 'TT Travels', sans-serif;
-            font-size: 12px;
-            color: #6B7280;
-            margin-top: 24px;
-            line-height: 1.5;
-        }
     </style>
 </head>
 <body>
@@ -498,7 +467,7 @@
     <!-- Offer Banner -->
     <div class="offer-banner">
         <div class="offer-banner-container">
-            <div class="offer-banner-label">Votre offre personnalisée</div>
+            <div class="offer-banner-label">Your personalized offer</div>
             <div class="offer-banner-title">
                 <img class="offer-banner-icon" src="https://www.figma.com/api/mcp/asset/ecb15c44-604a-451a-8491-0df228809873" alt="Pluxee Mobility">
                 <h1 class="offer-banner-text">Pluxee Mobility</h1>
@@ -512,81 +481,117 @@
         <div class="step-indicator">
             <div class="step-box">1</div>
             <div class="step-line"></div>
-            <div class="step-box">2</div>
+            <div class="step-box active">2</div>
             <div class="step-line"></div>
-            <div class="step-box active">3</div>
+            <div class="step-box">3</div>
         </div>
 
         <!-- Page Title -->
-        <h1 class="page-title">Offer information</h1>
-
-        <!-- Setup Fee Section -->
-        <div class="setup-fee-box">
-            <h3 class="setup-fee-title">Opening a client account</h3>
-
-            <div class="setup-fee-row">
-                <div>
-                    <div class="setup-fee-label">Monthly subscription per active user</div>
-                    <div class="setup-fee-detail">€4.00 per active user × 20 users</div>
-                </div>
-                <div class="setup-fee-value">€ 80.00</div>
-            </div>
-
-            <div class="setup-fee-row">
-                <div>
-                    <div class="setup-fee-label">Account opening fee with Pluxee</div>
-                    <div class="setup-fee-detail">One-time fee payable on first order</div>
-                </div>
-                <div class="setup-fee-value">€ 200.00</div>
-            </div>
-
-            <div class="setup-fee-row setup-total">
-                <div class="setup-fee-label">Total for first order</div>
-                <div class="setup-fee-value">€ 280.00</div>
-            </div>
-        </div>
-
-        <!-- Agreement Checkbox -->
-        <div class="agreement-section">
-            <label class="checkbox-agreement">
-                <input type="checkbox" id="terms-checkbox">
-                <span class="checkbox-label">
-                    I have read and approve <a href="#">the general terms and conditions</a> of sale relating to Pluxee services.
-                </span>
-            </label>
-        </div>
-
-        <!-- Continue Button -->
-        <div class="continue-section">
-            <button class="btn btn-primary" id="accept-button" disabled>
-                I accept the offer *
-            </button>
-            <p class="validity-notice">This offer is valid until 01/10/2026</p>
-        </div>
+        <h1 class="page-title">Company Information</h1>
 
         <!-- Info Box -->
         <div class="info-box">
-            <i data-lucide="info" class="info-icon"></i>
+            <i data-lucide="check-circle" class="info-icon"></i>
             <div class="info-content">
-                <h3 class="info-title">What are you committing to by opening your account with us?</h3>
+                <h3 class="info-title">Information retrieved from BCE</h3>
                 <p class="info-text">
-                    Opening your account simply allows you to continue the order process. Only the opening fees will need to be paid (if applicable to you) at this stage.
-                </p>
-                <p class="info-text">
-                    The different costs mentioned here are indicative and estimate the maximum amount of our offer. They may not correspond to your exact situation (number of active users, etc.). The final and correct amount will be recalculated before your payment when you place your order. This step will be done later from your Client Area. You will also be able to modify the number of users if necessary. You can therefore open your account now without any concerns and continue the ordering process.
-                </p>
-                <p class="info-text">
-                    Have questions? <a href="#">Request to be contacted by our team.</a>
-                </p>
-                <p class="info-text">
-                    Not interested in this offer? <a href="#">Tell us why</a>
+                    We found your company in the Crossroads Bank for Enterprises. Please verify the information below and complete the missing fields.
                 </p>
             </div>
         </div>
 
-        <p class="disclaimer">
-            * These costs are indicated excluding VAT.
-        </p>
+        <!-- Form -->
+        <form id="companyForm">
+            <!-- Company Information Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Company Data</h3>
+
+                <div class="form-group">
+                    <label class="form-label">VAT Number</label>
+                    <input
+                        type="text"
+                        class="form-input"
+                        value="BE 0123.456.789"
+                        disabled
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Legal Name</label>
+                    <input
+                        type="text"
+                        class="form-input"
+                        id="legalName"
+                        value="Selligent SA / Marigold Europe"
+                        disabled
+                    >
+                    <div class="form-hint">Automatically retrieved from BCE</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Registered Address</label>
+                    <input
+                        type="text"
+                        class="form-input"
+                        id="address"
+                        value="Rue de la Loi 26, 1040 Brussels, Belgium"
+                        disabled
+                    >
+                    <div class="form-hint">Automatically retrieved from BCE</div>
+                </div>
+            </div>
+
+            <!-- Additional Information Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Additional Information</h3>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Invoice Recipient Email <span class="required">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        class="form-input"
+                        id="invoiceEmail"
+                        placeholder="billing@company.be"
+                        required
+                    >
+                    <div class="error-message" id="emailError">
+                        Please enter a valid email address
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Number of Employees <span class="required">*</span>
+                    </label>
+                    <input
+                        type="number"
+                        class="form-input"
+                        id="employeeCount"
+                        placeholder="e.g., 118"
+                        min="1"
+                        required
+                    >
+                    <div class="form-hint">Total number of employees in your company</div>
+                    <div class="error-message" id="employeeError">
+                        Please enter a valid number of employees
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <a href="01-tva-identification.html" class="btn btn-secondary">
+                    <i data-lucide="arrow-left"></i>
+                    Back
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    Continue
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+        </form>
     </main>
 
     <!-- Footer -->
@@ -606,17 +611,61 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Checkbox and accept button
-        const checkbox = document.getElementById('terms-checkbox');
-        const acceptButton = document.getElementById('accept-button');
+        // Form validation
+        const form = document.getElementById('companyForm');
+        const invoiceEmail = document.getElementById('invoiceEmail');
+        const employeeCount = document.getElementById('employeeCount');
+        const emailError = document.getElementById('emailError');
+        const employeeError = document.getElementById('employeeError');
 
-        checkbox.addEventListener('change', function() {
-            acceptButton.disabled = !this.checked;
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // Validate email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(invoiceEmail.value.trim())) {
+                invoiceEmail.classList.add('error');
+                emailError.classList.add('visible');
+                isValid = false;
+            } else {
+                invoiceEmail.classList.remove('error');
+                emailError.classList.remove('visible');
+            }
+
+            // Validate employee count
+            const count = parseInt(employeeCount.value);
+            if (!count || count < 1) {
+                employeeCount.classList.add('error');
+                employeeError.classList.add('visible');
+                isValid = false;
+            } else {
+                employeeCount.classList.remove('error');
+                employeeError.classList.remove('visible');
+            }
+
+            if (isValid) {
+                console.log('Form submitted:', {
+                    invoiceEmail: invoiceEmail.value,
+                    employeeCount: employeeCount.value
+                });
+                window.location.href = 'offer-contract.html';
+            }
         });
 
-        acceptButton.addEventListener('click', function() {
-            if (!this.disabled) {
-                window.location.href = 'offer-email-example.html';
+        // Clear errors on input
+        invoiceEmail.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                this.classList.remove('error');
+                emailError.classList.remove('visible');
+            }
+        });
+
+        employeeCount.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                this.classList.remove('error');
+                employeeError.classList.remove('visible');
             }
         });
 
